@@ -1,5 +1,7 @@
 FROM node:16
 
+ARG APP_PORT
+
 RUN mkdir /app
 WORKDIR /app
 
@@ -11,4 +13,4 @@ COPY . ./
 
 RUN npm run build
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npx", "next", "start", "-p", "${APP_PORT}" ]
