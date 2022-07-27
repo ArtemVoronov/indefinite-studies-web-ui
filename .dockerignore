@@ -1,0 +1,9 @@
+.vscode
+.env.*
+Dockerfile
+.dockerignore
+docker-compose.yml
+.next
+node_modules
+npm-debug.log
+dist
