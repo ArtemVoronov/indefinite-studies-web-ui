@@ -1,35 +1,35 @@
-import type { NextPage } from 'next'
-import * as React from 'react'
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import internal from 'stream'
+import type { NextPage } from "next"
+import * as React from "react"
+import Head from "next/head"
+import styles from "../styles/Home.module.css"
+import internal from "stream"
 import { ApiConfig, DEFAULT_API_CONFIG } from "../services/api/api-config"
-import { API_CLIENT } from '../services/api/api-client'
-import NotesList from '../components/notes/note.list'
+import { API_CLIENT } from "../services/api/api-client"
+import NotesList from "../components/notes/note.list"
+import LoginForm from "../components/auth/login"
 
 const Home: NextPage = (props) => {
-  return (
-    <div>
-      <Head>
-        <title>Indefinite Studies</title>
-        <meta name="description" content="indefinite studies" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+	return (
+		<div>
+			<Head>
+				<title>Indefinite Studies</title>
+				<meta name="description" content="indefinite studies" />
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
 
-      <main className={styles.main}>
-        <div style={{background:'#FEC8D8', minHeight: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+			<main className={styles.main}>
+				<div style={{background:"#FEC8D8", minHeight: "64px", display: "flex", alignItems: "center", justifyContent: "center"}}>
           header
-        </div>
-        <div style={{background:'#E0BBE4', minHeight: '64px', flex: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+				</div>
+				<div style={{background:"#E0BBE4", minHeight: "64px", flex: 0, display: "flex", alignItems: "center", justifyContent: "center"}}>
           navigation zone
-        </div>
-        <div style={{background:'#FFDFD3', flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-          {/* <NotesList/> */}
-          posts zone
-        </div>       
-      </main>
-    </div>
-  )
+				</div>
+				<div style={{background:"#FFDFD3", flex: 1, display: "flex", alignItems: "center", justifyContent: "center"}}>
+					<LoginForm/>
+				</div>       
+			</main>
+		</div>
+	)
 }
 
 export default Home

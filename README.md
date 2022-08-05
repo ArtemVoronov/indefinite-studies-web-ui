@@ -3,10 +3,11 @@
 ```
 #common settings
 APP_PORT=3000
-API_URL=http://localhost:3000
+NEXT_PUBLIC_API_URL=http://localhost
+NEXT_PUBLIC_API_TIMEOUT_IN_MILLIS=30000
 ```
 2. Check `docker-compose.yml` is appropriate to config that you are going to use (e.g.`docker-compose config`)
-3. Build images: `docker-compose  build`
+3. Build images: `docker-compose build`
 4. Run it: `docker-compose up`
 5. Stop it: `docker-compose down`
 
