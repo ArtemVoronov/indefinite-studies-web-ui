@@ -1,13 +1,13 @@
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import { ApisauceInstance, create } from "apisauce"
 import { AuthApi } from "../api/auth/auth.api"
-import { PingApi } from "../api/ping/ping.api"
+import { PostsApi } from "../api/posts/posts.api"
 
 export class ApiClient {
 	apisauce: ApisauceInstance
 	config: ApiConfig
 	auth: AuthApi
-	ping: PingApi
+	posts: PostsApi
 
 	constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
 		this.config = config
@@ -26,7 +26,7 @@ export class ApiClient {
 		// this.apisauce.addMonitor(loggingMonitor)
 
 		this.auth = new AuthApi(this)
-		this.ping = new PingApi(this)
+		this.posts = new PostsApi(this)
 	}
 
 	setJWTAuthrozationHeader(token: string) {

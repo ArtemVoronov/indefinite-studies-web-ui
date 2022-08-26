@@ -24,4 +24,12 @@ export class AuthApi {
 		})
 	}
 
+	async ping(): Promise<any> {
+		return this.api.apisauce.get("/api/v1/auth/ping")
+	}
+
+	async safePing(): Promise<any> {
+		return this.api.apisauce.get("/api/v1/auth/safe-ping")
+	}
+
 }
