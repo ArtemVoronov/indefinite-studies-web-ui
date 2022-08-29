@@ -1,5 +1,5 @@
 import { ApiClient } from '../api-client'
-import { GetAllOptions, UrlBuilder, QueryParameter, isNil } from '../../utils/utils'
+import { GetAllOptions, UrlBuilder, QueryParameter, isNil } from '../../../utils/utils'
 
 export class PostsApi {
   api: ApiClient
