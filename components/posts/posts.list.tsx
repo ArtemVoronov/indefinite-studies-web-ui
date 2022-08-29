@@ -4,6 +4,7 @@ import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 import { Button } from '@mui/material';
 
 const DEFAULT_LIMIT = 25
+const SPIN_ICON_SHOWING_TIMEOUT = 500
 
 const PostsList = () => {
     const [isLoading, setIsLoading] = React.useState(false)
@@ -17,7 +18,7 @@ const PostsList = () => {
         }
         const timer = setTimeout(() => {
             setIsLoading(true)
-        }, 500)
+        }, SPIN_ICON_SHOWING_TIMEOUT)
 
         try {
 
