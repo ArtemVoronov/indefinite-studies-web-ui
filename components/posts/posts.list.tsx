@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { API_CLIENT } from '../../services/api/api-client'
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
-import { Button } from '@mui/material';
+import { Button } from '@mui/material'
+import Link from 'next/link'
 
 const DEFAULT_LIMIT = 25
 const SPIN_ICON_SHOWING_TIMEOUT = 500
@@ -92,9 +93,13 @@ const PostsList = () => {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-            {posts.map(function (d: { Topic: string }, idx) {
+            {posts.map(function (d: { Id: number, Topic: string }, idx) {
                 console.log(d) // todo clean
-                return (<li key={idx}>{d.Topic}</li>)
+                return (
+                    <Link key={idx} href={"/post/" + d.Id} >
+                        <a>{d.Topic}</a>
+                    </Link>
+                )
             })}
 
             <div style={{ display: "flex", flex: "1", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
@@ -107,5 +112,3 @@ const PostsList = () => {
 }
 
 export default PostsList
-
-

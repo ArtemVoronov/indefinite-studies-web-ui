@@ -3,6 +3,7 @@ import { API_CLIENT } from '../../services/api/api-client'
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 import { TextField, Button } from '@mui/material';
 import { AUTH_SERVICE } from '../../services/auth/auth-service';
+import Router from 'next/router'
 
 const LoginForm = () => {
     const [email, setEmail] = React.useState('');
@@ -12,7 +13,10 @@ const LoginForm = () => {
         event.preventDefault()
         // TODO
 
-        AUTH_SERVICE.login(email, password)
+        AUTH_SERVICE.login(email, password).then(() => {
+            console.log("success")
+            Router.push("/")
+        })
     }
 
     const ping = () => {
@@ -55,5 +59,3 @@ const LoginForm = () => {
 }
 
 export default LoginForm
-
-
