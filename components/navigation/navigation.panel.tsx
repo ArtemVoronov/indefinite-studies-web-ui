@@ -18,7 +18,7 @@ const NavigationPanel = () => {
                 </li>
                 <li>
                     <Link href="/post">
-                        <a>Post</a>
+                        <a>New Post</a>
                     </Link>
                 </li>
             </ul>

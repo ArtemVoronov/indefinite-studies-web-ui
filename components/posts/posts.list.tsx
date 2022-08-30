@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { API_CLIENT } from '../../services/api/api-client'
-import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
-import { Button } from '@mui/material'
+import { POSTS_SERVICE, Post } from '../../services/posts/posts-service'
 import Link from 'next/link'
 
 const DEFAULT_LIMIT = 25
@@ -22,17 +20,10 @@ const PostsList = () => {
         }, SPIN_ICON_SHOWING_TIMEOUT)
 
         try {
-
-            const response = await API_ERROR_HANDLER.callWithErrorHandling({
-                action: () => API_CLIENT.posts.getAll({ offset, limit: DEFAULT_LIMIT }),
-            })
+            const response = await POSTS_SERVICE.getAll({ offset, limit: DEFAULT_LIMIT })
             clearTimeout(timer)
-            // console.log("response:") // todo clean
-            // console.log(response) // todo clean
             if (response.status === 200) {
                 const portion = response.data.Data
-                // console.log("portion:") // todo clean
-                // console.log(portion) // todo clean
                 if (portion.length < DEFAULT_LIMIT) {
                     setIsAllFetched(true)
                 }
@@ -46,32 +37,6 @@ const PostsList = () => {
         }
     }
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault()
-        // TODO
-
-        fetchPosts()
-    }
-
-    const ping = () => {
-        API_CLIENT.posts.ping()
-            .then((response) => {
-                console.log(response)
-            })
-    }
-
-    const safePing = () => {
-        API_CLIENT.posts.safePing()
-            .then((response) => {
-                console.log(response)
-            })
-
-        API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.posts.safePing(),
-        })
-
-    }
-
     React.useEffect(() => {
         fetchPosts()
     }, [])
@@ -83,30 +48,18 @@ const PostsList = () => {
             <div>
                 No data
             </div>
-            <div style={{ display: "flex", flex: "1", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                <Button variant="contained" style={{ margin: "10px" }} onClick={handleSubmit}>Reload</Button>
-                <Button variant="contained" style={{ margin: "10px" }} onClick={() => { ping() }}>Ping</Button>
-                <Button variant="contained" style={{ margin: "10px" }} onClick={() => { safePing() }}>SafePing</Button>
-            </div>
         </div>
     )
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-            {posts.map(function (d: { Id: number, Topic: string }, idx) {
-                console.log(d) // todo clean
+            {posts.map(function (p: Post, idx) {
                 return (
-                    <Link key={idx} href={"/post/" + d.Id} >
-                        <a>{d.Topic}</a>
+                    <Link key={idx} href={"/post/" + p.Id} >
+                        <a>{p.Topic}</a>
                     </Link>
                 )
             })}
-
-            <div style={{ display: "flex", flex: "1", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                <Button variant="contained" style={{ margin: "10px" }} onClick={handleSubmit}>Reload</Button>
-                <Button variant="contained" style={{ margin: "10px" }} onClick={() => { ping() }}>Ping</Button>
-                <Button variant="contained" style={{ margin: "10px" }} onClick={() => { safePing() }}>SafePing</Button>
-            </div>
         </div>
     )
 }

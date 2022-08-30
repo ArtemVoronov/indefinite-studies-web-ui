@@ -3,11 +3,10 @@ import * as React from "react"
 import Head from "next/head"
 import styles from "../../styles/Home.module.css"
 import NavigationPanel from "../../components/navigation/navigation.panel"
-import { useRouter } from 'next/router'
+import { POSTS_SERVICE, Post } from "../../services/posts/posts-service"
 
-const ViewOrEditPostPage: NextPage = () => {
-    const router = useRouter()
-    const { id } = router.query
+const ViewOrEditPostPage: NextPage = (props: { post?: Post }) => {
+    const { post } = props
 
     return (
         <div>
@@ -25,11 +24,26 @@ const ViewOrEditPostPage: NextPage = () => {
                     <NavigationPanel />
                 </div>
                 <div style={{ background: "#FFDFD3", flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    {"View post " + id}
+                    <div style={{ flexDirection: "column" }}>
+                        <h1>{post?.Topic}</h1>
+                        <div>{post?.Text}</div>
+                    </div>
                 </div>
-            </main>
-        </div>
+            </main >
+        </div >
     )
+}
+
+export async function getServerSideProps(context) {
+    const id = context.params.id
+    const response = await POSTS_SERVICE.get({ postId: id })
+
+    if (response.status === 200) {
+        const post = response.data
+        return { props: { post } }
+    }
+
+    return { props: {} }
 }
 
 export default ViewOrEditPostPage
