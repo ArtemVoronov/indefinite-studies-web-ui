@@ -2,12 +2,14 @@ import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
 import { ApisauceInstance, create } from "apisauce"
 import { AuthApi } from "../api/auth/auth.api"
 import { PostsApi } from "../api/posts/posts.api"
+import { UsersApi } from "../api/users/users.api"
 
 export class ApiClient {
 	apisauce: ApisauceInstance
 	config: ApiConfig
 	auth: AuthApi
 	posts: PostsApi
+	users: UsersApi
 
 	constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
 		this.config = config
@@ -27,6 +29,7 @@ export class ApiClient {
 
 		this.auth = new AuthApi(this)
 		this.posts = new PostsApi(this)
+		this.users = new UsersApi(this)
 	}
 
 	setJWTAuthrozationHeader(token: string) {

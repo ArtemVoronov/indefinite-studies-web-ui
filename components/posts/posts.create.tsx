@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { TextField, Button } from '@mui/material'
 import { POSTS_SERVICE } from '../../services/posts/posts-service'
+import { USERS_SERVICE } from '../../services/users/users.service'
 import Router from 'next/router'
 
 const PostCreate = () => {
@@ -11,12 +12,24 @@ const PostCreate = () => {
     const handleSubmit = async (event: any) => {
         event.preventDefault()
 
-        // TODO: add getting user id at authenication
-        const response = await POSTS_SERVICE.create({ authorId: 1, text, topic })
+        let response = await USERS_SERVICE.getMe()
 
-        if (response.status == 201) {
-            Router.push("/post/" + response.data)
+        if (response.status != 200) {
+            // TODO: show error
+            console.log("unable to get profile")
+            return
         }
+
+        const profile = response.data
+
+        response = await POSTS_SERVICE.create({ authorId: profile.Id, text, topic })
+
+        if (response.status != 201) {
+            // TODO: show error
+            console.log("unable to create post")
+            return
+        }
+        Router.push("/post/" + response.data)
     }
 
     return (

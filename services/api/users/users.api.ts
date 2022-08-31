@@ -7,12 +7,8 @@ export class UsersApi {
     this.api = api
   }
 
-  async ping(): Promise<any> {
-    return this.api.apisauce.get("/api/v1/users/ping")
-  }
-
-  async safePing(): Promise<any> {
-    return this.api.apisauce.get("/api/v1/users/safe-ping")
+  async getMe(): Promise<any> {
+    return this.api.apisauce.get("/api/v1/users/me")
   }
 
 }
