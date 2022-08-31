@@ -1,11 +1,14 @@
 import type { NextPage } from "next"
 import * as React from "react"
 import Head from "next/head"
-import styles from "../../styles/Home.module.css"
-import NavigationPanel from "../../components/navigation/navigation.panel"
-import PostCreate from "../../components/posts/posts.create"
+import styles from "../../../styles/Home.module.css"
+import NavigationPanel from "../../../components/navigation/navigation.panel"
+import PostEdit from "../../../components/posts/posts.edit"
+import { POSTS_SERVICE, Post } from "../../../services/posts/posts-service"
+import { isNil } from "../../../utils/utils"
 
-const CreatePostPage: NextPage = () => {
+const ViewOrEditPostPage: NextPage = (props: { post?: Post }) => {
+    const { post } = props
 
     return (
         <div>
@@ -23,11 +26,23 @@ const CreatePostPage: NextPage = () => {
                     <NavigationPanel />
                 </div>
                 <div style={{ background: "#FFDFD3", flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <PostCreate />
+                    <PostEdit post={post} />
                 </div>
-            </main>
-        </div>
+            </main >
+        </div >
     )
 }
 
-export default CreatePostPage
+export async function getServerSideProps(context) {
+    const id = context.params.id
+    const response = await POSTS_SERVICE.get({ postId: id })
+
+    if (response.status === 200) {
+        const post = response.data
+        return { props: { post } }
+    }
+
+    return { props: {} }
+}
+
+export default ViewOrEditPostPage
