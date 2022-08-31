@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { POSTS_SERVICE, Post } from '../../services/posts/posts-service'
+import { POSTS_SERVICE, Post } from '../../services/posts/posts.service'
 import Link from 'next/link'
 
 const DEFAULT_LIMIT = 25

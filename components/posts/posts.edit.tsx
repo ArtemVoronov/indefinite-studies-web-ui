@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { TextField, Button } from '@mui/material'
-import { POSTS_SERVICE, Post } from '../../services/posts/posts-service'
+import { POSTS_SERVICE, Post } from '../../services/posts/posts.service'
 import Router from 'next/router'
 
 const PostEdit = (props: { post: Post }) => {

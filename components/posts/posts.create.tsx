@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { TextField, Button } from '@mui/material'
-import { POSTS_SERVICE } from '../../services/posts/posts-service'
+import { POSTS_SERVICE } from '../../services/posts/posts.service'
 import { USERS_SERVICE } from '../../services/users/users.service'
 import Router from 'next/router'
 

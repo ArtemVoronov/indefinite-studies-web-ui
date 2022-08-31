@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Post } from '../../services/posts/posts-service'
+import { Post } from '../../services/posts/posts.service'
 import { isNil } from '../../utils/utils'
 import { Button } from '@mui/material'
 import Router from 'next/router'

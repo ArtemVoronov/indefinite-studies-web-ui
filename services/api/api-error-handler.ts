@@ -1,5 +1,5 @@
 import { ApiResponse, UNKNOWN_ERROR } from "apisauce"
-import { AUTH_SERVICE } from "../../services/auth/auth-service"
+import { AUTH_SERVICE } from "../../services/auth/auth.service"
 
 export const REFRESH_TOKEN_KEY = "refreshToken"
 

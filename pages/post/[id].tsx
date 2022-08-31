@@ -4,7 +4,7 @@ import Head from "next/head"
 import styles from "../../styles/Home.module.css"
 import NavigationPanel from "../../components/navigation/navigation.panel"
 import PostView from "../../components/posts/posts.view"
-import { POSTS_SERVICE, Post } from "../../services/posts/posts-service"
+import { POSTS_SERVICE, Post } from "../../services/posts/posts.service"
 import { isNil } from "../../utils/utils"
 
 const ViewOrEditPostPage: NextPage = (props: { post?: Post }) => {

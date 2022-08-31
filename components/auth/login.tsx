@@ -2,7 +2,7 @@ import * as React from 'react'
 import { API_CLIENT } from '../../services/api/api-client'
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 import { TextField, Button } from '@mui/material'
-import { AUTH_SERVICE } from '../../services/auth/auth-service'
+import { AUTH_SERVICE } from '../../services/auth/auth.service'
 import Router from 'next/router'
 
 const LoginForm = () => {
