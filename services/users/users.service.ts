@@ -2,6 +2,7 @@ import { ApiResponse } from "apisauce"
 import { API_CLIENT } from "../../services/api/api-client"
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 
+// TODO: service should some maningful results instead of response
 export class PostsService {
     async getMe(): Promise<ApiResponse<any>> {
         const result = await API_ERROR_HANDLER.callWithErrorHandling({

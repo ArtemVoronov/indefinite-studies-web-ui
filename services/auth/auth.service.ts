@@ -5,6 +5,7 @@ import { AuthTokens } from "../../services/api/auth/auth.api"
 export const ACCESS_TOKEN_KEY = "accessToken"
 export const REFRESH_TOKEN_KEY = "refreshToken"
 
+// TODO: service should some maningful results instead of response
 export class AuthService {
 
     async login(email: string, password: string): Promise<ApiResponse<any>> {

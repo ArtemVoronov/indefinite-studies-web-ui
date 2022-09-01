@@ -4,6 +4,7 @@ import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 import { GetPostOptions, CreatePostOptions, UpdatePostOptions } from "../../services/api/posts/posts.api"
 import { GetAllOptions } from "../../utils/utils"
 
+// TODO: service should some maningful results instead of response
 export class PostsService {
 
     async getAll(options: GetAllOptions): Promise<ApiResponse<any>> {
