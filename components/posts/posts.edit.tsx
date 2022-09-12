@@ -2,6 +2,9 @@ import * as React from 'react'
 import { TextField, Button } from '@mui/material'
 import { POSTS_SERVICE, Post } from '../../services/posts/posts.service'
 import Router from 'next/router'
+import { GetServerSidePropsContext } from 'next'
+import { isNil } from "../../utils/utils"
+import { FEED_SERVICE } from '../../services/feed/feed.service'
 
 const PostEdit = (props: { post: Post }) => {
     const [topic, setTopic] = React.useState(props.post.Topic);
@@ -36,13 +39,15 @@ const PostEdit = (props: { post: Post }) => {
     )
 }
 
-export async function getServerSideProps(context) {
-    const id = context.params.id
-    const response = await POSTS_SERVICE.get({ postId: id })
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const id = context?.params?.id
+    if (isNil(id)) {
+        return { props: {} }
+    }
+    const response = await FEED_SERVICE.get({ postId: `${id}` })
 
     if (response.status === 200) {
         const post = response.data
-        console.log("post: ", post)
         return { props: { post } }
     }
 

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { POSTS_SERVICE, Post } from '../../services/posts/posts.service'
+import { FEED_SERVICE, FeedBlock } from '../../services/feed/feed.service'
 import Link from 'next/link'
 
 const DEFAULT_LIMIT = 25
@@ -20,7 +20,7 @@ const PostsList = () => {
         }, SPIN_ICON_SHOWING_TIMEOUT)
 
         try {
-            const response = await POSTS_SERVICE.getAll({ offset, limit: DEFAULT_LIMIT })
+            const response = await FEED_SERVICE.getAll({ offset, limit: DEFAULT_LIMIT })
             clearTimeout(timer)
             if (response.status === 200) {
                 const portion = response.data.Data
@@ -53,10 +53,10 @@ const PostsList = () => {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-            {posts.map(function (p: Post, idx) {
+            {posts.map(function (p: FeedBlock, idx) {
                 return (
-                    <Link key={idx} href={"/post/" + p.Id} >
-                        <a>{p.Topic}</a>
+                    <Link key={idx} href={"/post/" + p.PostId} >
+                        <a>{p.PostTopic}</a>
                     </Link>
                 )
             })}

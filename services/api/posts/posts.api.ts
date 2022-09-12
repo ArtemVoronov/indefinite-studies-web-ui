@@ -46,7 +46,8 @@ export class PostsApi {
 
   async update(options: UpdatePostOptions): Promise<any> {
     const { postId, authorId, text, topic } = options
-    return this.api.apisauce.put("/api/v1/posts/" + postId, {
+    return this.api.apisauce.put("/api/v1/posts/", {
+      id: postId,
       authorId,
       text,
       topic
