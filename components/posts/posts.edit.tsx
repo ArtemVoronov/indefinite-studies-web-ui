@@ -1,24 +1,24 @@
 import * as React from 'react'
 import { TextField, Button } from '@mui/material'
-import { POSTS_SERVICE, Post } from '../../services/posts/posts.service'
+import { POSTS_SERVICE } from '../../services/posts/posts.service'
 import Router from 'next/router'
 import { GetServerSidePropsContext } from 'next'
 import { isNil } from "../../utils/utils"
-import { FEED_SERVICE } from '../../services/feed/feed.service'
+import { FEED_SERVICE, FullPostInfo } from '../../services/feed/feed.service'
 
-const PostEdit = (props: { post: Post }) => {
-    const [topic, setTopic] = React.useState(props.post.Topic);
-    const [text, setText] = React.useState(props.post.Text);
-    const { Id, AuthorId } = props.post
+const PostEdit = (props: { post: FullPostInfo }) => {
+    const [topic, setTopic] = React.useState(props.post.Post.PostTopic);
+    const [text, setText] = React.useState(props.post.Post.PostText);
+    const { PostId, AuthorId } = props.post.Post
 
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
 
-        const response = await POSTS_SERVICE.update({ postId: Id, authorId: AuthorId, text, topic })
+        const response = await POSTS_SERVICE.update({ postId: PostId, authorId: AuthorId, text, topic })
 
         if (response.status == 200) {
-            Router.push("/post/" + Id)
+            Router.push("/post/" + PostId)
         }
     }
 

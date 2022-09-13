@@ -4,7 +4,7 @@ import { Button } from '@mui/material'
 import Router from 'next/router'
 import md from "markdown-it"
 
-const PostView = (props: { post?: FullPostInfo }) => {
+const PostView = (props: { post: FullPostInfo }) => {
     const { post } = props
 
     const handleEditEvent = () => {

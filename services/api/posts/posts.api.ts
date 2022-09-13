@@ -55,6 +55,6 @@ export class PostsApi {
   }
 }
 
-export type GetPostOptions = { postId: number }
+export type GetPostOptions = { postId: number | string }
 export type CreatePostOptions = { authorId: number, text: string, topic: string }
 export type UpdatePostOptions = { postId: number, authorId: number, text: string, topic: string }
