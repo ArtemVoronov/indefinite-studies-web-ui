@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { TextField, Button } from '@mui/material'
-import { POSTS_SERVICE } from '../../services/posts/posts.service'
+import { POSTS_SERVICE } from '../../../services/posts/posts.service'
 import Router from 'next/router'
 import { GetServerSidePropsContext } from 'next'
-import { isNil } from "../../utils/utils"
-import { FEED_SERVICE, FullPostInfo } from '../../services/feed/feed.service'
+import { isNil } from "../../../utils/utils"
+import { FEED_SERVICE, FullPostInfo } from '../../../services/feed/feed.service'
+import styles from "./post.edit.module.css"
 
 const PostEdit = (props: { post: FullPostInfo }) => {
     const [topic, setTopic] = React.useState(props.post.Post.PostTopic)
@@ -24,24 +25,24 @@ const PostEdit = (props: { post: FullPostInfo }) => {
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className={styles["post-edit-wrapper"]}>
             <TextField
-                id="topic-input" label="Topic" type="text" style={{ margin: "10px" }} value={topic}
+                id="topic-input" label="Topic" type="text" className='margin10' value={topic}
                 onChange={e => setTopic(e.target.value)}
             />
             <TextField
-                id="text-input" label="Text" type="text" style={{ margin: "10px" }} value={text}
+                id="text-input" label="Text" type="text" className='margin10' value={text}
                 onChange={e => setText(e.target.value)}
                 multiline
                 minRows={10}
             />
             <TextField
-                id="text-input" label="PreviewText" type="text" style={{ margin: "10px" }} value={previewText}
+                id="text-input" label="PreviewText" type="text" className='margin10' value={previewText}
                 onChange={e => setPreviewText(e.target.value)}
                 multiline
                 minRows={10}
             />
-            <Button variant="contained" style={{ margin: "10px" }} onClick={handleSubmit}>Update</Button>
+            <Button variant="contained" className='margin10' onClick={handleSubmit}>Update</Button>
         </div>
     )
 }

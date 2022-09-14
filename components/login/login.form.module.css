@@ -1,0 +1,4 @@
+.login-form-wrapper {
+  display: flex;
+  flex-direction: column;
+}

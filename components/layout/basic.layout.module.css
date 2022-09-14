@@ -7,7 +7,6 @@
 }
 
 .main a {
-  color: #0070f3;
   text-decoration: none;
 }
 
@@ -17,7 +16,24 @@
   text-decoration: underline;
 }
 
-.bg1 {
+.main .content {
+  background: #FFDFD3;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .header {
+  background: #FEC8D8;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*TODO: add palette*/
+/* .bg1 {
   background: #E0BBE4
 }
 
@@ -35,7 +51,7 @@
 
 .bg4 {
   background: #FFDFD3
-}
+} */
 
 @media (max-width: 600px) {}
 

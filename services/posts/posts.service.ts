@@ -24,9 +24,9 @@ export class PostsService {
     }
 
     async create(options: CreatePostOptions): Promise<ApiResponse<any>> {
-        const { authorId, text, topic } = options
+        const { authorId, text, topic, previewText } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.posts.create({ authorId, text, topic })
+            action: () => API_CLIENT.posts.create({ authorId, text, topic, previewText })
         })
         return result
     }

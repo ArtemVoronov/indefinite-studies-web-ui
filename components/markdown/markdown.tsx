@@ -1,6 +1,6 @@
 import * as React from 'react'
 import md from "markdown-it"
-import styles from "../../styles/markdown.module.css"
+import styles from "./markdown.module.css"
 
 const MarkDown = (props: { text?: string }) => {
     return (

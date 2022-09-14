@@ -1,22 +1,23 @@
 import * as React from 'react'
-import { API_CLIENT } from '../../services/api/api-client'
-import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 import { TextField, Button } from '@mui/material'
 import { AUTH_SERVICE } from '../../services/auth/auth.service'
+import { API_CLIENT } from '../../services/api/api-client'
+import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
+import styles from "./login.form.module.css"
 import Router from 'next/router'
 
 const LoginForm = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault()
-        // TODO
-
+    const login = () => {
         AUTH_SERVICE.login(email, password).then(() => {
             console.log("success")
             Router.push("/")
         })
+    }
+    const logout = () => {
+        AUTH_SERVICE.logout()
     }
 
     const ping = () => {
@@ -39,21 +40,26 @@ const LoginForm = () => {
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className={styles['login-form-wrapper']}>
             <TextField
-                id="email-input" label="Email" type="text" style={{ margin: "10px" }}
+                id="email-input" label="Email" type="text" className="margin10"
                 inputProps={{ autoComplete: 'new-password', form: { autocomplete: 'off', }, }}
                 onChange={e => setEmail(e.target.value)}
             />
             <TextField
-                id="password-input" label="Password" type="password" style={{ margin: "10px" }}
+                id="password-input" label="Password" type="password" className="margin10"
                 inputProps={{ autoComplete: 'new-password', form: { autocomplete: 'off', }, }}
                 onChange={e => setPassword(e.target.value)}
             />
-            <Button variant="contained" style={{ margin: "10px" }} onClick={handleSubmit}>Login</Button>
-            <Button variant="contained" style={{ margin: "10px" }} onClick={() => { AUTH_SERVICE.logout() }}>Logout</Button>
-            <Button variant="contained" style={{ margin: "10px" }} onClick={() => { ping() }}>Ping</Button>
-            <Button variant="contained" style={{ margin: "10px" }} onClick={() => { safePing() }}>SafePing</Button>
+            <Button variant="contained" className="margin10" onClick={login}>
+                Login
+            </Button>
+            <Button variant="contained" className="margin10" onClick={logout}>
+                Logout
+            </Button>
+            {/* TODO: clean */}
+            <Button variant="contained" className="margin10" onClick={() => { ping() }}>Ping</Button>
+            <Button variant="contained" className="margin10" onClick={() => { safePing() }}>SafePing</Button>
         </div>
     )
 }

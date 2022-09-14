@@ -1,0 +1,21 @@
+.post-preview-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.post-preview-wrapper .topic {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.post-preview-wrapper .topic a {
+  font-size: 24px;
+}
+
+.post-preview-wrapper .metadata {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-preview-wrapper .preview-text {}

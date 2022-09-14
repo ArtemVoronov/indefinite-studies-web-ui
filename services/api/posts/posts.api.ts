@@ -36,11 +36,12 @@ export class PostsApi {
   }
 
   async create(options: CreatePostOptions): Promise<any> {
-    const { authorId, text, topic } = options
+    const { authorId, text, topic, previewText } = options
     return this.api.apisauce.post("/api/v1/posts", {
       authorId,
       text,
-      topic
+      topic,
+      previewText
     })
   }
 
@@ -57,5 +58,5 @@ export class PostsApi {
 }
 
 export type GetPostOptions = { postId: number | string }
-export type CreatePostOptions = { authorId: number, text: string, topic: string }
+export type CreatePostOptions = { authorId: number, text: string, topic: string, previewText: string }
 export type UpdatePostOptions = { postId: number, authorId: number, text: string, topic: string, previewText: string }

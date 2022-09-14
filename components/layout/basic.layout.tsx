@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Head from "next/head"
-import styles from "../../styles/basic.layout.module.css"
+import styles from "./basic.layout.module.css"
 import NavigationPanel from "../navigation/navigation.panel"
 
 interface BasicLayoutProps {
@@ -17,13 +17,10 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
             </Head>
 
             <main className={styles.main}>
-                <div style={{ background: "#FEC8D8", minHeight: "64px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    header
-                </div>
-                <div style={{ background: "#E0BBE4", minHeight: "64px", flex: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div className={styles.header}>
                     <NavigationPanel />
                 </div>
-                <div style={{ background: "#FFDFD3", flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div className={styles.content}>
                     <main>{props.children}</main>
                 </div>
             </main>

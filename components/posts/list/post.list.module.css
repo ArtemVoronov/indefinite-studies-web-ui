@@ -1,0 +1,10 @@
+.post-list-wrapper {}
+
+.post-list-wrapper .post-list {
+  max-width: 750px;
+}
+
+.post-list-wrapper .pagination-buttons {
+  display: flex;
+  justify-content: center;
+}

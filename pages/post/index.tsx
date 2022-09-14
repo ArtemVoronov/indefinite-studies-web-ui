@@ -1,6 +1,6 @@
 import type { NextPage } from "next"
 import * as React from "react"
-import PostCreate from "../../components/posts/posts.create"
+import PostCreate from "../../components/posts/create/posts.create"
 
 const CreatePostPage: NextPage = () => {
 

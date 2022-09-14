@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { FullPostInfo } from '../../services/feed/feed.service'
+import { FullPostInfo } from '../../../services/feed/feed.service'
 import { Button } from '@mui/material'
 import Router from 'next/router'
-import MarkDown from '../markdown/markdown'
-import styles from "../../styles/post.view.module.css"
+import MarkDown from '../../markdown/markdown'
+import styles from "./post.view.module.css"
 
 const PostView = (props: { post?: FullPostInfo }) => {
     const { post } = props
@@ -18,7 +18,7 @@ const PostView = (props: { post?: FullPostInfo }) => {
         <div className={styles["post-view-wrapper"]}>
             <h1>{post?.Post.PostTopic}</h1>
             <MarkDown text={getPostText(post)} />
-            <Button variant="contained" style={{ margin: "10px" }} onClick={handleEditEvent}>Edit</Button>
+            <Button variant="contained" className="margin10" onClick={handleEditEvent}>Edit</Button>
         </div>
 
     )

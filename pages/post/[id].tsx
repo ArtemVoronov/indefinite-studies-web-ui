@@ -1,6 +1,6 @@
 import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
-import PostView from "../../components/posts/posts.view"
+import PostView from "../../components/posts/view/posts.view"
 import { FEED_SERVICE, FullPostInfo } from "../../services/feed/feed.service"
 
 const ViewOrEditPostPage: NextPage = (props: { post?: FullPostInfo }) => {
