@@ -2,9 +2,10 @@ import * as React from 'react'
 import { FullPostInfo } from '../../services/feed/feed.service'
 import { Button } from '@mui/material'
 import Router from 'next/router'
-import md from "markdown-it"
+import MarkDown from '../markdown/markdown'
+import styles from "../../styles/post.view.module.css"
 
-const PostView = (props: { post: FullPostInfo }) => {
+const PostView = (props: { post?: FullPostInfo }) => {
     const { post } = props
 
     const handleEditEvent = () => {
@@ -14,11 +15,9 @@ const PostView = (props: { post: FullPostInfo }) => {
         return post?.Post.PostText ?? "No data"
     }
     return (
-        <div style={{ flexDirection: "column" }}>
+        <div className={styles["post-view-wrapper"]}>
             <h1>{post?.Post.PostTopic}</h1>
-            <div className='prose mx-auto'>
-                <div dangerouslySetInnerHTML={{ __html: md().render(getPostText(post)) }} />
-            </div>
+            <MarkDown text={getPostText(post)} />
             <Button variant="contained" style={{ margin: "10px" }} onClick={handleEditEvent}>Edit</Button>
         </div>
 

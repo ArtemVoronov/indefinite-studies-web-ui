@@ -2,6 +2,8 @@ import * as React from 'react'
 import { FEED_SERVICE, FeedBlock } from '../../services/feed/feed.service'
 import Link from 'next/link'
 import { Button } from '@mui/material'
+import MarkDown from '../markdown/markdown'
+// import styles from "../../styles/post.list.module.css"
 
 const DEFAULT_LIMIT = 7
 const SPIN_ICON_SHOWING_TIMEOUT = 500
@@ -54,7 +56,7 @@ const PostsList = () => {
 
     return (
         <div>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", maxWidth: "750px" }}>
                 {posts.map(function (p: FeedBlock, idx) {
                     return (
                         <div key={idx} style={{ display: "flex", flexDirection: "column", padding: "10px" }}>
@@ -63,14 +65,13 @@ const PostsList = () => {
                                     <a>{p.PostTopic}</a>
                                 </Link>
                             </div>
-                            <div style={{ display: "flex" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
                                 <div>{new Date(p.CreateDate).toLocaleString()}</div>
                                 <div style={{ padding: "0 10px" }}>{p.AuthorName}</div>
                                 <div>{p.CommentsCount} comments</div>
                             </div>
-                            {/* TODO: markdown for preview text */}
-                            <div style={{ padding: "10px" }}>
-                                {p.PostPreviewText}
+                            <div style={{ padding: "10px 0px" }}>
+                                <MarkDown text={p.PostPreviewText} />
                             </div>
                         </div >
                     )

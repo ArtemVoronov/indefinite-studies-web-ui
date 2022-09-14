@@ -7,15 +7,16 @@ import { isNil } from "../../utils/utils"
 import { FEED_SERVICE, FullPostInfo } from '../../services/feed/feed.service'
 
 const PostEdit = (props: { post: FullPostInfo }) => {
-    const [topic, setTopic] = React.useState(props.post.Post.PostTopic);
-    const [text, setText] = React.useState(props.post.Post.PostText);
+    const [topic, setTopic] = React.useState(props.post.Post.PostTopic)
+    const [text, setText] = React.useState(props.post.Post.PostText)
+    const [previewText, setPreviewText] = React.useState(props.post.Post.PostPreviewText)
     const { PostId, AuthorId } = props.post.Post
 
 
     const handleSubmit = async (event: any) => {
         event.preventDefault()
 
-        const response = await POSTS_SERVICE.update({ postId: PostId, authorId: AuthorId, text, topic })
+        const response = await POSTS_SERVICE.update({ postId: PostId, authorId: AuthorId, text, topic, previewText })
 
         if (response.status == 200) {
             Router.push("/post/" + PostId)
@@ -31,6 +32,12 @@ const PostEdit = (props: { post: FullPostInfo }) => {
             <TextField
                 id="text-input" label="Text" type="text" style={{ margin: "10px" }} value={text}
                 onChange={e => setText(e.target.value)}
+                multiline
+                minRows={10}
+            />
+            <TextField
+                id="text-input" label="PreviewText" type="text" style={{ margin: "10px" }} value={previewText}
+                onChange={e => setPreviewText(e.target.value)}
                 multiline
                 minRows={10}
             />

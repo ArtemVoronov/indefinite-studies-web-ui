@@ -32,9 +32,9 @@ export class PostsService {
     }
 
     async update(options: UpdatePostOptions): Promise<ApiResponse<any>> {
-        const { postId, authorId, text, topic } = options
+        const { postId, authorId, text, topic, previewText } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.posts.update({ postId, authorId, text, topic })
+            action: () => API_CLIENT.posts.update({ postId, authorId, text, topic, previewText })
         })
         return result
     }
