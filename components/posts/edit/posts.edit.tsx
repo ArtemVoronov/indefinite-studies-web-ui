@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TextField, Button } from "@mui/material"
+import { useForm } from "react-hook-form"
 import { POSTS_SERVICE } from "../../../services/posts/posts.service"
 import Router from "next/router"
 import { GetServerSidePropsContext } from "next"
@@ -7,14 +7,12 @@ import { isNil } from "../../../utils/utils"
 import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
 
 const PostEdit = (props: { post: FullPostInfo }) => {
-    const [topic, setTopic] = React.useState(props.post.Post.PostTopic)
-    const [text, setText] = React.useState(props.post.Post.PostText)
-    const [previewText, setPreviewText] = React.useState(props.post.Post.PostPreviewText)
+    const { register, handleSubmit } = useForm()
     const { PostId, AuthorId } = props.post.Post
 
 
-    const handleSubmit = async (event: any) => {
-        event.preventDefault()
+    const updatePost = async (data: any) => {
+        const { topic, text, previewText } = data
 
         const response = await POSTS_SERVICE.update({ postId: PostId, authorId: AuthorId, text, topic, previewText })
 
@@ -24,24 +22,70 @@ const PostEdit = (props: { post: FullPostInfo }) => {
     }
 
     return (
-        <div className="flex flex-col">
-            <TextField
-                id="topic-input" label="Topic" type="text" className="m-3" value={topic}
-                onChange={e => setTopic(e.target.value)}
-            />
-            <TextField
-                id="text-input" label="Text" type="text" className="m-3" value={text}
-                onChange={e => setText(e.target.value)}
-                multiline
-                minRows={10}
-            />
-            <TextField
-                id="text-input" label="PreviewText" type="text" className="m-3" value={previewText}
-                onChange={e => setPreviewText(e.target.value)}
-                multiline
-                minRows={10}
-            />
-            <Button variant="contained" className="m-3" onClick={handleSubmit}>Update</Button>
+        <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div className="w-full max-w-3xl">
+                <form className="mt-8 space-y-4" onSubmit={handleSubmit(updatePost)}>
+                    <div>
+                        <label htmlFor="topic" className="block text-sm font-medium text-gray-700">
+                            Topic
+                        </label>
+                        <div className="relative mt-1 rounded-md shadow-sm">
+                            <input
+                                id="topic"
+                                required
+                                type="text"
+                                {...register("topic")}
+                                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                placeholder="Type topic ..."
+                                defaultValue={props.post.Post.PostTopic}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label htmlFor="text" className="block text-sm font-medium text-gray-700">
+                            Text
+                        </label>
+                        <div className="relative mt-1 rounded-md shadow-sm">
+                            <textarea
+                                id="text"
+                                required
+                                {...register("text")}
+                                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                placeholder="Type text ..."
+                                rows={3}
+                                defaultValue={props.post.Post.PostText}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <label htmlFor="previewText" className="block text-sm font-medium text-gray-700">
+                            Preview Text
+                        </label>
+                        <div className="relative mt-1 rounded-md shadow-sm">
+                            <textarea
+                                id="previewText"
+                                required
+                                {...register("previewText")}
+                                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                placeholder="Type preview text ..."
+                                rows={3}
+                                defaultValue={props.post.Post.PostPreviewText}
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Update
+                        </button>
+
+                    </div>
+                </form>
+
+            </div>
         </div>
     )
 }

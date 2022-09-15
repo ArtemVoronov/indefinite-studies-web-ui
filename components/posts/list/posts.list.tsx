@@ -1,6 +1,5 @@
 import * as React from "react"
 import { FEED_SERVICE, FeedBlock } from "../../../services/feed/feed.service"
-import { Button } from "@mui/material"
 import PostPreview from "../preview/posts.preview"
 
 const DEFAULT_LIMIT = 7
@@ -81,13 +80,19 @@ const PostsList = () => {
                 })}
             </div>
             <div className="flex justify-center">
-                <Button onClick={prev} style={{ display: offset == 0 ? "none" : undefined }} variant="contained" >
+                <button
+                    onClick={prev}
+                    style={{ display: offset == 0 ? "none" : undefined }}
+                    className="group relative flex justify-center rounded-md border border-transparent mr-3 ml-3 bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
                     Prev
-                </Button>
-                <Button onClick={next} style={{ display: isAllFetched ? "none" : undefined }} variant="contained" >
+                </button><button
+                    onClick={next}
+                    style={{ display: isAllFetched ? "none" : undefined }}
+                    className="group relative flex justify-center rounded-md border border-transparent mr-3 ml-3 bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
                     Next
-                </Button>
-
+                </button>
             </div>
         </div>
     )

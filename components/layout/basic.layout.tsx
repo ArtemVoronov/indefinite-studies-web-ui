@@ -15,11 +15,11 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="flex min-h-screen flex-col py-0">
-                <div className="bg-pink-100 flex justify-center">
+            <main className="flex min-h-screen flex-col py-0 bg-gray-50">
+                <div className="flex justify-center items-center bg-white border-b-2 border-gray-100 pt-1 pb-1">
                     <NavigationPanel />
                 </div>
-                <div className="bg-orange-100 flex-1 flex justify-center">
+                <div className="flex-1 flex justify-center items-center">
                     <main>{props.children}</main>
                 </div>
             </main>
