@@ -1,4 +1,4 @@
-import * as React from 'react'
+import * as React from "react"
 import md from "markdown-it"
 import styles from "./markdown.module.css"
 

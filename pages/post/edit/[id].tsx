@@ -7,13 +7,13 @@ const ViewOrEditPostPage: NextPage = (props: { post?: FullPostInfo }) => {
     const { post } = props
 
     if (!post) return (
-        <div style={{ background: "#957DAD" }}>
+        <div className="bg-violet-200">
             No data
         </div>
     )
 
     return (
-        <div style={{ background: "#957DAD" }}>
+        <div className="bg-violet-200">
             <PostEdit post={post} />
         </div>
     )

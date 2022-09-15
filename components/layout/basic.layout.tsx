@@ -1,6 +1,5 @@
-import * as React from 'react'
+import * as React from "react"
 import Head from "next/head"
-import styles from "./basic.layout.module.css"
 import NavigationPanel from "../navigation/navigation.panel"
 
 interface BasicLayoutProps {
@@ -16,11 +15,11 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className={styles.main}>
-                <div className={styles.header}>
+            <main className="flex min-h-screen flex-col py-0">
+                <div className="bg-pink-100 flex justify-center">
                     <NavigationPanel />
                 </div>
-                <div className={styles.content}>
+                <div className="bg-orange-100 flex-1 flex justify-center">
                     <main>{props.children}</main>
                 </div>
             </main>

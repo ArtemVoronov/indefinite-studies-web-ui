@@ -5,7 +5,7 @@ import LoginForm from "../../components/login/login.form"
 const LoginPage: NextPage = () => {
 
     return (
-        <div style={{ background: "#957DAD" }}>
+        <div className="bg-violet-200">
             <LoginForm />
         </div>
     )

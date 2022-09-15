@@ -1,14 +1,13 @@
-import * as React from 'react'
-import { TextField, Button } from '@mui/material'
-import { POSTS_SERVICE } from '../../../services/posts/posts.service'
-import { USERS_SERVICE } from '../../../services/users/users.service'
-import styles from "./post.create.module.css"
-import Router from 'next/router'
+import * as React from "react"
+import { TextField, Button } from "@mui/material"
+import { POSTS_SERVICE } from "../../../services/posts/posts.service"
+import { USERS_SERVICE } from "../../../services/users/users.service"
+import Router from "next/router"
 
 const PostCreate = () => {
-    const [topic, setTopic] = React.useState('');
-    const [text, setText] = React.useState('');
-    const [previewText, setPreviewText] = React.useState('');
+    const [topic, setTopic] = React.useState("");
+    const [text, setText] = React.useState("");
+    const [previewText, setPreviewText] = React.useState("");
 
 
     const handleSubmit = async (event: any) => {
@@ -35,24 +34,24 @@ const PostCreate = () => {
     }
 
     return (
-        <div className={styles["post-create-wrapper"]}>
+        <div className="flex flex-col">
             <TextField
-                id="topic-input" label="Topic" type="text" className='margin10'
+                id="topic-input" label="Topic" type="text" className="m-3"
                 onChange={e => setTopic(e.target.value)}
             />
             <TextField
-                id="text-input" label="Text" type="text" className='margin10'
+                id="text-input" label="Text" type="text" className="m-3"
                 onChange={e => setText(e.target.value)}
                 multiline
                 minRows={10}
             />
             <TextField
-                id="text-input" label="PreviewText" type="text" className='margin10' value={previewText}
+                id="text-input" label="PreviewText" type="text" className="m-3" value={previewText}
                 onChange={e => setPreviewText(e.target.value)}
                 multiline
                 minRows={10}
             />
-            <Button onClick={handleSubmit} className='margin10' variant="contained" >
+            <Button onClick={handleSubmit} className="m-3" variant="contained" >
                 Create
             </Button>
         </div>

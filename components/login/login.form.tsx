@@ -1,14 +1,13 @@
-import * as React from 'react'
-import { TextField, Button } from '@mui/material'
-import { AUTH_SERVICE } from '../../services/auth/auth.service'
-import { API_CLIENT } from '../../services/api/api-client'
-import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
-import styles from "./login.form.module.css"
-import Router from 'next/router'
+import * as React from "react"
+import { TextField, Button } from "@mui/material"
+import { AUTH_SERVICE } from "../../services/auth/auth.service"
+import { API_CLIENT } from "../../services/api/api-client"
+import { API_ERROR_HANDLER } from "../../services/api/api-error-handler"
+import Router from "next/router"
 
 const LoginForm = () => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("")
 
     const login = () => {
         AUTH_SERVICE.login(email, password).then(() => {
@@ -40,26 +39,26 @@ const LoginForm = () => {
     }
 
     return (
-        <div className={styles['login-form-wrapper']}>
+        <div className="flex flex-col">
             <TextField
-                id="email-input" label="Email" type="text" className="margin10"
-                inputProps={{ autoComplete: 'new-password', form: { autocomplete: 'off', }, }}
+                id="email-input" label="Email" type="text" className="m-3"
+                inputProps={{ autoComplete: "new-password", form: { autocomplete: "off", }, }}
                 onChange={e => setEmail(e.target.value)}
             />
             <TextField
-                id="password-input" label="Password" type="password" className="margin10"
-                inputProps={{ autoComplete: 'new-password', form: { autocomplete: 'off', }, }}
+                id="password-input" label="Password" type="password" className="m-3"
+                inputProps={{ autoComplete: "new-password", form: { autocomplete: "off", }, }}
                 onChange={e => setPassword(e.target.value)}
             />
-            <Button variant="contained" className="margin10" onClick={login}>
+            <Button variant="contained" className="m-3" onClick={login}>
                 Login
             </Button>
-            <Button variant="contained" className="margin10" onClick={logout}>
+            <Button variant="contained" className="m-3" onClick={logout}>
                 Logout
             </Button>
             {/* TODO: clean */}
-            <Button variant="contained" className="margin10" onClick={() => { ping() }}>Ping</Button>
-            <Button variant="contained" className="margin10" onClick={() => { safePing() }}>SafePing</Button>
+            <Button variant="contained" className="m-3" onClick={() => { ping() }}>Ping</Button>
+            <Button variant="contained" className="m-3" onClick={() => { safePing() }}>SafePing</Button>
         </div>
     )
 }

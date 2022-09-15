@@ -1,26 +1,25 @@
-import * as React from 'react'
-import Link from 'next/link'
-import styles from "./navigation.panel.module.css"
+import * as React from "react"
+import Link from "next/link"
 
 const NavigationPanel = () => {
 
     return (
-        <div className={styles["navigation-panel-wrapper"]}>
-            <div className={styles["common-navigation"]}>
-                <div className={styles["navigation-btn"]}>
+        <div className="flex flex-1 justify-between max-w-3xl">
+            <div className="flex">
+                <div className="p-3">
                     <Link href="/">
                         <a>Home</a>
                     </Link>
                 </div>
-                <div className={styles["navigation-btn"]}>
+                <div className="p-3">
                     <Link href="/post">
                         <a>New Post</a>
                     </Link>
                 </div>
 
             </div>
-            <div className={styles["user-navigation"]}>
-                <div className={styles["navigation-btn"]}>
+            <div>
+                <div className="p-3">
                     <Link href="/login">
                         <a>Login</a>
                     </Link>

@@ -1,8 +1,7 @@
-import * as React from 'react'
-import { FEED_SERVICE, FeedBlock } from '../../../services/feed/feed.service'
-import { Button } from '@mui/material'
-import PostPreview from '../preview/posts.preview'
-import styles from "./post.list.module.css"
+import * as React from "react"
+import { FEED_SERVICE, FeedBlock } from "../../../services/feed/feed.service"
+import { Button } from "@mui/material"
+import PostPreview from "../preview/posts.preview"
 
 const DEFAULT_LIMIT = 7
 const SPIN_ICON_SHOWING_TIMEOUT = 500
@@ -61,31 +60,31 @@ const PostsList = () => {
 
 
     if (isLoading) return (
-        <div className={styles["post-list-wrapper"]}>
+        <div>
             Loading...
         </div>
     )
 
     if (posts.length == 0) return (
-        <div className={styles["post-list-wrapper"]}>
+        <div>
             No data
         </div>
     )
 
     return (
-        <div className={styles["post-list-wrapper"]}>
-            <div className={styles["post-list"]}>
+        <div>
+            <div className="max-w-3xl">
                 {posts.map(function (p: FeedBlock, idx) {
                     return (
                         <PostPreview key={idx} post={p} />
                     )
                 })}
             </div>
-            <div className={styles["pagination-buttons"]}>
-                <Button onClick={prev} style={{ display: offset == 0 ? 'none' : undefined }} variant="contained" >
+            <div className="flex justify-center">
+                <Button onClick={prev} style={{ display: offset == 0 ? "none" : undefined }} variant="contained" >
                     Prev
                 </Button>
-                <Button onClick={next} style={{ display: isAllFetched ? 'none' : undefined }} variant="contained" >
+                <Button onClick={next} style={{ display: isAllFetched ? "none" : undefined }} variant="contained" >
                     Next
                 </Button>
 
