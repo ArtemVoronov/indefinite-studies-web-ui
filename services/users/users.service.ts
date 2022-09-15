@@ -1,18 +1,24 @@
-import { ApiResponse } from "apisauce"
 import { API_CLIENT } from "../../services/api/api-client"
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 
-// TODO: service should some maningful results instead of response
-export class PostsService {
-    async getMe(): Promise<ApiResponse<any>> {
-        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+export class UsersService {
+    async getMe(): Promise<User | undefined> {
+        const response = await API_ERROR_HANDLER.callWithErrorHandling({
             action: () => API_CLIENT.users.getMe()
         })
-        return result
+
+        if (response.status != 200) {
+            // TODO: show error
+            // TODO: add modal error component or notify error component
+            console.log("unable to get profile")
+            return undefined
+        }
+
+        return response.data
     }
 }
 
-export const USERS_SERVICE: PostsService = new PostsService()
+export const USERS_SERVICE: UsersService = new UsersService()
 
 export type User = {
     Id: number,

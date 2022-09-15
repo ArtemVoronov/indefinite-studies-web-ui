@@ -10,17 +10,14 @@ const PostCreate = () => {
     const createPost = async (data: any) => {
         const { topic, text, previewText } = data
 
-        let response = await USERS_SERVICE.getMe()
-
-        if (response.status != 200) {
+        const profile = await USERS_SERVICE.getMe()
+        if (!profile) {
             // TODO: show error
             console.log("unable to get profile")
             return
         }
 
-        const profile = response.data
-
-        response = await POSTS_SERVICE.create({ authorId: profile.Id, text, topic, previewText })
+        const response = await POSTS_SERVICE.create({ authorId: profile.Id, text, topic, previewText })
 
         if (response.status != 201) {
             // TODO: show error

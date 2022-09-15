@@ -28,4 +28,8 @@ export function isNil(value: any) {
     return value == null
 }
 
+export function classNames(...classes: any[]) {
+    return classes.filter(Boolean).join(' ')
+}
+
 export type GetAllOptions = { offset?: number, limit?: number }

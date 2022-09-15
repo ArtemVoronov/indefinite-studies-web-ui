@@ -1,44 +1,28 @@
 import * as React from "react"
 import { useForm } from "react-hook-form"
 import { AUTH_SERVICE } from "../../services/auth/auth.service"
-import { API_CLIENT } from "../../services/api/api-client"
-import { API_ERROR_HANDLER } from "../../services/api/api-error-handler"
+import { USERS_SERVICE } from "../../services/users/users.service"
 import Router from "next/router"
 import Image from 'next/image'
 import faviconPic from '../../public/favicon.ico'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { useProfile } from '../hooks/use.profile.hook'
 
 const LoginForm = () => {
     const { register, handleSubmit } = useForm()
+    const [profile, setProfile] = useProfile()
 
     const login = (data: any) => {
         const { email, password } = data
         AUTH_SERVICE.login(email, password).then(() => {
-            console.log("success")
-            Router.push("/")
-        })
-    }
-    const logout = () => {
-        AUTH_SERVICE.logout()
-    }
-
-    const ping = () => {
-        API_CLIENT.auth.ping()
-            .then((response) => {
-                console.log(response)
+            USERS_SERVICE.getMe().then((res) => {
+                if (!res) {
+                    return
+                }
+                setProfile(res)
+                Router.push("/")
             })
-    }
-
-    const safePing = () => {
-        API_CLIENT.auth.safePing()
-            .then((response) => {
-                console.log(response)
-            })
-
-        API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.auth.safePing(),
         })
-
     }
 
     return (
@@ -116,25 +100,6 @@ const LoginForm = () => {
 
                     </div>
                 </form>
-                {/* TODO: delete/move buttons */}
-                <button
-                    onClick={logout}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Sign out
-                </button>
-                <button
-                    onClick={ping}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Ping
-                </button>
-                <button
-                    onClick={safePing}
-                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Safe Ping
-                </button>
 
             </div>
         </div>
