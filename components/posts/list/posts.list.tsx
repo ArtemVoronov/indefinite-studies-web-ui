@@ -84,7 +84,7 @@ const PostsList = () => {
                 <button
                     onClick={prev}
                     style={{ display: offset == 0 ? "none" : undefined }}
-                    className="text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
                     Prev
                     <ArrowLeftIcon />
@@ -93,7 +93,7 @@ const PostsList = () => {
                 <button
                     onClick={next}
                     style={{ display: isAllFetched ? "none" : undefined }}
-                    className="text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
                     <div>
                         Next

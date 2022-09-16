@@ -64,5 +64,5 @@ export type FeedComment = {
 
 export type FullPostInfo = {
     Post: FeedPost,
-    Comments: Array<FeedPost>,
+    Comments: Array<FeedComment>,
 }

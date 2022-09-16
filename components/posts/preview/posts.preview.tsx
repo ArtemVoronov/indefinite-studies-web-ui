@@ -2,7 +2,7 @@ import * as React from "react"
 import Link from "next/link"
 import { FeedBlock } from "../../../services/feed/feed.service"
 import MarkDown from "../../markdown/markdown"
-import moment from 'moment'
+import moment from "moment"
 
 const PostPreview = (props: { post: FeedBlock }) => {
     const { PostId, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount } = props.post
@@ -12,7 +12,7 @@ const PostPreview = (props: { post: FeedBlock }) => {
             <div className="mb-3 text-center text-2xl">
                 <Link href={"/post/" + PostId} >
                     <a>
-                        <h2 className="font-extrabold leading-tight text-4xl mt-0 mb-2 text-center">{PostTopic}</h2>
+                        <h2 className="font-extrabold leading-tight text-4xl mt-0 mb-2 text-center text-indigo-600 hover:text-indigo-500">{PostTopic}</h2>
                     </a>
                 </Link>
             </div>
@@ -24,7 +24,7 @@ const PostPreview = (props: { post: FeedBlock }) => {
                     <span className="mx-2">|</span>
                     <div className="text-xs">
                         <Link href={"/post/" + PostId} >
-                            <a>{CommentsCount} comments</a>
+                            <a className="text-indigo-600 hover:text-indigo-500">{CommentsCount} comments</a>
                         </Link>
                     </div>
                 </div>
