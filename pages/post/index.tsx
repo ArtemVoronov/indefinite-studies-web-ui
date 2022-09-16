@@ -5,7 +5,7 @@ import PostCreate from "../../components/posts/create/posts.create"
 const CreatePostPage: NextPage = () => {
 
     return (
-        <div className="bg-violet-200">
+        <div className="w-full max-w-3xl">
             <PostCreate />
         </div>
     )

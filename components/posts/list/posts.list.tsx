@@ -1,8 +1,9 @@
 import * as React from "react"
 import { FEED_SERVICE, FeedBlock } from "../../../services/feed/feed.service"
 import PostPreview from "../preview/posts.preview"
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 
-const DEFAULT_LIMIT = 7
+const DEFAULT_LIMIT = 5
 const SPIN_ICON_SHOWING_TIMEOUT = 500
 
 const PostsList = () => {
@@ -71,27 +72,33 @@ const PostsList = () => {
     )
 
     return (
-        <div>
-            <div className="max-w-3xl">
+        <div className="w-full max-w-3xl">
+            <div >
                 {posts.map(function (p: FeedBlock, idx) {
                     return (
                         <PostPreview key={idx} post={p} />
                     )
                 })}
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center p-3 my-4 bg-white border-b-2 border-gray-100">
                 <button
                     onClick={prev}
                     style={{ display: offset == 0 ? "none" : undefined }}
-                    className="group relative flex justify-center rounded-md border border-transparent mr-3 ml-3 bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
                     Prev
-                </button><button
+                    <ArrowLeftIcon />
+                </button>
+                <div className="flex-1" />
+                <button
                     onClick={next}
                     style={{ display: isAllFetched ? "none" : undefined }}
-                    className="group relative flex justify-center rounded-md border border-transparent mr-3 ml-3 bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    className="text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
-                    Next
+                    <div>
+                        Next
+                    </div>
+                    <ArrowRightIcon />
                 </button>
             </div>
         </div>

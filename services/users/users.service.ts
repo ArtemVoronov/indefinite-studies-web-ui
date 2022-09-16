@@ -27,3 +27,7 @@ export type User = {
     Role: string,
     State: string
 }
+
+export const ROLES = {
+    "OWNER": "OWNER"
+}

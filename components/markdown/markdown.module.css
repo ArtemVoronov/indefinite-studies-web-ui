@@ -1,20 +1,4 @@
-.markdown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .markdown img {
   max-width: 300px;
-}
-
-.markdown p {
-  display: flex;
-  justify-content: center;
-}
-
-.markdown table,
-.markdown th,
-.markdown td {
-  border: 1px solid;
+  margin: auto;
 }

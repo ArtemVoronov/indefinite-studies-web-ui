@@ -6,15 +6,9 @@ import { FEED_SERVICE, FullPostInfo } from "../../services/feed/feed.service"
 const ViewOrEditPostPage: NextPage = (props: { post?: FullPostInfo }) => {
     const { post } = props
 
-    if (!post) return (
-        <div className="bg-violet-200">
-            No data
-        </div>
-    )
-
     return (
-        <div className="bg-violet-200">
-            <PostView post={post} />
+        <div className="w-full max-w-3xl">
+            {!post ? "No data" : <PostView post={post} />}
         </div>
     )
 }

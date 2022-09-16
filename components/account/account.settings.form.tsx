@@ -80,7 +80,7 @@ const AccountSettingsForm = (props: { user: User }) => {
 
         //     </div>
         // </div>
-        <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+        <div className="overflow-hidden bg-white shadow sm:rounded-lg flex-1">
             <div className="px-4 py-5 sm:px-6">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">Account settings</h3>
                 <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p>

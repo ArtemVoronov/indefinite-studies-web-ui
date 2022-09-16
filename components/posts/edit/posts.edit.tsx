@@ -22,70 +22,66 @@ const PostEdit = (props: { post: FullPostInfo }) => {
     }
 
     return (
-        <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="w-full max-w-3xl">
-                <form className="mt-8 space-y-4" onSubmit={handleSubmit(updatePost)}>
-                    <div>
-                        <label htmlFor="topic" className="block text-sm font-medium text-gray-700">
-                            Topic
-                        </label>
-                        <div className="relative mt-1 rounded-md shadow-sm">
-                            <input
-                                id="topic"
-                                required
-                                type="text"
-                                {...register("topic")}
-                                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Type topic ..."
-                                defaultValue={props.post.Post.PostTopic}
-                            />
-                        </div>
+        <div>
+            <form className="mt-8 space-y-4" onSubmit={handleSubmit(updatePost)}>
+                <div>
+                    <label htmlFor="topic" className="block text-sm font-medium text-gray-700">
+                        Topic
+                    </label>
+                    <div className="relative mt-1 rounded-md shadow-sm">
+                        <input
+                            id="topic"
+                            required
+                            type="text"
+                            {...register("topic")}
+                            className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Type topic ..."
+                            defaultValue={props.post.Post.PostTopic}
+                        />
                     </div>
-                    <div>
-                        <label htmlFor="text" className="block text-sm font-medium text-gray-700">
-                            Text
-                        </label>
-                        <div className="relative mt-1 rounded-md shadow-sm">
-                            <textarea
-                                id="text"
-                                required
-                                {...register("text")}
-                                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Type text ..."
-                                rows={3}
-                                defaultValue={props.post.Post.PostText}
-                            />
-                        </div>
+                </div>
+                <div>
+                    <label htmlFor="text" className="block text-sm font-medium text-gray-700">
+                        Text
+                    </label>
+                    <div className="relative mt-1 rounded-md shadow-sm">
+                        <textarea
+                            id="text"
+                            required
+                            {...register("text")}
+                            className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Type text ..."
+                            rows={30}
+                            defaultValue={props.post.Post.PostText}
+                        />
                     </div>
-                    <div>
-                        <label htmlFor="previewText" className="block text-sm font-medium text-gray-700">
-                            Preview Text
-                        </label>
-                        <div className="relative mt-1 rounded-md shadow-sm">
-                            <textarea
-                                id="previewText"
-                                required
-                                {...register("previewText")}
-                                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Type preview text ..."
-                                rows={3}
-                                defaultValue={props.post.Post.PostPreviewText}
-                            />
-                        </div>
+                </div>
+                <div>
+                    <label htmlFor="previewText" className="block text-sm font-medium text-gray-700">
+                        Preview Text
+                    </label>
+                    <div className="relative mt-1 rounded-md shadow-sm">
+                        <textarea
+                            id="previewText"
+                            required
+                            {...register("previewText")}
+                            className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            placeholder="Type preview text ..."
+                            rows={10}
+                            defaultValue={props.post.Post.PostPreviewText}
+                        />
                     </div>
+                </div>
 
-                    <div>
-                        <button
-                            type="submit"
-                            className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                            Update
-                        </button>
-
-                    </div>
-                </form>
-
-            </div>
+                <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="group relative w-52 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    >
+                        Update
+                    </button>
+                </div>
+            </form>
         </div>
     )
 }

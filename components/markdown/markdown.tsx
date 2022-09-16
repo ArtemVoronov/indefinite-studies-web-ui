@@ -5,7 +5,9 @@ import styles from "./markdown.module.css"
 const MarkDown = (props: { text?: string }) => {
     return (
         <div className={styles.markdown}>
-            <div dangerouslySetInnerHTML={{ __html: md().render(props.text ?? "No data") }} />
+            <article className="prose lg:prose-xl">
+                <div dangerouslySetInnerHTML={{ __html: md().render(props.text ?? "No data") }} />
+            </article>
         </div>
     )
 }

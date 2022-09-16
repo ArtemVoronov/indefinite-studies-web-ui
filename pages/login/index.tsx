@@ -5,7 +5,7 @@ import LoginForm from "../../components/login/login.form"
 const LoginPage: NextPage = () => {
 
     return (
-        <div>
+        <div className="flex-1 flex items-center justify-center">
             <LoginForm />
         </div>
     )
