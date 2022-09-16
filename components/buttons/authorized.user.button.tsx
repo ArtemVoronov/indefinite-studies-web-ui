@@ -8,7 +8,8 @@ import { User } from "../../services/users/users.service"
 import { UserIcon } from '@heroicons/react/24/solid'
 import Router from 'next/router'
 
-const AuthorizedUserButton = (props: { user?: User }) => {
+const AuthorizedUserButton = (props: { user: User }) => {
+    const { Login } = props.user
 
     const logout = () => {
         AUTH_SERVICE.logout()
@@ -19,7 +20,7 @@ const AuthorizedUserButton = (props: { user?: User }) => {
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="flex w-full justify-center text-base font-medium text-gray-500 hover:text-gray-900 ml-5">
-                    <span>{props.user?.Login ?? "No data"}</span>
+                    <span>{Login}</span>
                     <UserIcon className="h-6 w-6" />
                 </Menu.Button>
             </div>
