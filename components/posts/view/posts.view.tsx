@@ -40,7 +40,7 @@ const PostView = (props: { post: FullPostInfo }) => {
 
     return (
         <div>
-            <div className="p-3 my-4 bg-white border-b-2 border-gray-100">
+            <div className="p-3 my-4 bg-white border-1 border-gray-100">
                 {!profile || profile.Id != AuthorId || profile.Role != ROLES.OWNER ? "" : EditPanel}
                 <h1 className="font-extrabold leading-tight text-6xl mt-0 mb-2 text-center">{PostTopic}</h1>
                 <MarkDown text={PostText} />

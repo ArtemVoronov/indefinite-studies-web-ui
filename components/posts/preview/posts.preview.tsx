@@ -8,7 +8,7 @@ const PostPreview = (props: { post: FeedBlock }) => {
     const { PostId, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount } = props.post
 
     return (
-        <div className="flex flex-col p-3 my-4 bg-white border-b-2 border-gray-100">
+        <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100">
             <div className="mb-3 text-center text-2xl">
                 <Link href={"/post/" + PostId} >
                     <a>

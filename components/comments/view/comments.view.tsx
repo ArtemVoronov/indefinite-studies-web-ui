@@ -37,7 +37,7 @@ const CommentView = (props: { comment: FeedComment }) => {
     )
 
     return (
-        <div className="p-3 my-4 bg-white border-b-2 border-gray-100 flex">
+        <div className="p-3 my-4 bg-white border-1 border-gray-100 flex">
             <div className="flex justify-center items-center p-3 border-r-2">
                 {AuthorName}
             </div>
