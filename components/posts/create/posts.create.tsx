@@ -1,16 +1,16 @@
 import * as React from "react"
 import { useForm } from "react-hook-form"
 import { POSTS_SERVICE } from "../../../services/posts/posts.service"
-import { USERS_SERVICE } from "../../../services/users/users.service"
 import Router from "next/router"
+import { useProfile } from '../../hooks/use.profile.hook'
 
 const PostCreate = () => {
+    const [profile, setProfile] = useProfile()
     const { register, handleSubmit } = useForm()
 
     const createPost = async (data: any) => {
         const { topic, text, previewText } = data
 
-        const profile = await USERS_SERVICE.getMe()
         if (!profile) {
             // TODO: show error
             console.log("unable to get profile")

@@ -3,7 +3,7 @@ import * as React from "react"
 import PostView from "../../components/posts/view/posts.view"
 import { FEED_SERVICE, FullPostInfo } from "../../services/feed/feed.service"
 
-const ViewOrEditPostPage: NextPage = (props: { post?: FullPostInfo }) => {
+const ViewPostPage: NextPage = (props: { post?: FullPostInfo }) => {
     const { post } = props
 
     return (
@@ -28,4 +28,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return { props: {} }
 }
 
-export default ViewOrEditPostPage
+export default ViewPostPage

@@ -8,7 +8,6 @@ const CommentsList = (props: { comments: FeedComment[] }) => {
 
     if (comments.length == 0) return (
         <div className="w-full max-w-3xl">
-
             <div className="p-3 my-4 bg-white border-1 border-gray-100 text-center">
                 No comments
             </div>

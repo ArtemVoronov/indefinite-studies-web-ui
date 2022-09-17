@@ -6,10 +6,9 @@ import { GetServerSidePropsContext } from "next"
 import { isNil } from "../../../utils/utils"
 import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
 
-const PostEdit = (props: { post: FullPostInfo }) => {
+const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
     const { register, handleSubmit } = useForm()
     const { PostId, AuthorId } = props.post.Post
-
 
     const updatePost = async (data: any) => {
         const { topic, text, previewText } = data
@@ -82,6 +81,16 @@ const PostEdit = (props: { post: FullPostInfo }) => {
                     </button>
                 </div>
             </form>
+
+            <div className="flex justify-center">
+                <button
+                    type="submit"
+                    onClick={props.onCancel}
+                    className="group relative w-52 mt-3 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                    Cancel
+                </button>
+            </div>
         </div>
     )
 }

@@ -2,13 +2,14 @@ import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import PostEdit from "../../../components/posts/edit/posts.edit"
 import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
+import Router from "next/router"
 
-const ViewOrEditPostPage: NextPage = (props: { post?: FullPostInfo }) => {
+const EditPostPage: NextPage = (props: { post?: FullPostInfo }) => {
     const { post } = props
 
     return (
         <div className="w-full max-w-3xl">
-            {!post ? "No data" : <PostEdit post={post} />}
+            {!post ? "No data" : <PostEdit post={post} onCancel={() => { Router.push("/post/" + post.Post.PostId) }} />}
         </div>
     )
 }
@@ -28,4 +29,4 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     return { props: {} }
 }
 
-export default ViewOrEditPostPage
+export default EditPostPage

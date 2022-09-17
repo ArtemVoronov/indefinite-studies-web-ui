@@ -5,17 +5,19 @@ import Router from "next/router"
 import MarkDown from "../../markdown/markdown"
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentsList from "../../comments/list/comments.list"
+import CommentCreate from "../../comments/create/comments.create"
 
 const PostView = (props: { post: FullPostInfo }) => {
     const [profile, setProfile] = useProfile()
+    const [showCreateCommentForm, setShowCreateCommentForm] = React.useState(false)
     const { PostId, PostTopic, PostText, AuthorId } = props.post.Post
 
     const handleEditEvent = () => {
         Router.push("/post/edit/" + PostId)
     }
+
     const handleNewCommentEvent = () => {
-        // TODO
-        console.log('create commment event')
+        setShowCreateCommentForm(true)
     }
 
     const EditPanel = (
@@ -44,13 +46,15 @@ const PostView = (props: { post: FullPostInfo }) => {
                 {!profile || profile.Id != AuthorId || profile.Role != ROLES.OWNER ? "" : EditPanel}
                 <h1 className="font-extrabold leading-tight text-6xl mt-0 mb-2 text-center">{PostTopic}</h1>
                 <MarkDown text={PostText} />
-
             </div>
             <div className="mt-5">
                 <div className="flex justify-between">
                     <h2 className="font-bold leading-tight text-3xl mt-0 mb-2 text-center">Comments</h2>
-                    {AddCommentButton}
+                    {!profile ? "" : AddCommentButton}
                 </div>
+                {showCreateCommentForm && (
+                    <CommentCreate postId={PostId} onCancel={() => { setShowCreateCommentForm(false) }} />
+                )}
                 <CommentsList comments={props.post.Comments} />
             </div>
         </div>

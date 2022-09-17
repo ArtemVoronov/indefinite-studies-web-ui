@@ -4,12 +4,14 @@ import { AuthApi } from "../api/auth/auth.api"
 import { PostsApi } from "../api/posts/posts.api"
 import { UsersApi } from "../api/users/users.api"
 import { FeedApi } from "../api/feed/feed.api"
+import { CommentsApi } from "../api/comments/comments.api"
 
 export class ApiClient {
 	apisauce: ApisauceInstance
 	config: ApiConfig
 	auth: AuthApi
 	posts: PostsApi
+	comments: CommentsApi
 	users: UsersApi
 	feed: FeedApi
 
@@ -33,6 +35,7 @@ export class ApiClient {
 		this.posts = new PostsApi(this)
 		this.users = new UsersApi(this)
 		this.feed = new FeedApi(this)
+		this.comments = new CommentsApi(this)
 	}
 
 	setJWTAuthrozationHeader(token: string) {
