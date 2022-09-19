@@ -5,7 +5,7 @@ import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 
 const CommentCreate = (props: { postId: number, linkedCommentId?: number, onCancel: () => void }) => {
-    const [profile, setProfile] = useProfile()
+    const [profile] = useProfile()
     const { register, handleSubmit } = useForm()
     const { postId, linkedCommentId } = props
 

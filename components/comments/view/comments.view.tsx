@@ -8,7 +8,7 @@ import CommentEdit from "../edit/comments.edit"
 const CommentView = (props: { comment: FeedComment }) => {
     const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
     const [showEditCommentForm, setShowEditCommentForm] = React.useState(false)
-    const [profile, setProfile] = useProfile()
+    const [profile] = useProfile()
     const { CommentId, AuthorId, CommentText, AuthorName, LastUpdateDate, LinkedCommentId, PostId } = props.comment
 
     const handleEditEvent = () => {

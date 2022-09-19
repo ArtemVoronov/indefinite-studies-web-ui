@@ -1,12 +1,12 @@
 import * as React from "react"
-import { useForm } from "react-hook-form"
-import Router from "next/router"
-import { USERS_SERVICE, User } from "../../services/users/users.service"
+// import { useForm } from "react-hook-form"
+// import Router from "next/router"
+import { User } from "../../services/users/users.service"
 
 const AccountSettingsForm = (props: { user: User }) => {
     // const { register, handleSubmit } = useForm()
 
-    const { Id, Login, Email, Role, State } = props.user
+    const { Login, Email, Role, State } = props.user
 
     // const updateUser = (data: any) => {
     //     // const { id, login, email, role, state } = data

@@ -5,7 +5,7 @@ import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 
 const PostCreate = () => {
-    const [profile, setProfile] = useProfile()
+    const [profile] = useProfile()
     const { register, handleSubmit } = useForm()
 
     const createPost = async (data: any) => {

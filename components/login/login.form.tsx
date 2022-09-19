@@ -10,7 +10,7 @@ import { useProfile } from '../hooks/use.profile.hook'
 
 const LoginForm = () => {
     const { register, handleSubmit } = useForm()
-    const [profile, setProfile] = useProfile()
+    const [, setProfile] = useProfile()
 
     const login = (data: any) => {
         const { email, password } = data

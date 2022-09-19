@@ -1,6 +1,6 @@
 FROM node:16
 
-ARG APP_PORT
+EXPOSE 3000
 
 RUN mkdir /app
 WORKDIR /app

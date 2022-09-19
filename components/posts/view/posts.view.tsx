@@ -8,7 +8,7 @@ import CommentsList from "../../comments/list/comments.list"
 import CommentCreate from "../../comments/create/comments.create"
 
 const PostView = (props: { post: FullPostInfo }) => {
-    const [profile, setProfile] = useProfile()
+    const [profile] = useProfile()
     const [showCreateCommentForm, setShowCreateCommentForm] = React.useState(false)
     const { PostId, PostTopic, PostText, AuthorId } = props.post.Post
 
