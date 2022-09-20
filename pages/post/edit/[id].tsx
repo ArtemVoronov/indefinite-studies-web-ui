@@ -1,7 +1,7 @@
 import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import PostEdit from "../../../components/posts/edit/posts.edit"
-import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
+import { FEED_SERVICE_SERVER_SIDE, FullPostInfo } from "../../../services/feed/feed.service"
 import Router from "next/router"
 
 const EditPostPage: NextPage = (props: { post?: FullPostInfo }) => {
@@ -19,7 +19,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (!id) {
         return { props: {} }
     }
-    const response = await FEED_SERVICE.get({ postId: `${id}` })
+    const response = await FEED_SERVICE_SERVER_SIDE.get({ postId: `${id}` })
 
     if (response.status === 200) {
         const post = response.data

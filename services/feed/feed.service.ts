@@ -1,17 +1,21 @@
 import { ApiResponse } from "apisauce"
-import { API_CLIENT } from "../api/api-client"
+import { ApiClient, API_CLIENT, API_CLIENT_SERVER_SIDE } from "../api/api-client"
 import { API_ERROR_HANDLER } from '../api/api-error-handler'
 import { GetFeedPostOptions, } from "../api/feed/feed.api"
 import { GetAllOptions } from "../../utils/utils"
 
 // TODO: service should some maningful results instead of response
 export class FeedService {
+    client: ApiClient
+    constructor(client: ApiClient = API_CLIENT) {
+        this.client = client
+    }
 
     // TODO: returns []FeedBlock
     async getAll(options: GetAllOptions): Promise<ApiResponse<any>> {
         const { offset, limit } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.feed.getAll({ offset, limit }),
+            action: () => this.client.feed.getAll({ offset, limit }),
         })
         return result
     }
@@ -20,7 +24,7 @@ export class FeedService {
     async get(options: GetFeedPostOptions): Promise<ApiResponse<any>> {
         const { postId } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.feed.get({ postId })
+            action: () => this.client.feed.get({ postId })
         })
         return result
     }
@@ -28,6 +32,7 @@ export class FeedService {
 
 
 export const FEED_SERVICE: FeedService = new FeedService()
+export const FEED_SERVICE_SERVER_SIDE: FeedService = new FeedService(API_CLIENT_SERVER_SIDE)
 
 export type FeedBlock = {
     PostId: number

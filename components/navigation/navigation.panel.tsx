@@ -6,11 +6,14 @@ import { USERS_SERVICE } from "../../services/users/users.service"
 import NotAuthorizedUserButton from "../buttons/not.authorized.user.button"
 import AuthorizedUserButton from "../buttons/authorized.user.button"
 import { useProfile } from '../hooks/use.profile.hook'
+import { ACCESS_TOKEN_KEY } from "../../services/auth/auth.service"
+import { API_CLIENT } from "../../services/api/api-client"
 
 const NavigationPanel = () => {
     const [profile, setProfile] = useProfile()
 
     React.useEffect(() => {
+        API_CLIENT.setJWTAuthrozationHeader(window.localStorage[ACCESS_TOKEN_KEY])
         USERS_SERVICE.getMe().then((res) => {
             if (!res) {
                 return

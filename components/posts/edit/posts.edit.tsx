@@ -2,9 +2,7 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { POSTS_SERVICE } from "../../../services/posts/posts.service"
 import Router from "next/router"
-import { GetServerSidePropsContext } from "next"
-import { isNil } from "../../../utils/utils"
-import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
+import { FullPostInfo } from "../../../services/feed/feed.service"
 
 const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
     const { register, handleSubmit } = useForm()
@@ -93,21 +91,6 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
             </div>
         </div>
     )
-}
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const id = context?.params?.id
-    if (isNil(id)) {
-        return { props: {} }
-    }
-    const response = await FEED_SERVICE.get({ postId: `${id}` })
-
-    if (response.status === 200) {
-        const post = response.data
-        return { props: { post } }
-    }
-
-    return { props: {} }
 }
 
 export default PostEdit

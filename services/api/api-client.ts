@@ -1,4 +1,4 @@
-import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
+import { ApiConfig, DEFAULT_API_CONFIG, DEFAULT_SERVER_SIDE_API_CONFIG } from "./api-config"
 import { ApisauceInstance, create } from "apisauce"
 import { AuthApi } from "../api/auth/auth.api"
 import { PostsApi } from "../api/posts/posts.api"
@@ -56,3 +56,4 @@ export class ApiClient {
 }
 
 export const API_CLIENT: ApiClient = new ApiClient()
+export const API_CLIENT_SERVER_SIDE: ApiClient = new ApiClient(DEFAULT_SERVER_SIDE_API_CONFIG)
