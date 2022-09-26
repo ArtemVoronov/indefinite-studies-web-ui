@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form"
 import { COMMENTS_SERVICE } from "../../../services/comments/comments.service"
 import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
+import CommentLink from "../link/comments.link"
 
-const CommentCreate = (props: { postId: number, linkedCommentId?: number, onCancel: () => void }) => {
+const CommentCreate = (props: { postId: number, linkedCommentId?: number, linkedCommentIndex?: number, onCancel: () => void }) => {
     const [profile] = useProfile()
     const { register, handleSubmit } = useForm()
-    const { postId, linkedCommentId } = props
+    const { postId, linkedCommentId, linkedCommentIndex } = props
 
     const createComment = async (data: any) => {
         const { text } = data
@@ -31,12 +32,10 @@ const CommentCreate = (props: { postId: number, linkedCommentId?: number, onCanc
     return (
         <div>
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(createComment)}>
-                {linkedCommentId && (
+                {linkedCommentIndex && (
                     <div className="text-xs">
                         {"To: "}
-                        <a href={"#" + linkedCommentId} className="text-indigo-600 hover:text-indigo-500">
-                            {"#" + linkedCommentId}
-                        </a>
+                        <CommentLink postId={postId} commentIndex={linkedCommentIndex ?? 0} />
                     </div>
                 )}
                 <div>

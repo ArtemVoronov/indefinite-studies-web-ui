@@ -67,8 +67,21 @@ export type FeedComment = {
     LastUpdateDate: number
 }
 
+export type FeedCommentWithIndex = {
+    Index: number
+    CommentId: number
+    CommentText: string
+    CommentState: string
+    AuthorId: number
+    AuthorName: string
+    PostId: number
+    LinkedCommentId: number | null
+    CreateDate: number
+    LastUpdateDate: number
+}
+
 export type FeedCommentsMap = {
-    [key: number]: FeedComment
+    [key: number]: FeedCommentWithIndex
 }
 
 export type FullPostInfo = {

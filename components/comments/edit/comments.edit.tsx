@@ -1,14 +1,16 @@
 import * as React from "react"
 import { useForm } from "react-hook-form"
-import { FeedComment } from "../../../services/feed/feed.service"
+import { FeedComment, FeedCommentWithIndex } from "../../../services/feed/feed.service"
 import { COMMENTS_SERVICE } from "../../../services/comments/comments.service"
 import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
+import CommentLink from "../link/comments.link"
 
-const CommentEdit = (props: { comment: FeedComment, onCancel: () => void }) => {
+const CommentEdit = (props: { comment: FeedComment, linkedComment?: FeedCommentWithIndex, onCancel: () => void }) => {
     const [profile] = useProfile()
     const { register, handleSubmit } = useForm()
-    const { CommentId, CommentText, LinkedCommentId } = props.comment
+    const { comment } = props
+    const { PostId, CommentId, CommentText } = comment
 
     const updateComment = async (data: any) => {
         const { text } = data
@@ -32,12 +34,10 @@ const CommentEdit = (props: { comment: FeedComment, onCancel: () => void }) => {
     return (
         <div>
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(updateComment)}>
-                {LinkedCommentId && (
+                {props.linkedComment && (
                     <div className="text-xs">
                         {"To: "}
-                        <a href={"#" + LinkedCommentId} className="text-indigo-600 hover:text-indigo-500">
-                            {"#" + LinkedCommentId}
-                        </a>
+                        <CommentLink postId={PostId} commentIndex={props.linkedComment?.Index + 1 ?? 0} />
                     </div>
                 )}
                 <div>
