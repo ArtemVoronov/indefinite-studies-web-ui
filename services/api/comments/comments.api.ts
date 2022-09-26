@@ -18,8 +18,9 @@ export class CommentsApi {
   }
 
   async update(options: UpdateCommentOptions): Promise<any> {
-    const { commentId, text } = options
+    const { authorId, commentId, text } = options
     return this.api.apisauce.put("/api/v1/posts/comments", {
+      authorId,
       id: commentId,
       text,
     })
@@ -27,4 +28,4 @@ export class CommentsApi {
 }
 
 export type CreateCommentOptions = { authorId: number, postId: number, text: string, linkedCommentId?: number }
-export type UpdateCommentOptions = { commentId: number, text: string }
+export type UpdateCommentOptions = { authorId: number, commentId: number, text: string }

@@ -19,7 +19,7 @@ const CommentEdit = (props: { comment: FeedComment, onCancel: () => void }) => {
             return
         }
 
-        const response = await COMMENTS_SERVICE.update({ commentId: CommentId, text })
+        const response = await COMMENTS_SERVICE.update({ authorId: profile.Id, commentId: CommentId, text })
 
         if (response.status != 200) {
             // TODO: show error
