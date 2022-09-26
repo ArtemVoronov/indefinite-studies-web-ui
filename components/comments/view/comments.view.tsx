@@ -5,7 +5,7 @@ import CommentCreate from "../create/comments.create"
 import moment from "moment"
 import CommentEdit from "../edit/comments.edit"
 
-const CommentView = (props: { comment: FeedComment }) => {
+const CommentView = (props: { comment: FeedComment, linkedComment?: FeedComment }) => {
     const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
     const [showEditCommentForm, setShowEditCommentForm] = React.useState(false)
     const [profile] = useProfile()
@@ -72,7 +72,9 @@ const CommentView = (props: { comment: FeedComment }) => {
                         <div className="mb-3">
                             {LinkedCommentId && (
                                 <div className="text-xs">
-                                    {"To: "}
+                                    <span className="mr-1">{"To: "}</span>
+                                    <span>{props.linkedComment?.AuthorName}</span>
+                                    <span className="mr-1">,</span>
                                     <a href={"#" + LinkedCommentId} className="text-indigo-600 hover:text-indigo-500">
                                         {"#" + LinkedCommentId}
                                     </a>

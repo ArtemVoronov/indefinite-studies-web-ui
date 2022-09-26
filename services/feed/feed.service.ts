@@ -67,7 +67,12 @@ export type FeedComment = {
     LastUpdateDate: number
 }
 
+export type FeedCommentsMap = {
+    [key: number]: FeedComment
+}
+
 export type FullPostInfo = {
     Post: FeedPost,
     Comments: Array<FeedComment>,
+    CommentsMap: FeedCommentsMap,
 }

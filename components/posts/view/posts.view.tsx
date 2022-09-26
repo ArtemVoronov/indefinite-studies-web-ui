@@ -55,7 +55,7 @@ const PostView = (props: { post: FullPostInfo }) => {
                 {showCreateCommentForm && (
                     <CommentCreate postId={PostId} onCancel={() => { setShowCreateCommentForm(false) }} />
                 )}
-                <CommentsList comments={props.post.Comments} />
+                <CommentsList comments={props.post.Comments} commentsMap={props.post.CommentsMap} />
             </div>
         </div>
     )

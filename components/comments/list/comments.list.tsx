@@ -1,10 +1,10 @@
 import * as React from "react"
-import { FeedComment } from "../../../services/feed/feed.service"
+import { FeedComment, FeedCommentsMap } from "../../../services/feed/feed.service"
 import CommentView from "../view/comments.view"
 
 
-const CommentsList = (props: { comments: FeedComment[] }) => {
-    const { comments } = props
+const CommentsList = (props: { comments: FeedComment[], commentsMap: FeedCommentsMap }) => {
+    const { comments, commentsMap } = props
 
     if (comments.length == 0) return (
         <div className="w-full max-w-3xl">
@@ -19,7 +19,7 @@ const CommentsList = (props: { comments: FeedComment[] }) => {
             <div >
                 {comments.map(function (p: FeedComment, idx) {
                     return (
-                        <CommentView key={idx} comment={p} />
+                        <CommentView key={idx} comment={p} linkedComment={!p.LinkedCommentId ? undefined : commentsMap[p.LinkedCommentId]} />
                     )
                 })}
             </div>
