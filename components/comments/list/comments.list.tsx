@@ -16,10 +16,10 @@ const CommentsList = (props: { comments: FeedComment[], commentsMap: FeedComment
 
     return (
         <div className="w-full max-w-3xl">
-            <div >
+            <div>
                 {comments.map(function (p: FeedComment, idx) {
                     return (
-                        <CommentView key={idx} comment={p} linkedComment={!p.LinkedCommentId ? undefined : commentsMap[p.LinkedCommentId]} />
+                        <CommentView key={idx} comment={p} linkedComment={!p.LinkedCommentId ? undefined : commentsMap[p.LinkedCommentId]} index={idx + 1} />
                     )
                 })}
             </div>
