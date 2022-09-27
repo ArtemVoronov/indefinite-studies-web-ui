@@ -1,24 +1,69 @@
 import * as React from "react"
-import { FullPostInfo } from "../../../services/feed/feed.service"
 import { ROLES } from "../../../services/users/users.service"
-import Router from "next/router"
 import MarkDown from "../../markdown/markdown"
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentsList from "../../comments/list/comments.list"
 import CommentCreate from "../../comments/create/comments.create"
+import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
+import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
+import Overlay from "../../overlay/overlay"
+import PostEdit from "../edit/posts.edit"
 
-const PostView = (props: { post: FullPostInfo }) => {
+const PostView = (props: { postId: number }) => {
     const [profile] = useProfile()
     const [showCreateCommentForm, setShowCreateCommentForm] = React.useState(false)
-    const { PostId, PostTopic, PostText, AuthorId } = props.post.Post
+    const [showEditPostForm, setShowEditPostForm] = React.useState(false)
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [post, setPost] = React.useState({} as FullPostInfo)
+    const { postId } = props
+
 
     const handleEditEvent = () => {
-        Router.push("/post/edit/" + PostId)
+        setShowEditPostForm(true)
     }
 
     const handleNewCommentEvent = () => {
         setShowCreateCommentForm(true)
     }
+
+    const fetchPost = async () => {
+        const timer = setTimeout(() => {
+            setIsLoading(true)
+        }, SPIN_ICON_SHOWING_TIMEOUT)
+
+        try {
+            const response = await FEED_SERVICE.get({ postId })
+            clearTimeout(timer)
+            if (response.status === 200) {
+                setPost(response.data)
+            }
+        } finally {
+            clearTimeout(timer)
+            setIsLoading(false)
+        }
+    }
+
+    React.useEffect(() => {
+        fetchPost()
+    }, [])
+
+    if (isLoading) return (
+        <div>
+            <Overlay />
+        </div>
+    )
+
+    if (!post || Object.keys(post).length === 0) return (
+        <div>
+            No data
+        </div>
+    )
+
+    if (showEditPostForm) return (
+        <PostEdit post={post} onCancel={() => { setShowEditPostForm(false) }} />
+    )
+
+    const { PostId, PostTopic, PostText, AuthorId } = post.Post
 
     const EditPanel = (
         <div className="flex justify-end">
@@ -55,7 +100,7 @@ const PostView = (props: { post: FullPostInfo }) => {
                 {showCreateCommentForm && (
                     <CommentCreate postId={PostId} onCancel={() => { setShowCreateCommentForm(false) }} />
                 )}
-                <CommentsList comments={props.post.Comments} commentsMap={props.post.CommentsMap} />
+                <CommentsList comments={post.Comments} commentsMap={post.CommentsMap} />
             </div>
         </div>
     )

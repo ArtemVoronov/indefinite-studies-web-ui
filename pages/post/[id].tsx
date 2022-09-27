@@ -1,31 +1,19 @@
 import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import PostView from "../../components/posts/view/posts.view"
-import { FEED_SERVICE_SERVER_SIDE, FullPostInfo } from "../../services/feed/feed.service"
 
-const ViewPostPage: NextPage = (props: { post?: FullPostInfo }) => {
-    const { post } = props
+const ViewPostPage: NextPage = (props: { id?: number }) => {
+    const { id } = props
 
     return (
         <div className="w-full max-w-3xl">
-            {!post ? "No data" : <PostView post={post} />}
+            {!id ? "No data" : <PostView postId={id} />}
         </div>
     )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const id = context?.params?.id
-    if (!id) {
-        return { props: {} }
-    }
-
-    const response = await FEED_SERVICE_SERVER_SIDE.get({ postId: `${id}` })
-
-    if (response.status === 200) {
-        const post = response.data
-        return { props: { post } }
-    }
-
-    return { props: {} }
+    return { props: { id } }
 }
 export default ViewPostPage

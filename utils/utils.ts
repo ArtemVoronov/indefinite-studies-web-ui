@@ -33,3 +33,5 @@ export function classNames(...classes: any[]) {
 }
 
 export type GetAllOptions = { offset?: number, limit?: number }
+
+export const SPIN_ICON_SHOWING_TIMEOUT = 500

@@ -14,7 +14,7 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
         const response = await POSTS_SERVICE.update({ postId: PostId, authorId: AuthorId, text, topic, previewText })
 
         if (response.status == 200) {
-            Router.push("/post/" + PostId)
+            Router.reload()
         }
     }
 

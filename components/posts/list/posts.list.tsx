@@ -2,9 +2,10 @@ import * as React from "react"
 import { FEED_SERVICE, FeedBlock } from "../../../services/feed/feed.service"
 import PostPreview from "../preview/posts.preview"
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
+import Overlay from "../../overlay/overlay"
+import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 
 const DEFAULT_LIMIT = 5
-const SPIN_ICON_SHOWING_TIMEOUT = 500
 
 const PostsList = () => {
     const [isLoading, setIsLoading] = React.useState(false)
@@ -61,7 +62,7 @@ const PostsList = () => {
 
     if (isLoading) return (
         <div>
-            Loading...
+            <Overlay />
         </div>
     )
 
