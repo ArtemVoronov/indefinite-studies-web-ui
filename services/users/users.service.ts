@@ -1,5 +1,7 @@
 import { API_CLIENT } from "../../services/api/api-client"
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
+import { ApiResponse } from "apisauce"
+import { UpdateUserOptions } from "../api/users/users.api"
 
 export class UsersService {
     async getMe(): Promise<User | undefined> {
@@ -15,6 +17,14 @@ export class UsersService {
         }
 
         return response.data
+    }
+
+    async update(options: UpdateUserOptions): Promise<ApiResponse<any>> {
+        const { id, login, email, password } = options
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => API_CLIENT.users.update({ id, login, email, password })
+        })
+        return result
     }
 }
 
