@@ -2,7 +2,7 @@ import * as React from "react"
 import Link from "next/link"
 import faviconPic from '../../public/favicon.ico'
 import Image from "next/image"
-import { USERS_SERVICE } from "../../services/users/users.service"
+import { ROLES, USERS_SERVICE } from "../../services/users/users.service"
 import NotAuthorizedUserButton from "../buttons/not.authorized.user.button"
 import AuthorizedUserButton from "../buttons/authorized.user.button"
 import { useProfile } from '../hooks/use.profile.hook'
@@ -37,7 +37,7 @@ const NavigationPanel = () => {
                         Posts
                     </a>
                 </Link>
-                {profile && (
+                {profile && profile.Role == ROLES.OWNER && (
                     <Link href="/post">
                         <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center ml-5">New Post</a>
                     </Link>
