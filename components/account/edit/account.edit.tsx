@@ -8,12 +8,12 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
     const { register, handleSubmit } = useForm()
     const [, setProfile] = useProfile()
 
-    const { Id, Login, Email } = props.user
+    const { Id, Login } = props.user
 
     const updateUser = async (data: any) => {
-        const { login, email, password } = data
+        const { login, password } = data
 
-        const response = await USERS_SERVICE.update({ id: Id, login, email, password: password != "" ? password : undefined })
+        const response = await USERS_SERVICE.update({ id: Id, login, password: password != "" ? password : undefined })
 
         if (response.status == 200) {
             USERS_SERVICE.getMe().then((res) => {
@@ -49,7 +49,8 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                             />
                         </div>
                     </div>
-                    <div>
+                    {/* TODO: email changing with confirmation */}
+                    {/* <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                             Email
                         </label>
@@ -63,7 +64,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                                 defaultValue={Email}
                             />
                         </div>
-                    </div>
+                    </div> */}
 
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">

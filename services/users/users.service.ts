@@ -1,7 +1,7 @@
 import { API_CLIENT } from "../../services/api/api-client"
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 import { ApiResponse } from "apisauce"
-import { UpdateUserOptions } from "../api/users/users.api"
+import { UpdateUserOptions, SignUpOptions, SignUpConfirmationOptions, SignResendConfirmationOptions, RestorePasswordOptions, RestorePasswordConfirmationOptions } from "../api/users/users.api"
 
 export class UsersService {
     async getMe(): Promise<User | undefined> {
@@ -20,9 +20,44 @@ export class UsersService {
     }
 
     async update(options: UpdateUserOptions): Promise<ApiResponse<any>> {
-        const { id, login, email, password } = options
+        const { id, login, password } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.users.update({ id, login, email, password })
+            action: () => API_CLIENT.users.update({ id, login, password })
+        })
+        return result
+    }
+
+    async register(options: SignUpOptions): Promise<any> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => API_CLIENT.users.register(options)
+        })
+        return result
+    }
+
+    async confirmRegistration(options: SignUpConfirmationOptions): Promise<any> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => API_CLIENT.users.confirmRegistration(options)
+        })
+        return result
+    }
+
+    async resendRegistration(options: SignResendConfirmationOptions): Promise<any> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => API_CLIENT.users.resendRegistration(options)
+        })
+        return result
+    }
+
+    async restorePassword(options: RestorePasswordOptions): Promise<any> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => API_CLIENT.users.restorePassword(options)
+        })
+        return result
+    }
+
+    async confirmPassword(options: RestorePasswordConfirmationOptions): Promise<any> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => API_CLIENT.users.confirmPassword(options)
         })
         return result
     }

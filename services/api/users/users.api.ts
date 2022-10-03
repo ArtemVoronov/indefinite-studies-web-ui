@@ -12,14 +12,38 @@ export class UsersApi {
   }
 
   async update(options: UpdateUserOptions): Promise<any> {
-    const { id, login, email, password } = options
+    const { id, login, password } = options
     return this.api.apisauce.put("/api/v1/users", {
       id,
       login,
-      email,
       password
     })
   }
+
+  async register(options: SignUpOptions): Promise<any> {
+    return this.api.apisauce.post("/api/v1/users/signup", options)
+  }
+
+  async confirmRegistration(options: SignUpConfirmationOptions): Promise<any> {
+    return this.api.apisauce.put("/api/v1/users/signup", options)
+  }
+
+  async resendRegistration(options: SignResendConfirmationOptions): Promise<any> {
+    return this.api.apisauce.post("/api/v1/users/signup/resend", options)
+  }
+
+  async restorePassword(options: RestorePasswordOptions): Promise<any> {
+    return this.api.apisauce.post("/api/v1/users/password/restore", options)
+  }
+
+  async confirmPassword(options: RestorePasswordConfirmationOptions): Promise<any> {
+    return this.api.apisauce.put("/api/v1/users/password/restore", options)
+  }
 }
 
-export type UpdateUserOptions = { id: number, login: string, email: string, password: string }
+export type UpdateUserOptions = { id: number, login: string, password: string }
+export type SignUpOptions = { login: string, email: string, password: string }
+export type SignUpConfirmationOptions = { token: string }
+export type SignResendConfirmationOptions = { email: string }
+export type RestorePasswordOptions = { email: string }
+export type RestorePasswordConfirmationOptions = { token: string, password: string }
