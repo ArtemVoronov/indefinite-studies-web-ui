@@ -30,7 +30,7 @@ const SignUpForm = () => {
     if (isEmailSent) {
         return (
             <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-                Email with confirmation link was sent. Please check you inbox.
+                {t("sign.up.page.link.was.sent")}
             </div>
         )
     }
@@ -41,7 +41,7 @@ const SignUpForm = () => {
                 <div className="text-center">
                     <Image src={faviconPic} alt="Indefinite Studies" />
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                        Sign up
+                        {t("sign.up.page.header")}
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit(signup)}>
@@ -49,7 +49,7 @@ const SignUpForm = () => {
                     <div className="-space-y-px rounded-md shadow-sm">
                         <div>
                             <label htmlFor="login" className="sr-only">
-                                Name
+                                {t("sign.up.page.login.label")}
                             </label>
                             <input
                                 id="login"
@@ -57,12 +57,12 @@ const SignUpForm = () => {
                                 {...register("login")}
                                 required
                                 className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Name"
+                                placeholder={t("sign.up.page.login.placeholder")}
                             />
                         </div>
                         <div>
                             <label htmlFor="email-address" className="sr-only">
-                                Email address
+                                {t("sign.up.page.email.label")}
                             </label>
                             <input
                                 id="email-address"
@@ -71,12 +71,12 @@ const SignUpForm = () => {
                                 {...register("email")}
                                 required
                                 className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Email address"
+                                placeholder={t("sign.up.page.email.placeholder")}
                             />
                         </div>
                         <div>
                             <label htmlFor="password" className="sr-only">
-                                Password
+                                {t("sign.up.page.password.label")}
                             </label>
                             <input
                                 id="password"
@@ -85,7 +85,7 @@ const SignUpForm = () => {
                                 required
                                 {...register("password")}
                                 className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Password"
+                                placeholder={t("sign.up.page.password.placeholder")}
                             />
                         </div>
                     </div>
@@ -98,7 +98,7 @@ const SignUpForm = () => {
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                             </span>
-                            Sign up
+                            {t("sign.up.page.btn.sign.up")}
                         </button>
 
                     </div>

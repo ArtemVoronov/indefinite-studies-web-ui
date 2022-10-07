@@ -34,7 +34,7 @@ const LoginForm = () => {
                 <div className="text-center">
                     <Image src={faviconPic} alt="Indefinite Studies" />
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                        Sign in to your account
+                        {t("sign.in.page.header")}
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit(login)}>
@@ -42,7 +42,7 @@ const LoginForm = () => {
                     <div className="-space-y-px rounded-md shadow-sm">
                         <div>
                             <label htmlFor="email-address" className="sr-only">
-                                Email address
+                                {t("sign.in.page.email.label")}
                             </label>
                             <input
                                 id="email-address"
@@ -51,12 +51,12 @@ const LoginForm = () => {
                                 {...register("email")}
                                 required
                                 className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Email address"
+                                placeholder={t("sign.in.page.email.placeholder")}
                             />
                         </div>
                         <div>
                             <label htmlFor="password" className="sr-only">
-                                Password
+                                {t("sign.in.page.password.label")}
                             </label>
                             <input
                                 id="password"
@@ -65,7 +65,7 @@ const LoginForm = () => {
                                 required
                                 {...register("password")}
                                 className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Password"
+                                placeholder={t("sign.in.page.password.placeholder")}
                             />
                         </div>
                     </div>
@@ -74,7 +74,7 @@ const LoginForm = () => {
                         <div className="text-sm">
                             <Link href="/restorepwd">
                                 <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    Forgot your password?
+                                    {t("forgot.password.link")}
                                 </a>
                             </Link>
                         </div>
@@ -88,7 +88,7 @@ const LoginForm = () => {
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                             </span>
-                            Sign in
+                            {t("btn.sign.in")}
                         </button>
 
                     </div>

@@ -70,7 +70,7 @@ const PostsList = () => {
 
     if (posts.length == 0) return (
         <div>
-            No data
+            {t("no.data")}
         </div>
     )
 
@@ -89,7 +89,9 @@ const PostsList = () => {
                     style={{ display: offset == 0 ? "none" : undefined }}
                     className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
-                    Prev
+                    <div>
+                        {t("btn.prev")}
+                    </div>
                     <ArrowLeftIcon />
                 </button>
                 <div className="flex-1" />
@@ -99,7 +101,7 @@ const PostsList = () => {
                     className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 >
                     <div>
-                        Next
+                        {t("btn.next")}
                     </div>
                     <ArrowRightIcon />
                 </button>

@@ -48,7 +48,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
-                                        Account settings
+                                        {t("navbar.menu.account")}
                                     </a>
                                 </DropDownMenuLink>
                             )}
@@ -63,7 +63,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
-                                        Sign out
+                                        {t("navbar.menu.sign.out")}
                                     </a>
                                 </DropDownMenuLink>
                             )}
@@ -77,7 +77,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
-                                        Switch to Russian
+                                        {t("navbar.menu.to.russian")}
                                     </a>
                                 </DropDownMenuLink>
                             )}
@@ -91,7 +91,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
-                                        Switch to English
+                                        {t("navbar.menu.to.english")}
                                     </a>
                                 </DropDownMenuLink>
                             )}

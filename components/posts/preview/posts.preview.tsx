@@ -26,7 +26,7 @@ const PostPreview = (props: { post: FeedBlock }) => {
                     <span className="mx-2">|</span>
                     <div className="text-xs">
                         <Link href={"/post/" + PostId} >
-                            <a className="text-indigo-600 hover:text-indigo-500">{CommentsCount} comments</a>
+                            <a className="text-indigo-600 hover:text-indigo-500">{CommentsCount} {t("posts.page.comment.count")}</a>
                         </Link>
                     </div>
                 </div>

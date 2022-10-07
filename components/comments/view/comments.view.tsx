@@ -29,7 +29,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                 className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
                 onClick={handleEditEvent}
             >
-                Edit
+                {t("btn.edit")}
             </button>
         </>
     )
@@ -40,7 +40,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                 className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
                 onClick={handleReplyEvent}
             >
-                Reply
+                {t("btn.reply")}
             </button>
         </>
     )
@@ -74,7 +74,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                         <div className="mb-3">
                             {props.linkedComment && (
                                 <div className="text-xs">
-                                    <span className="mr-1">{"To: "}</span>
+                                    <span className="mr-1">{t("post.page.to") + ": "}</span>
                                     <span>{props.linkedComment?.AuthorName}</span>
                                     <span className="mr-1">,</span>
                                     <CommentLink postId={PostId} commentIndex={props.linkedComment?.Index + 1 ?? 0} />

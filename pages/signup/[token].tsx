@@ -5,8 +5,10 @@ import Overlay from "../../components/overlay/overlay"
 import { USERS_SERVICE } from "../../services/users/users.service"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from "next-i18next"
 
 const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
+    const { t } = useTranslation()
     const { token } = props
     const [isLoading, setIsLoading] = React.useState(false)
     const [isConfirmed, setIsConfirmed] = React.useState(false)
@@ -44,10 +46,10 @@ const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
     if (isConfirmed) return (
         <div className="w-full max-w-3xl">
             <div className="flex flex-1 justify-center items-center flex-col h-screen">
-                <p>Email was confirmed!</p>
+                <p>{t("email.was.confirmed")}</p>
                 <Link href="/login">
                     <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                        Sign in
+                        {t("sign.in")}
                     </a>
                 </Link>
             </div>
@@ -57,10 +59,10 @@ const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
     return (
         <div className="w-full max-w-3xl">
             <div className="flex flex-1 justify-center items-center flex-col h-screen">
-                <p>Error occured</p>
+                <p>{t("error.occured")}</p>
                 <Link href="/signup/resend">
                     <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                        Resend confirmation
+                        {t("resend.confirmation")}
                     </a>
                 </Link>
             </div>

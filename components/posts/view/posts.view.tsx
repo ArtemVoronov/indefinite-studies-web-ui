@@ -11,7 +11,7 @@ import PostEdit from "../edit/posts.edit"
 import { useTranslation } from "next-i18next"
 
 const PostView = (props: { postId: number }) => {
-    const { t } = useTranslationn()
+    const { t } = useTranslation()
     const [profile] = useProfile()
     const [showCreateCommentForm, setShowCreateCommentForm] = React.useState(false)
     const [showEditPostForm, setShowEditPostForm] = React.useState(false)
@@ -57,7 +57,7 @@ const PostView = (props: { postId: number }) => {
 
     if (!post || Object.keys(post).length === 0) return (
         <div>
-            No data
+            {t("no.data")}
         </div>
     )
 
@@ -73,7 +73,7 @@ const PostView = (props: { postId: number }) => {
                 className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 onClick={handleEditEvent}
             >
-                Edit
+                {t("btn.edit")}
             </button>
         </div>
     )
@@ -83,7 +83,7 @@ const PostView = (props: { postId: number }) => {
             className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-2 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             onClick={handleNewCommentEvent}
         >
-            New Comment
+            {t("post.page.btn.new.comment")}
         </button>
     )
 
@@ -96,7 +96,7 @@ const PostView = (props: { postId: number }) => {
             </div>
             <div className="mt-5">
                 <div className="flex justify-between">
-                    <h2 className="font-bold leading-tight text-3xl mt-0 mb-2 text-center">Comments</h2>
+                    <h2 className="font-bold leading-tight text-3xl mt-0 mb-2 text-center">{t("post.page.comment.header")}</h2>
                     {!profile ? "" : AddCommentButton}
                 </div>
                 {showCreateCommentForm && (

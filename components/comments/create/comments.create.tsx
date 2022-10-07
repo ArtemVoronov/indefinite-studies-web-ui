@@ -36,13 +36,13 @@ const CommentCreate = (props: { postId: number, linkedCommentId?: number, linked
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(createComment)}>
                 {linkedCommentIndex && (
                     <div className="text-xs">
-                        {"To: "}
+                        {t("post.page.to") + ": "}
                         <CommentLink postId={postId} commentIndex={linkedCommentIndex ?? 0} />
                     </div>
                 )}
                 <div>
                     <label htmlFor="text" className="block text-sm font-medium text-gray-700">
-                        Comment Text
+                        {t("post.page.comment.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
                         <textarea
@@ -50,7 +50,7 @@ const CommentCreate = (props: { postId: number, linkedCommentId?: number, linked
                             required
                             {...register("text")}
                             className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Type text ..."
+                            placeholder={t("post.page.comment.text.placeholder")}
                             rows={10}
                         />
                     </div>
@@ -61,7 +61,7 @@ const CommentCreate = (props: { postId: number, linkedCommentId?: number, linked
                         type="submit"
                         className="group relative w-52 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                        Create
+                        {t("btn.submit")}
                     </button>
                 </div>
             </form>
@@ -71,7 +71,7 @@ const CommentCreate = (props: { postId: number, linkedCommentId?: number, linked
                     onClick={props.onCancel}
                     className="group relative w-52 mt-3 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                    Cancel
+                    {t("btn.cancel")}
                 </button>
             </div>
 

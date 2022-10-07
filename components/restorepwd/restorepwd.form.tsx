@@ -31,10 +31,10 @@ const RestorePasswordForm = (props: { token: string }) => {
     if (isDone) {
         return (
             <div className="flex flex-1 justify-center items-center flex-col h-screen">
-                <p>Password was changed</p>
+                <p>{t("restore.pwd.page.password.was.changed")}</p>
                 <Link href="/login">
                     <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                        Sign in
+                        {t("restore.pwd.page.sign.in.link")}
                     </a>
                 </Link>
             </div>
@@ -47,7 +47,7 @@ const RestorePasswordForm = (props: { token: string }) => {
                 <div className="text-center">
                     <Image src={faviconPic} alt="Indefinite Studies" />
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                        Send restore password link
+                        {t("restore.pwd.page.header")}
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit(resend)}>
@@ -55,7 +55,7 @@ const RestorePasswordForm = (props: { token: string }) => {
                     <div className="-space-y-px rounded-md shadow-sm">
                         <div>
                             <label htmlFor="password" className="sr-only">
-                                Password
+                                {t("restore.pwd.page.password.label")}
                             </label>
                             <input
                                 id="password"
@@ -64,7 +64,7 @@ const RestorePasswordForm = (props: { token: string }) => {
                                 required
                                 {...register("password")}
                                 className="relative block w-full appearance-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Password"
+                                placeholder={t("restore.pwd.page.password.placeholder")}
                             />
                         </div>
                     </div>
@@ -77,7 +77,7 @@ const RestorePasswordForm = (props: { token: string }) => {
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                 <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
                             </span>
-                            Restore password
+                            {t("restore.pwd.page.btn.restore.password")}
                         </button>
 
                     </div>

@@ -37,7 +37,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                 <form className="mt-8 space-y-4" onSubmit={handleSubmit(updateUser)}>
                     <div>
                         <label htmlFor="login" className="block text-sm font-medium text-gray-700">
-                            Login
+                            {t("account.page.login.label")}
                         </label>
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <input
@@ -46,7 +46,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                                 type="text"
                                 {...register("login")}
                                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Type login ..."
+                                placeholder={t("account.page.login.placeholder")}
                                 defaultValue={Login}
                             />
                         </div>
@@ -54,7 +54,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                     {/* TODO: email changing with confirmation */}
                     {/* <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            Email
+                            {t("account.page.email.label")}
                         </label>
                         <div className="relative mt-1 rounded-md shadow-sm">
                             <input
@@ -62,15 +62,15 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                                 required
                                 {...register("email")}
                                 className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder="Type email ..."
+                                placeholder={t("account.page.email.placeholder")}
                                 defaultValue={Email}
                             />
                         </div>
                     </div> */}
 
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            Password
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            {t("account.page.password.label")}
                         </label>
                         <input
                             id="password"
@@ -78,7 +78,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                             autoComplete="current-password"
                             {...register("password")}
                             className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Password"
+                            placeholder={t("account.page.password.placeholder")}
                         />
                     </div>
 
@@ -87,7 +87,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                             type="submit"
                             className="group relative w-52 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Update
+                            {t("btn.submit")}
                         </button>
 
                     </div>
@@ -98,7 +98,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                         onClick={props.onCancel}
                         className="group relative w-52 mt-3 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                        Cancel
+                        {t("btn.cancel")}
                     </button>
                 </div>
             </div>

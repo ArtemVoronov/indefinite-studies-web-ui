@@ -34,7 +34,7 @@ const PostCreate = () => {
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(createPost)}>
                 <div>
                     <label htmlFor="topic" className="block text-sm font-medium text-gray-700">
-                        Topic
+                        {t("post.page.post.topic.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
                         <input
@@ -43,13 +43,13 @@ const PostCreate = () => {
                             type="text"
                             {...register("topic")}
                             className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Type topic ..."
+                            placeholder={t("post.page.post.topic.placeholder")}
                         />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="text" className="block text-sm font-medium text-gray-700">
-                        Text
+                        {t("post.page.post.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
                         <textarea
@@ -57,14 +57,14 @@ const PostCreate = () => {
                             required
                             {...register("text")}
                             className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Type text ..."
+                            placeholder={t("post.page.post.text.placeholder")}
                             rows={30}
                         />
                     </div>
                 </div>
                 <div>
                     <label htmlFor="text" className="block text-sm font-medium text-gray-700">
-                        Preview Text
+                        {t("post.page.post.preview.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
                         <textarea
@@ -72,7 +72,7 @@ const PostCreate = () => {
                             required
                             {...register("previewText")}
                             className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder="Type preview text ..."
+                            placeholder={t("post.page.post.preview.text.placeholder")}
                             rows={10}
                         />
                     </div>
@@ -83,7 +83,7 @@ const PostCreate = () => {
                         type="submit"
                         className="group relative w-52 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                        Create
+                        {t("btn.submit")}
                     </button>
                 </div>
             </form>
