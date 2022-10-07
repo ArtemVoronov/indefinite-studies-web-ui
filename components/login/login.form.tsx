@@ -74,7 +74,7 @@ const LoginForm = () => {
                         <div className="text-sm">
                             <Link href="/restorepwd">
                                 <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    {t("forgot.password.link")}
+                                    {t("sign.in.page.forgot.password.link")}
                                 </a>
                             </Link>
                         </div>

@@ -17,7 +17,10 @@
         "edit": "Edit",
         "reply": "Reply",
         "prev": "Prev",
-        "next": "Next"
+        "next": "Next",
+        "sign.in": "Sign in",
+        "sign.up": "Sign up",
+        "sign.out": "Sign out"
     },
     "no.data": "No Data",
     "overlay.header": "Loading",
