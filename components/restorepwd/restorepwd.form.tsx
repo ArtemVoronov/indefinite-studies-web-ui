@@ -5,8 +5,10 @@ import Image from 'next/image'
 import faviconPic from '../../public/favicon.ico'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import Link from "next/link"
+import { useTranslation } from "next-i18next"
 
 const RestorePasswordForm = (props: { token: string }) => {
+    const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const [isDone, setDone] = React.useState(false)
     const { token } = props

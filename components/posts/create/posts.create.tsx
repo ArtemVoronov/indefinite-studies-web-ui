@@ -3,10 +3,12 @@ import { useForm } from "react-hook-form"
 import { POSTS_SERVICE } from "../../../services/posts/posts.service"
 import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
+import { useTranslation } from "next-i18next"
 
 const PostCreate = () => {
     const [profile] = useProfile()
     const { register, handleSubmit } = useForm()
+    const { t } = useTranslation()
 
     const createPost = async (data: any) => {
         const { topic, text, previewText } = data

@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form"
 import { User, USERS_SERVICE } from "../../../services/users/users.service"
 import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
+import { useTranslation } from "next-i18next"
 
 const AccountView = (props: { user: User, onCancel: () => void }) => {
+    const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const [, setProfile] = useProfile()
 

@@ -1,8 +1,10 @@
 import * as React from "react"
 import { User } from "../../../services/users/users.service"
 import Router from "next/router"
+import { useTranslation } from "next-i18next"
 
 const AccountView = (props: { user: User }) => {
+    const { t } = useTranslation()
 
     const { Login, Email, Role } = props.user
 

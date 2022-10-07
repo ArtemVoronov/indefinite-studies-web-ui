@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form"
 import { POSTS_SERVICE } from "../../../services/posts/posts.service"
 import Router from "next/router"
 import { FullPostInfo } from "../../../services/feed/feed.service"
+import { useTranslation } from "next-i18next"
 
 const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
     const { register, handleSubmit } = useForm()
+    const { t } = useTranslation()
     const { PostId, AuthorId } = props.post.Post
 
     const updatePost = async (data: any) => {

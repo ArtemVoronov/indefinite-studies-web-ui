@@ -4,8 +4,10 @@ import { USERS_SERVICE } from "../../services/users/users.service"
 import Image from 'next/image'
 import faviconPic from '../../public/favicon.ico'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { useTranslation } from "next-i18next"
 
 const SignUpForm = () => {
+    const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const [isEmailSent, setIsEmailSent] = React.useState(false)
 

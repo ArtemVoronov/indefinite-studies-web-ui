@@ -8,8 +8,10 @@ import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import Overlay from "../../overlay/overlay"
 import PostEdit from "../edit/posts.edit"
+import { useTranslation } from "next-i18next"
 
 const PostView = (props: { postId: number }) => {
+    const { t } = useTranslationn()
     const [profile] = useProfile()
     const [showCreateCommentForm, setShowCreateCommentForm] = React.useState(false)
     const [showEditPostForm, setShowEditPostForm] = React.useState(false)

@@ -1,7 +1,9 @@
+import { useTranslation } from "next-i18next"
 import * as React from "react"
 import styles from "./overlay.module.css"
 
 const Overlay = () => {
+    const { t } = useTranslation()
 
     return (
         <div className="h-screen flex flex-col items-center justify-center">

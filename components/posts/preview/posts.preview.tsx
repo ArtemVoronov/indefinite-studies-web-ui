@@ -3,8 +3,10 @@ import Link from "next/link"
 import { FeedBlock } from "../../../services/feed/feed.service"
 import MarkDown from "../../markdown/markdown"
 import moment from "moment"
+import { useTranslation } from "next-i18next"
 
 const PostPreview = (props: { post: FeedBlock }) => {
+    const { t } = useTranslation()
     const { PostId, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount } = props.post
 
     return (

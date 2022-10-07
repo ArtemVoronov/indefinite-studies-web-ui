@@ -1,7 +1,8 @@
-import type { NextPage } from "next"
+import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import AccountView from "../../components/account/view/account.view"
 import { useProfile } from '../../components/hooks/use.profile.hook'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const AccountViewPage: NextPage = () => {
     const [profile] = useProfile()
@@ -11,6 +12,15 @@ const AccountViewPage: NextPage = () => {
             {!profile ? "No data" : <AccountView user={profile} />}
         </div>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const locale = context?.locale ?? "ru"
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    }
 }
 
 export default AccountViewPage

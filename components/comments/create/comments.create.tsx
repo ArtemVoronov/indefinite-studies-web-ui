@@ -4,9 +4,11 @@ import { COMMENTS_SERVICE } from "../../../services/comments/comments.service"
 import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentLink from "../link/comments.link"
+import { useTranslation } from "next-i18next"
 
 const CommentCreate = (props: { postId: number, linkedCommentId?: number, linkedCommentIndex?: number, onCancel: () => void }) => {
     const [profile] = useProfile()
+    const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const { postId, linkedCommentId, linkedCommentIndex } = props
 

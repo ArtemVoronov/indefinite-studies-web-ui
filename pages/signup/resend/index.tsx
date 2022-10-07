@@ -1,6 +1,7 @@
-import type { NextPage } from "next"
+import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import ResendSignUpConfirmationForm from "../../../components/signup/signup.resend.form"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const ResendSignUpConfirmationPage: NextPage = () => {
 
@@ -9,6 +10,15 @@ const ResendSignUpConfirmationPage: NextPage = () => {
             <ResendSignUpConfirmationForm />
         </div>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const locale = context?.locale ?? "ru"
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    }
 }
 
 export default ResendSignUpConfirmationPage

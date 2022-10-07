@@ -1,6 +1,7 @@
-import type { NextPage } from "next"
+import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import PostCreate from "../../components/posts/create/posts.create"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const CreatePostPage: NextPage = () => {
 
@@ -9,6 +10,15 @@ const CreatePostPage: NextPage = () => {
             <PostCreate />
         </div>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const locale = context?.locale ?? "ru"
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    }
 }
 
 export default CreatePostPage

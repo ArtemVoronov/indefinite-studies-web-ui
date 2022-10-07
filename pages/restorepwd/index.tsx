@@ -1,6 +1,7 @@
-import type { NextPage } from "next"
+import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import ResendRestorePasswordForm from "../../components/restorepwd/restorepwd.resend.form"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const RestorePasswordPage: NextPage = () => {
 
@@ -9,6 +10,15 @@ const RestorePasswordPage: NextPage = () => {
             <ResendRestorePasswordForm />
         </div>
     )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const locale = context?.locale ?? "ru"
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
+    }
 }
 
 export default RestorePasswordPage

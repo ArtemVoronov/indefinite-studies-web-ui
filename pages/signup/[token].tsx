@@ -4,6 +4,7 @@ import * as React from "react"
 import Overlay from "../../components/overlay/overlay"
 import { USERS_SERVICE } from "../../services/users/users.service"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
     const { token } = props
@@ -69,6 +70,13 @@ const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
     const token = context?.params?.token
-    return { props: { token } }
+    const locale = context?.locale ?? "ru"
+    return {
+        props: {
+            token,
+            ...(await serverSideTranslations(locale, ['common'])),
+        }
+    }
 }
+
 export default SignUpConfirmationPage

@@ -5,8 +5,10 @@ import CommentCreate from "../create/comments.create"
 import moment from "moment"
 import CommentEdit from "../edit/comments.edit"
 import CommentLink from "../link/comments.link"
+import { useTranslation } from "next-i18next"
 
 const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number }) => {
+    const { t } = useTranslation()
     const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
     const [showEditCommentForm, setShowEditCommentForm] = React.useState(false)
     const [profile] = useProfile()

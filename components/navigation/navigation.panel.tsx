@@ -8,9 +8,11 @@ import AuthorizedUserButton from "../buttons/authorized.user.button"
 import { useProfile } from '../hooks/use.profile.hook'
 import { ACCESS_TOKEN_KEY } from "../../services/auth/auth.service"
 import { API_CLIENT } from "../../services/api/api-client"
+import { useTranslation } from 'next-i18next'
 
 const NavigationPanel = () => {
     const [profile, setProfile] = useProfile()
+    const { t } = useTranslation()
 
     React.useEffect(() => {
         API_CLIENT.setJWTAuthrozationHeader(window.localStorage[ACCESS_TOKEN_KEY])
@@ -34,12 +36,12 @@ const NavigationPanel = () => {
             <div className="flex items-center">
                 <Link href="/">
                     <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center ml-5">
-                        Posts
+                        {t("navbar.posts.link")}
                     </a>
                 </Link>
                 {profile && profile.Role == ROLES.OWNER && (
                     <Link href="/post">
-                        <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center ml-5">New Post</a>
+                        <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center ml-5">{t("navbar.new.post.link")}</a>
                     </Link>
                 )}
                 {!profile ? <NotAuthorizedUserButton /> : <AuthorizedUserButton user={profile} />}

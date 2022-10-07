@@ -1,12 +1,14 @@
 import * as React from "react"
-import Link from "next/link"
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
 import { classNames } from "../../utils/utils"
 import { UserIcon } from '@heroicons/react/24/outline'
+import { useTranslation } from 'next-i18next'
+import DropDownMenuLink from "./dropdown.menu.link"
 
 const NotAuthorizedUserButton = () => {
+    const { t } = useTranslation()
 
     return (
         <Menu as="div" className="relative inline-block text-left">
@@ -25,38 +27,64 @@ const NotAuthorizedUserButton = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                >
                     <div className="py-1">
                         <Menu.Item>
                             {({ active }) => (
-                                <div>
-                                    <Link href="/login">
-                                        <a
-                                            className={classNames(
-                                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                'block px-4 py-2 text-base font-medium'
-                                            )}
-                                        >
-                                            Sign in
-                                        </a>
-                                    </Link>
-                                </div>
+                                <DropDownMenuLink href="/login">
+                                    <a
+                                        className={classNames(
+                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                            'block px-4 py-2 text-base font-medium'
+                                        )}
+                                    >
+                                        Sign in
+                                    </a>
+                                </DropDownMenuLink>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <div>
-                                    <Link href="/signup">
-                                        <a
-                                            className={classNames(
-                                                active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                                'block px-4 py-2 text-base font-medium'
-                                            )}
-                                        >
-                                            Sign up
-                                        </a>
-                                    </Link>
-                                </div>
+                                <DropDownMenuLink href="/signup">
+                                    <a
+                                        className={classNames(
+                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                            'block px-4 py-2 text-base font-medium'
+                                        )}
+                                    >
+                                        Sign up
+                                    </a>
+                                </DropDownMenuLink>
+                            )}
+                        </Menu.Item>
+                        <Menu.Item>
+                            {({ active }) => (
+                                <DropDownMenuLink href="/" locale="ru">
+                                    <a
+                                        className={classNames(
+                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                            'block px-4 py-2 text-base font-medium'
+                                        )}
+                                    >
+                                        Switch to Russian
+                                    </a>
+                                </DropDownMenuLink>
+                            )}
+                        </Menu.Item>
+                        <Menu.Item>
+                            {({ active }) => (
+                                <DropDownMenuLink href="/" locale="en">
+                                    <a
+                                        className={classNames(
+                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                            'block px-4 py-2 text-base font-medium'
+                                        )}
+                                    >
+                                        Switch to English
+                                    </a>
+                                </DropDownMenuLink>
                             )}
                         </Menu.Item>
                     </div>

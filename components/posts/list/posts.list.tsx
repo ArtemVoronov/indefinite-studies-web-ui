@@ -4,6 +4,7 @@ import PostPreview from "../preview/posts.preview"
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import Overlay from "../../overlay/overlay"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
+import { useTranslation } from "next-i18next"
 
 const DEFAULT_LIMIT = 5
 
@@ -12,6 +13,7 @@ const PostsList = () => {
     const [posts, setPosts] = React.useState([])
     const [isAllFetched, setIsAllFetched] = React.useState(false)
     const [offset, setOffset] = React.useState(0)
+    const { t } = useTranslation()
 
     const fetchPosts = async () => {
         if (isAllFetched) {

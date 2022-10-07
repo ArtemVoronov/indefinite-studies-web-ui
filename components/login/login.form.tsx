@@ -8,9 +8,11 @@ import faviconPic from '../../public/favicon.ico'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { useProfile } from '../hooks/use.profile.hook'
 import Link from "next/link"
+import { useTranslation } from "next-i18next"
 
 const LoginForm = () => {
     const { register, handleSubmit } = useForm()
+    const { t } = useTranslation()
     const [, setProfile] = useProfile()
 
     const login = (data: any) => {
