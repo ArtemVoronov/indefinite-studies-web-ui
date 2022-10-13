@@ -10,12 +10,12 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
     const { register, handleSubmit } = useForm()
     const [, setProfile] = useProfile()
 
-    const { Id, Login } = props.user
+    const { Uuid, Login } = props.user
 
     const updateUser = async (data: any) => {
         const { login, password } = data
 
-        const response = await USERS_SERVICE.update({ id: Id, login, password: password != "" ? password : undefined })
+        const response = await USERS_SERVICE.update({ Uuid, login, password: password != "" ? password : undefined })
 
         if (response.status == 200) {
             USERS_SERVICE.getMe().then((res) => {

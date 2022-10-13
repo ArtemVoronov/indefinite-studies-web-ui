@@ -12,7 +12,8 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
     const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
     const [showEditCommentForm, setShowEditCommentForm] = React.useState(false)
     const [profile] = useProfile()
-    const { CommentId, AuthorId, CommentText, AuthorName, LastUpdateDate, PostId } = props.comment
+    const { CommentUuid, AuthorUuid, CommentText, AuthorName, LastUpdateDate, PostUuid } = props.comment
+    moment.locale("ru")
 
     const handleEditEvent = () => {
         setShowEditCommentForm(true)
@@ -62,11 +63,11 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                         <div className="flex items-center">
                             <div className="text-xs px-3">{moment(LastUpdateDate).format('MMMM Do YYYY, hh:mm')}</div>
                             {!profile ? "" : ReplyButton}
-                            {!profile || profile.Id != AuthorId ? "" : EditButton}
+                            {!profile || profile.Uuid != AuthorUuid ? "" : EditButton}
                         </div>
                         <div className="flex flex-1 items-center justify-end">
                             <div className="text-xs">
-                                <CommentLink postId={PostId} commentIndex={props.index} />
+                                <CommentLink postUuid={PostUuid} commentIndex={props.index} />
                             </div>
                         </div>
                     </div>
@@ -77,7 +78,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                                     <span className="mr-1">{t("post.page.to") + ": "}</span>
                                     <span>{props.linkedComment?.AuthorName}</span>
                                     <span className="mr-1">,</span>
-                                    <CommentLink postId={PostId} commentIndex={props.linkedComment?.Index + 1 ?? 0} />
+                                    <CommentLink postUuid={PostUuid} commentIndex={props.linkedComment?.Index + 1 ?? 0} />
                                 </div>
                             )}
                         </div>
@@ -89,7 +90,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
             </div>
 
             {showReplyCommentForm && (
-                <CommentCreate postId={PostId} linkedCommentId={CommentId} linkedCommentIndex={props.index} onCancel={() => { setShowReplyCommentForm(false) }} />
+                <CommentCreate postUuid={PostUuid} linkedCommentUuid={CommentUuid} linkedCommentIndex={props.index} onCancel={() => { setShowReplyCommentForm(false) }} />
             )}
         </>
     )

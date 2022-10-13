@@ -31,6 +31,8 @@
     "sign.out": "Sign out",
     "error.occured": "Error occured",
     "resend.confirmation": "Resend confirmation",
+    "send.cofirmation.header": "Send confirmation link",
+    "send.cofirmation.btn": "Send confirmation link",
     "sign.up.page.link.was.sent": "Email with confirmation link was sent. Please check you inbox.",
     "sign.up.page.header": "Sign up",
     "sign.up.page.login.label": "Login",

@@ -6,11 +6,11 @@ import { useProfile } from '../../hooks/use.profile.hook'
 import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
 
-const CommentCreate = (props: { postId: number, linkedCommentId?: number, linkedCommentIndex?: number, onCancel: () => void }) => {
+const CommentCreate = (props: { postUuid: string, linkedCommentUuid: string, linkedCommentIndex?: number, onCancel: () => void }) => {
     const [profile] = useProfile()
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
-    const { postId, linkedCommentId, linkedCommentIndex } = props
+    const { postUuid, linkedCommentUuid, linkedCommentIndex } = props
 
     const createComment = async (data: any) => {
         const { text } = data
@@ -21,7 +21,7 @@ const CommentCreate = (props: { postId: number, linkedCommentId?: number, linked
             return
         }
 
-        const response = await COMMENTS_SERVICE.create({ authorId: profile.Id, text, postId, linkedCommentId })
+        const response = await COMMENTS_SERVICE.create({ authorUuid: profile.Uuid, text, postUuid, linkedCommentUuid })
 
         if (response.status != 201) {
             // TODO: show error
@@ -37,7 +37,7 @@ const CommentCreate = (props: { postId: number, linkedCommentId?: number, linked
                 {linkedCommentIndex && (
                     <div className="text-xs">
                         {t("post.page.to") + ": "}
-                        <CommentLink postId={postId} commentIndex={linkedCommentIndex ?? 0} />
+                        <CommentLink postUuid={postUuid} commentIndex={linkedCommentIndex ?? 0} />
                     </div>
                 )}
                 <div>

@@ -10,14 +10,14 @@ import Overlay from "../../overlay/overlay"
 import PostEdit from "../edit/posts.edit"
 import { useTranslation } from "next-i18next"
 
-const PostView = (props: { postId: number }) => {
+const PostView = (props: { postUuid: string }) => {
     const { t } = useTranslation()
     const [profile] = useProfile()
     const [showCreateCommentForm, setShowCreateCommentForm] = React.useState(false)
     const [showEditPostForm, setShowEditPostForm] = React.useState(false)
     const [isLoading, setIsLoading] = React.useState(false)
     const [post, setPost] = React.useState({} as FullPostInfo)
-    const { postId } = props
+    const { postUuid } = props
 
 
     const handleEditEvent = () => {
@@ -34,7 +34,7 @@ const PostView = (props: { postId: number }) => {
         }, SPIN_ICON_SHOWING_TIMEOUT)
 
         try {
-            const response = await FEED_SERVICE.get({ postId })
+            const response = await FEED_SERVICE.get({ postUuid })
             clearTimeout(timer)
             if (response.status === 200) {
                 setPost(response.data)
@@ -65,7 +65,7 @@ const PostView = (props: { postId: number }) => {
         <PostEdit post={post} onCancel={() => { setShowEditPostForm(false) }} />
     )
 
-    const { PostId, PostTopic, PostText, AuthorId } = post.Post
+    const { PostUuid, PostTopic, PostText, AuthorUuid } = post.Post
 
     const EditPanel = (
         <div className="flex justify-end">
@@ -90,7 +90,7 @@ const PostView = (props: { postId: number }) => {
     return (
         <div>
             <div className="p-3 my-4 bg-white border-1 border-gray-100">
-                {!profile || profile.Id != AuthorId || profile.Role != ROLES.OWNER ? "" : EditPanel}
+                {!profile || profile.Uuid != AuthorUuid || profile.Role != ROLES.OWNER ? "" : EditPanel}
                 <h1 className="font-extrabold leading-tight text-6xl mt-0 mb-2 text-center">{PostTopic}</h1>
                 <MarkDown text={PostText} />
             </div>
@@ -100,7 +100,7 @@ const PostView = (props: { postId: number }) => {
                     {!profile ? "" : AddCommentButton}
                 </div>
                 {showCreateCommentForm && (
-                    <CommentCreate postId={PostId} onCancel={() => { setShowCreateCommentForm(false) }} />
+                    <CommentCreate postUuid={PostUuid} linkedCommentUuid="" onCancel={() => { setShowCreateCommentForm(false) }} />
                 )}
                 <CommentsList comments={post.Comments} commentsMap={post.CommentsMap} />
             </div>

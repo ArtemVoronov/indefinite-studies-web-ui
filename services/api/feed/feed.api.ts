@@ -31,9 +31,9 @@ export class FeedApi {
   }
 
   async get(options: GetFeedPostOptions): Promise<any> {
-    const { postId } = options
-    return this.api.apisauce.get(`/api/v1/feed/${postId}`)
+    const { postUuid } = options
+    return this.api.apisauce.get(`/api/v1/feed/${postUuid}`)
   }
 }
 
-export type GetFeedPostOptions = { postId: number | string }
+export type GetFeedPostOptions = { postUuid: string }

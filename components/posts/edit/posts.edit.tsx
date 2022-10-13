@@ -8,12 +8,12 @@ import { useTranslation } from "next-i18next"
 const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
     const { register, handleSubmit } = useForm()
     const { t } = useTranslation()
-    const { PostId, AuthorId } = props.post.Post
+    const { PostUuid, AuthorUuid } = props.post.Post
 
     const updatePost = async (data: any) => {
         const { topic, text, previewText } = data
 
-        const response = await POSTS_SERVICE.update({ postId: PostId, authorId: AuthorId, text, topic, previewText })
+        const response = await POSTS_SERVICE.update({ postUuid: PostUuid, authorUuid: AuthorUuid, text, topic, previewText })
 
         if (response.status == 200) {
             Router.reload()

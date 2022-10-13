@@ -32,6 +32,6 @@ export function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-export type GetAllOptions = { offset?: number, limit?: number }
+export type GetAllOptions = { offset?: number, limit?: number, shard?: number }
 
 export const SPIN_ICON_SHOWING_TIMEOUT = 500

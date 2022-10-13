@@ -20,9 +20,8 @@ export class UsersService {
     }
 
     async update(options: UpdateUserOptions): Promise<ApiResponse<any>> {
-        const { id, login, password } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.users.update({ id, login, password })
+            action: () => API_CLIENT.users.update(options)
         })
         return result
     }
@@ -66,7 +65,7 @@ export class UsersService {
 export const USERS_SERVICE: UsersService = new UsersService()
 
 export type User = {
-    Id: number,
+    Uuid: string,
     Login: string,
     Email: string,
     Role: string,

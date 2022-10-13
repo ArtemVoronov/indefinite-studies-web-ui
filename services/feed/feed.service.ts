@@ -22,9 +22,8 @@ export class FeedService {
 
     // TODO: returns FullPostInfo
     async get(options: GetFeedPostOptions): Promise<ApiResponse<any>> {
-        const { postId } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => this.client.feed.get({ postId })
+            action: () => this.client.feed.get(options)
         })
         return result
     }
@@ -35,34 +34,37 @@ export const FEED_SERVICE: FeedService = new FeedService()
 export const FEED_SERVICE_SERVER_SIDE: FeedService = new FeedService(API_CLIENT_SERVER_SIDE)
 
 export type FeedBlock = {
-    PostId: number
+    PostUuid: string
     PostPreviewText: string
     PostTopic: string
-    AuthorId: number
+    AuthorUuid: string
     AuthorName: string
     CreateDate: number
     CommentsCount: number
+    Tags: Array<string>
 }
 export type FeedPost = {
-    PostId: number
+    PostUuid: string
     PostText: string
     PostPreviewText: string
     PostTopic: string
     PostState: string
-    AuthorId: number
+    AuthorUuid: string
     AuthorName: string
     CreateDate: number
     LastUpdateDate: number
+    Tags: Array<string>
 }
 
 export type FeedComment = {
     CommentId: number
+    CommentUuid: string
     CommentText: string
     CommentState: string
-    AuthorId: number
+    AuthorUuid: string
     AuthorName: string
-    PostId: number
-    LinkedCommentId: number | null
+    PostUuid: string
+    LinkedCommentUuid: string
     CreateDate: number
     LastUpdateDate: number
 }
@@ -70,18 +72,19 @@ export type FeedComment = {
 export type FeedCommentWithIndex = {
     Index: number
     CommentId: number
+    CommentUuid: string
     CommentText: string
     CommentState: string
-    AuthorId: number
+    AuthorUuid: string
     AuthorName: string
-    PostId: number
-    LinkedCommentId: number | null
+    PostUuid: string
+    LinkedCommentUuid: string
     CreateDate: number
     LastUpdateDate: number
 }
 
 export type FeedCommentsMap = {
-    [key: number]: FeedCommentWithIndex
+    [key: string]: FeedCommentWithIndex
 }
 
 export type FullPostInfo = {

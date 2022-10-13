@@ -7,12 +7,12 @@ import { useTranslation } from "next-i18next"
 
 const PostPreview = (props: { post: FeedBlock }) => {
     const { t } = useTranslation()
-    const { PostId, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount } = props.post
+    const { PostUuid, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount, Tags } = props.post
 
     return (
         <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100">
             <div className="mb-3 text-center text-2xl">
-                <Link href={"/post/" + PostId} >
+                <Link href={"/post/" + PostUuid} >
                     <a>
                         <h2 className="font-extrabold leading-tight text-4xl mt-0 mb-2 text-center text-indigo-600 hover:text-indigo-500">{PostTopic}</h2>
                     </a>
@@ -25,9 +25,13 @@ const PostPreview = (props: { post: FeedBlock }) => {
                     <div className="text-xs">{AuthorName}</div>
                     <span className="mx-2">|</span>
                     <div className="text-xs">
-                        <Link href={"/post/" + PostId} >
+                        <Link href={"/post/" + PostUuid} >
                             <a className="text-indigo-600 hover:text-indigo-500">{CommentsCount} {t("posts.page.comment.count")}</a>
                         </Link>
+                    </div>
+                    <div className="text-xs">
+                        {/* TODO: add tag rendering */}
+                        <a className="text-indigo-600 hover:text-indigo-500">Tags{Tags}</a>
                     </div>
                 </div>
                 {/* <div>

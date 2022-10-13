@@ -12,7 +12,7 @@ const CommentEdit = (props: { comment: FeedComment, linkedComment?: FeedCommentW
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const { comment } = props
-    const { PostId, CommentId, CommentText } = comment
+    const { PostUuid, CommentId, CommentUuid, CommentText } = comment
 
     const updateComment = async (data: any) => {
         const { text } = data
@@ -23,7 +23,7 @@ const CommentEdit = (props: { comment: FeedComment, linkedComment?: FeedCommentW
             return
         }
 
-        const response = await COMMENTS_SERVICE.update({ authorId: profile.Id, commentId: CommentId, text })
+        const response = await COMMENTS_SERVICE.update({ authorUuid: profile.Uuid, postUuid: PostUuid, commentId: CommentId, commentUuid: CommentUuid, text })
 
         if (response.status != 200) {
             // TODO: show error
@@ -39,7 +39,7 @@ const CommentEdit = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                 {props.linkedComment && (
                     <div className="text-xs">
                         {t("post.page.to") + ": "}
-                        <CommentLink postId={PostId} commentIndex={props.linkedComment?.Index + 1 ?? 0} />
+                        <CommentLink postUuid={PostUuid} commentIndex={props.linkedComment?.Index + 1 ?? 0} />
                     </div>
                 )}
                 <div>

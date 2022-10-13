@@ -16,37 +16,25 @@ export class PostsService {
     }
 
     async get(options: GetPostOptions): Promise<ApiResponse<any>> {
-        const { postId } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.posts.get({ postId })
+            action: () => API_CLIENT.posts.get(options)
         })
         return result
     }
 
     async create(options: CreatePostOptions): Promise<ApiResponse<any>> {
-        const { authorId, text, topic, previewText } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.posts.create({ authorId, text, topic, previewText })
+            action: () => API_CLIENT.posts.create(options)
         })
         return result
     }
 
     async update(options: UpdatePostOptions): Promise<ApiResponse<any>> {
-        const { postId, authorId, text, topic, previewText } = options
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.posts.update({ postId, authorId, text, topic, previewText })
+            action: () => API_CLIENT.posts.update(options)
         })
         return result
     }
 }
 
-
 export const POSTS_SERVICE: PostsService = new PostsService()
-
-export type Post = {
-    Id: number,
-    AuthorId: number,
-    Text: string,
-    Topic: string,
-    State: string
-}

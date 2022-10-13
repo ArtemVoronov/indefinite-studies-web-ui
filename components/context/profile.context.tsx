@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react'
 import * as React from 'react';
+import { User } from '../../services/users/users.service';
 
 interface Props {
     children?: React.ReactNode
@@ -7,7 +8,7 @@ interface Props {
 }
 
 type ProfileContextType = {
-    profile: any,
+    profile: User | undefined,
     setProfile: any
 }
 

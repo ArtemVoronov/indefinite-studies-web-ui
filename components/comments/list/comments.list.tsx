@@ -21,7 +21,7 @@ const CommentsList = (props: { comments: FeedComment[], commentsMap: FeedComment
             <div>
                 {comments.map(function (p: FeedComment, idx) {
                     return (
-                        <CommentView key={idx} comment={p} linkedComment={!p.LinkedCommentId ? undefined : commentsMap[p.LinkedCommentId]} index={idx + 1} />
+                        <CommentView key={idx} comment={p} linkedComment={p.LinkedCommentUuid == "" ? undefined : commentsMap[p.LinkedCommentUuid]} index={idx + 1} />
                     )
                 })}
             </div>

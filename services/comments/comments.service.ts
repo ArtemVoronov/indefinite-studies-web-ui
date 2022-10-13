@@ -13,6 +13,7 @@ export class CommentsService {
     }
 
     async update(options: UpdateCommentOptions): Promise<ApiResponse<any>> {
+        console.log("UPDATE COMMENT: ", options)
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
             action: () => API_CLIENT.comments.update(options)
         })
@@ -20,13 +21,4 @@ export class CommentsService {
     }
 }
 
-
 export const COMMENTS_SERVICE: CommentsService = new CommentsService()
-
-export type Comment = {
-    Id: number,
-    AuthorId: number,
-    PostId: number,
-    Text: string,
-    LinkedCommentId?: number
-}

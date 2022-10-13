@@ -31,6 +31,8 @@
     "sign.out": "Выйти",
     "error.occured": "Произошла ошибка",
     "resend.confirmation": "Выслать подтверждение",
+    "send.cofirmation.header": "Выслать подтверждение",
+    "send.cofirmation.btn": "Выслать подтверждение",
     "sign.up.page.link.was.sent": "Письмо с подтвержденим отправлено на ваш почтовый адрес",
     "sign.up.page.header": "Регистрация",
     "sign.up.page.login.label": "Имя",

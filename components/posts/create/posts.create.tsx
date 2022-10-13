@@ -19,7 +19,7 @@ const PostCreate = () => {
             return
         }
 
-        const response = await POSTS_SERVICE.create({ authorId: profile.Id, text, topic, previewText })
+        const response = await POSTS_SERVICE.create({ authorUuid: profile.Uuid, text, topic, previewText, tagId: 1 }) // TODO add chosing of tags
 
         if (response.status != 201) {
             // TODO: show error

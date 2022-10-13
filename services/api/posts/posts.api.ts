@@ -17,7 +17,7 @@ export class PostsApi {
   }
 
   async getAll(options: GetAllOptions): Promise<any> {
-    const { offset, limit } = options
+    const { offset, limit, shard } = options
     const url = "/api/v1/posts"
     const params = []
     if (!isNil(offset)) {
@@ -26,30 +26,34 @@ export class PostsApi {
     if (!isNil(limit)) {
       params.push(new QueryParameter("limit", limit))
     }
+    if (!isNil(shard)) {
+      params.push(new QueryParameter("shard", shard))
+    }
     const builder = new UrlBuilder(url, params)
     return this.api.apisauce.get(builder.build())
   }
 
   async get(options: GetPostOptions): Promise<any> {
-    const { postId } = options
-    return this.api.apisauce.get(`/api/v1/posts/${postId}`)
+    const { postUuid } = options
+    return this.api.apisauce.get(`/api/v1/posts/${postUuid}`)
   }
 
   async create(options: CreatePostOptions): Promise<any> {
-    const { authorId, text, topic, previewText } = options
+    const { authorUuid, text, topic, previewText, tagId } = options
     return this.api.apisauce.post("/api/v1/posts", {
-      authorId,
+      authorUuid,
       text,
       topic,
-      previewText
+      previewText,
+      tagId
     })
   }
 
   async update(options: UpdatePostOptions): Promise<any> {
-    const { postId, authorId, text, topic, previewText } = options
+    const { postUuid, authorUuid, text, topic, previewText } = options
     return this.api.apisauce.put("/api/v1/posts/", {
-      id: postId,
-      authorId,
+      Uuid: postUuid,
+      authorUuid,
       text,
       topic,
       previewText
@@ -57,6 +61,6 @@ export class PostsApi {
   }
 }
 
-export type GetPostOptions = { postId: number | string }
-export type CreatePostOptions = { authorId: number, text: string, topic: string, previewText: string }
-export type UpdatePostOptions = { postId: number, authorId: number, text: string, topic: string, previewText: string }
+export type GetPostOptions = { postUuid: string }
+export type CreatePostOptions = { authorUuid: string, text: string, topic: string, previewText: string, tagId: number }
+export type UpdatePostOptions = { postUuid: string, authorUuid: string, text: string, topic: string, previewText: string }
