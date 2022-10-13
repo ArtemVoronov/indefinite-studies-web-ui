@@ -54,7 +54,7 @@ const NotAuthorizedUserButton = () => {
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
-                                        {t("navbar.menu.sign.out")}
+                                        {t("navbar.menu.sign.up")}
                                     </a>
                                 </DropDownMenuLink>
                             )}
