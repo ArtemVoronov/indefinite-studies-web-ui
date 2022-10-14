@@ -52,6 +52,19 @@ const AuthorizedUserButton = (props: { user: User }) => {
                                     </a>
                                 </DropDownMenuLink>
                             )}
+                        </Menu.Item><Menu.Item>
+                            {({ active }) => (
+                                <DropDownMenuLink href="/admin">
+                                    <a
+                                        className={classNames(
+                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                            'block px-4 py-2 text-base font-medium'
+                                        )}
+                                    >
+                                        {t("navbar.menu.admin.settings")}
+                                    </a>
+                                </DropDownMenuLink>
+                            )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (

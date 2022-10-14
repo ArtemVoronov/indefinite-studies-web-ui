@@ -5,6 +5,7 @@
         "new.post.link": "New Post",
         "menu": {
             "account": "Account settings",
+            "admin.settings": "Admin settings",
             "sign.in": "Sign in",
             "sign.out": "Sign out",
             "sign.up": "Sign up",
@@ -26,6 +27,9 @@
     "no.data": "No Data",
     "overlay.header": "Loading",
     "overlay.subheader": "This may take a few seconds, please dont close this page",
+    "ADMIN_PAGE": "----------------------------------------------------------------",
+    "admin.page.header.tags": "Tags managements",
+    "admin.page.header.posts": "Posts managements",
     "SIGN_UP_PAGE": "----------------------------------------------------------------",
     "email.was.confirmed": "Email was confirmed!",
     "sign.in": "Sign in",
