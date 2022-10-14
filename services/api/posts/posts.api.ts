@@ -59,8 +59,42 @@ export class PostsApi {
       previewText
     })
   }
+
+  async createTag(options: CreateTagOptions): Promise<any> {
+    return this.api.apisauce.post("/api/v1/posts/tags", options)
+  }
+
+  async updateTag(options: UpdateTagOptions): Promise<any> {
+    return this.api.apisauce.put("/api/v1/posts/tags", options)
+  }
+
+  async getTags(options: GetAllOptions): Promise<any> {
+    const { offset, limit } = options
+    const url = "/api/v1/posts/tags"
+    const params = []
+    if (!isNil(offset)) {
+      params.push(new QueryParameter("offset", offset))
+    }
+    if (!isNil(limit)) {
+      params.push(new QueryParameter("limit", limit))
+    }
+    const builder = new UrlBuilder(url, params)
+    return this.api.apisauce.get(builder.build())
+  }
+
+  async assignTag(options: AssignTagOptions): Promise<any> {
+    return this.api.apisauce.put("/api/v1/posts/tags/assign", options)
+  }
+
+  async removeTag(options: RemoveTagOptions): Promise<any> {
+    return this.api.apisauce.put("/api/v1/posts/tags/remove", options)
+  }
 }
 
 export type GetPostOptions = { postUuid: string }
 export type CreatePostOptions = { authorUuid: string, text: string, topic: string, previewText: string, tagId: number }
 export type UpdatePostOptions = { postUuid: string, authorUuid: string, text: string, topic: string, previewText: string }
+export type CreateTagOptions = { name: string }
+export type UpdateTagOptions = { id: number, name: string }
+export type AssignTagOptions = { postUuid: string, tagId: number }
+export type RemoveTagOptions = { postUuid: string, tagId: number }
