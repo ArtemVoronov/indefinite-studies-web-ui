@@ -39,6 +39,19 @@ const AdminSettingsForm = () => {
                     </div>
                 </div>
             </div>
+            <div className="flex flex-1 flex-col justify-center bg-red-300">
+                <h2 className="flex justify-center">
+                    {t("admin.page.header.users")}
+                </h2>
+                <div className="h-96">
+                    <div>
+                        TODO: block and unblock users, change states if needs
+                    </div>
+                    <div>
+                        TODO: add karma to users (after some sum of karma no need to modearte of comments, posts, etc)
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

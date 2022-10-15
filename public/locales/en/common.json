@@ -30,6 +30,7 @@
     "ADMIN_PAGE": "----------------------------------------------------------------",
     "admin.page.header.tags": "Tags managements",
     "admin.page.header.posts": "Posts managements",
+    "admin.page.header.users": "Users managements",
     "SIGN_UP_PAGE": "----------------------------------------------------------------",
     "email.was.confirmed": "Email was confirmed!",
     "sign.in": "Sign in",
