@@ -74,3 +74,8 @@ export class PostsService {
 }
 
 export const POSTS_SERVICE: PostsService = new PostsService()
+
+export type Tag = {
+    Id: number
+    Name: string
+}

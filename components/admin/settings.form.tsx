@@ -1,6 +1,8 @@
 import * as React from "react"
-import { POST_SERVICE } from "../../services/posts/posts.service"
 import { useTranslation } from "next-i18next"
+import TagsList from "../tags/tags.list"
+import TagCreateForm from "../tags/tags.create"
+import TagEditForm from "../tags/tags.edit"
 
 const AdminSettingsForm = () => {
     const { t } = useTranslation()
@@ -11,15 +13,24 @@ const AdminSettingsForm = () => {
                 <h2 className="flex justify-center">
                     {t("admin.page.header.tags")}
                 </h2>
-                <div className="h-96">
+                <div className="">
                     <div>
-                        TODO: list of tags
+                        <h3 className="flex justify-center">
+                            {t("admin.page.header.tags.list")}
+                        </h3>
+                        <TagsList />
                     </div>
                     <div>
-                        TODO: add tag form
+                        <h3 className="flex justify-center">
+                            {t("admin.page.header.tags.create")}
+                        </h3>
+                        <TagCreateForm />
                     </div>
                     <div>
-                        TODO: update tag form
+                        <h3 className="flex justify-center">
+                            {t("admin.page.header.tags.edit")}
+                        </h3>
+                        <TagEditForm />
                     </div>
                 </div>
             </div>
