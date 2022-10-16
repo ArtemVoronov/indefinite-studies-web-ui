@@ -14,6 +14,9 @@ const PostPreview = (props: { post: FeedBlock }) => {
     const getTag = (): string => {
         return Tags.length == 0 ? "" : Tags[0]
     }
+    const getTagName = (): string => {
+        return getTag()
+    }
 
     return (
         <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100">
@@ -37,11 +40,9 @@ const PostPreview = (props: { post: FeedBlock }) => {
                     </div>
                 </div>
                 <div className="text-xs">
-                    {/* TODO: load posts by tag */}
-                    {/* <Link href={"/posts/" + getTag()}>
-                        <a className="text-indigo-600 hover:text-indigo-500">{getTag()}</a>
-                    </Link> */}
-                    <div className="text-indigo-600 hover:text-indigo-500 cursor-pointer">{getTag()}</div>
+                    <Link href={"/posts/" + getTag() + "/0"}>
+                        <a className="text-indigo-600 hover:text-indigo-500">{getTagName()}</a>
+                    </Link>
                 </div>
 
             </div>

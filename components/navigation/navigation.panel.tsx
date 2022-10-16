@@ -27,14 +27,14 @@ const NavigationPanel = () => {
     return (
         <div className="flex justify-between items-center max-w-3xl flex-1">
             <div className="flex items-center">
-                <Link href="/posts">
+                <Link href="/posts/0">
                     <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center">
                         <Image src={faviconPic} alt="Indefinite Studies" />
                     </a>
                 </Link>
             </div>
             <div className="flex items-center">
-                <Link href="/posts">
+                <Link href="/posts/0">
                     <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center ml-5">
                         {t("navbar.posts.link")}
                     </a>

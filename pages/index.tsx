@@ -4,9 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const HomePage: NextPage = () => {
 	return (
-		<div>
-			Welcome to Indefinite Studies!
-		</div>
+		<div>TODO: home page</div>
 	)
 }
 

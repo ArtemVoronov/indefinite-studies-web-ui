@@ -1,8 +1,7 @@
 import { ApiResponse } from "apisauce"
 import { ApiClient, API_CLIENT, API_CLIENT_SERVER_SIDE } from "../api/api-client"
 import { API_ERROR_HANDLER } from '../api/api-error-handler'
-import { GetFeedPostOptions, } from "../api/feed/feed.api"
-import { GetAllOptions } from "../../utils/utils"
+import { GetFeedAllOptions, GetFeedPostOptions, } from "../api/feed/feed.api"
 
 // TODO: service should some maningful results instead of response
 export class FeedService {
@@ -12,10 +11,9 @@ export class FeedService {
     }
 
     // TODO: returns []FeedBlock
-    async getAll(options: GetAllOptions): Promise<ApiResponse<any>> {
-        const { offset, limit } = options
+    async getAll(options: GetFeedAllOptions): Promise<ApiResponse<any>> {
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => this.client.feed.getAll({ offset, limit }),
+            action: () => this.client.feed.getAll(options),
         })
         return result
     }
