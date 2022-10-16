@@ -9,6 +9,12 @@ const PostPreview = (props: { post: FeedBlock }) => {
     const { t } = useTranslation()
     const { PostUuid, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount, Tags } = props.post
 
+    // TODO: add tag i18n
+    // TODO: add date format i18n
+    const getTag = (): string => {
+        return Tags.length == 0 ? "" : Tags[0]
+    }
+
     return (
         <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100">
             <div className="mb-3 text-center text-2xl">
@@ -29,14 +35,15 @@ const PostPreview = (props: { post: FeedBlock }) => {
                             <a className="text-indigo-600 hover:text-indigo-500">{CommentsCount} {t("posts.page.comment.count")}</a>
                         </Link>
                     </div>
-                    <div className="text-xs">
-                        {/* TODO: add tag rendering */}
-                        <a className="text-indigo-600 hover:text-indigo-500">Tags{Tags}</a>
-                    </div>
                 </div>
-                {/* <div>
-                    TODO: Tag
-                </div> */}
+                <div className="text-xs">
+                    {/* TODO: load posts by tag */}
+                    {/* <Link href={"/posts/" + getTag()}>
+                        <a className="text-indigo-600 hover:text-indigo-500">{getTag()}</a>
+                    </Link> */}
+                    <div className="text-indigo-600 hover:text-indigo-500 cursor-pointer">{getTag()}</div>
+                </div>
+
             </div>
             <div>
                 <MarkDown text={PostPreviewText} />

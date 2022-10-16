@@ -8,7 +8,8 @@ import { useTranslation } from "next-i18next"
 
 const DEFAULT_LIMIT = 5
 
-const PostsList = () => {
+// TODO: load posts by tag
+const PostsList = (props: { tag?: string }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [posts, setPosts] = React.useState([])
     const [isAllFetched, setIsAllFetched] = React.useState(false)
@@ -32,6 +33,7 @@ const PostsList = () => {
                     setPosts(portion)
                 }
                 if (portion.length < DEFAULT_LIMIT) {
+                    console.log("loaded by tag: ", props.tag) // TODO: clean
                     setIsAllFetched(true)
                 }
             }
@@ -74,6 +76,7 @@ const PostsList = () => {
         </div>
     )
 
+    // TODO: add correct showing next/prev buttons for empty cases
     return (
         <div className="w-full max-w-3xl">
             <div >

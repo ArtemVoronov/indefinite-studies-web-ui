@@ -4,10 +4,8 @@ import { POSTS_SERVICE, Tag } from "../../services/posts/posts.service"
 import Router from "next/router"
 import { useProfile } from '../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
-import { SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
+import { DEFAULT_LIMIT, SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
 import Overlay from "../overlay/overlay"
-
-const DEFAULT_LIMIT = 50
 
 const TagEditForm = () => {
     const [profile] = useProfile()
@@ -91,7 +89,7 @@ const TagEditForm = () => {
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(updateTag)}>
                 <div className="col-span-6 sm:col-span-3">
                     <label htmlFor="country" className="block text-sm font-medium text-gray-700">{t("admin.page.tag.id.label")}</label>
-                    <select id="id" {...register("id")} className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <select id="id" required {...register("id")} className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                         {tags.map(function (p: Tag, idx) {
                             return (
                                 <option value={p.Id} key={idx}>{p.Name}</option>

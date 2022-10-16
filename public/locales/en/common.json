@@ -72,6 +72,7 @@
     "post.page.post.text.placeholder": "Type text ...",
     "post.page.post.preview.text.label": "Preview text",
     "post.page.post.preview.text.placeholder": "Type preview text ...",
+    "post.page.post.tag.id.label": "Tag",
     "post.page.comment.header": "Comments",
     "post.page.btn.new.comment": "New comment",
     "POSTS_PAGE": "----------------------------------------------------------------",

@@ -1,10 +1,8 @@
 import * as React from "react"
 import { POSTS_SERVICE, Tag } from "../../services/posts/posts.service"
 import Overlay from "../overlay/overlay"
-import { SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
+import { DEFAULT_LIMIT, SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
 import { useTranslation } from "next-i18next"
-
-const DEFAULT_LIMIT = 50
 
 const TagsList = () => {
     const [isLoading, setIsLoading] = React.useState(false)
