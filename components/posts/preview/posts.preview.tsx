@@ -4,6 +4,7 @@ import { FeedBlock } from "../../../services/feed/feed.service"
 import MarkDown from "../../markdown/markdown"
 import moment from "moment"
 import { useTranslation } from "next-i18next"
+import { Tag } from "../../../services/posts/posts.service"
 
 const PostPreview = (props: { post: FeedBlock }) => {
     const { t } = useTranslation()
@@ -11,13 +12,6 @@ const PostPreview = (props: { post: FeedBlock }) => {
 
     // TODO: add tag i18n
     // TODO: add date format i18n
-    const getTag = (): string => {
-        return Tags.length == 0 ? "" : Tags[0]
-    }
-    const getTagName = (): string => {
-        return getTag()
-    }
-
     return (
         <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100">
             <div className="mb-3 text-center text-2xl">
@@ -39,10 +33,14 @@ const PostPreview = (props: { post: FeedBlock }) => {
                         </Link>
                     </div>
                 </div>
-                <div className="text-xs">
-                    <Link href={"/posts/" + getTag() + "/0"}>
-                        <a className="text-indigo-600 hover:text-indigo-500">{getTagName()}</a>
-                    </Link>
+                <div className="flex items-center text-xs">
+                    {Tags.map(function (tag: Tag, idx) {
+                        return (
+                            <Link href={"/posts/" + tag.Id + "/0"} key={idx}>
+                                <a className="text-indigo-600 hover:text-indigo-500 mx-1">{tag.Name}</a>
+                            </Link>
+                        )
+                    })}
                 </div>
 
             </div>

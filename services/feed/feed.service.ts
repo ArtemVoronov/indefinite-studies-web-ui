@@ -10,7 +10,6 @@ export class FeedService {
         this.client = client
     }
 
-    // TODO: returns []FeedBlock
     async getAll(options: GetFeedAllOptions): Promise<ApiResponse<any>> {
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
             action: () => this.client.feed.getAll(options),
@@ -18,7 +17,6 @@ export class FeedService {
         return result
     }
 
-    // TODO: returns FullPostInfo
     async get(options: GetFeedPostOptions): Promise<ApiResponse<any>> {
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
             action: () => this.client.feed.get(options)
@@ -39,7 +37,7 @@ export type FeedBlock = {
     AuthorName: string
     CreateDate: number
     CommentsCount: number
-    Tags: Array<string>
+    Tags: Array<FeedTag>
 }
 export type FeedPost = {
     PostUuid: string
@@ -51,7 +49,7 @@ export type FeedPost = {
     AuthorName: string
     CreateDate: number
     LastUpdateDate: number
-    Tags: Array<string>
+    Tags: Array<FeedTag>
 }
 
 export type FeedComment = {
@@ -65,6 +63,12 @@ export type FeedComment = {
     LinkedCommentUuid: string
     CreateDate: number
     LastUpdateDate: number
+}
+
+
+export type FeedTag = {
+    Id: number
+    Name: string
 }
 
 export type FeedCommentWithIndex = {

@@ -10,8 +10,7 @@ import Link from "next/link"
 const MAX_POSTS_PER_PAGE = 5
 const DEFAULT_LIMIT = MAX_POSTS_PER_PAGE + 1
 
-// TODO: load posts by tag at backend
-const PostsList = (props: { tag: string, page: string }) => {
+const PostsList = (props: { tagId: string, page: string }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [posts, setPosts] = React.useState([])
     const [loadedCount, setLoadedCount] = React.useState(0)
@@ -23,7 +22,7 @@ const PostsList = (props: { tag: string, page: string }) => {
         }, SPIN_ICON_SHOWING_TIMEOUT)
 
         try {
-            const response = await FEED_SERVICE.getAll({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: DEFAULT_LIMIT, tag: props.tag })
+            const response = await FEED_SERVICE.getAll({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: DEFAULT_LIMIT, tagId: props.tagId })
             clearTimeout(timer)
             if (response.status === 200) {
                 const portion = response.data.Data
@@ -43,11 +42,11 @@ const PostsList = (props: { tag: string, page: string }) => {
 
     React.useEffect(() => {
         fetchPosts()
-    }, [props.page, props.tag])
+    }, [props.page, props.tagId])
 
     const getNavPathPrev = () => {
-        if (props.tag != "") {
-            return "/posts/" + props.tag + "/" + (parseInt(props.page) - 1)
+        if (props.tagId != "") {
+            return "/posts/" + props.tagId + "/" + (parseInt(props.page) - 1)
         } else {
             return "/posts/" + (parseInt(props.page) - 1)
 
@@ -55,8 +54,8 @@ const PostsList = (props: { tag: string, page: string }) => {
     }
 
     const getNavPathNext = () => {
-        if (props.tag != "") {
-            return "/posts/" + props.tag + "/" + (parseInt(props.page) + 1)
+        if (props.tagId != "") {
+            return "/posts/" + props.tagId + "/" + (parseInt(props.page) + 1)
         } else {
             return "/posts/" + (parseInt(props.page) + 1)
 
