@@ -79,6 +79,7 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
                     <AssignTagsForm initialValue={Tags} onChange={(tags: Tag[]) => { setTags(tags) }} />
                 </div>
 
+
                 <div className="flex justify-center">
                     <button
                         type="submit"

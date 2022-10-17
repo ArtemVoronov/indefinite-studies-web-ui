@@ -7,14 +7,15 @@ import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import { useTranslation } from "next-i18next"
 import Link from "next/link"
 
-const MAX_POSTS_PER_PAGE = 5
-const DEFAULT_LIMIT = MAX_POSTS_PER_PAGE + 1
+const DEFAULT_MAX_POSTS_PER_PAGE = 5
 
-const PostsList = (props: { tagId: string, page: string }) => {
+const PostsList = (props: { tagId: string, page: string, postState: string, hideTopNavigation?: boolean, hideBottomNavigation?: boolean, tableView?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [posts, setPosts] = React.useState([])
     const [loadedCount, setLoadedCount] = React.useState(0)
     const { t } = useTranslation()
+    const MAX_POSTS_PER_PAGE = props.pageSize ? props.pageSize : DEFAULT_MAX_POSTS_PER_PAGE
+    const LIMIT = MAX_POSTS_PER_PAGE + 1
 
     const fetchPosts = async () => {
         const timer = setTimeout(() => {
@@ -22,7 +23,7 @@ const PostsList = (props: { tagId: string, page: string }) => {
         }, SPIN_ICON_SHOWING_TIMEOUT)
 
         try {
-            const response = await FEED_SERVICE.getAll({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: DEFAULT_LIMIT, tagId: props.tagId })
+            const response = await FEED_SERVICE.getAll({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: LIMIT, tagId: props.tagId, state: props.postState })
             clearTimeout(timer)
             if (response.status === 200) {
                 const portion = response.data.Data
@@ -64,11 +65,8 @@ const PostsList = (props: { tagId: string, page: string }) => {
 
     const navigation = (
         <div className="flex justify-center p-3 my-4 bg-white border-b-2 border-gray-100"
-            style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}
-        >
-            <Link href={getNavPathPrev()}
-
-            >
+            style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
+            <Link href={getNavPathPrev()}>
                 <a
                     style={{ display: props.page == "0" ? "none" : undefined }}
                     className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
@@ -90,6 +88,29 @@ const PostsList = (props: { tagId: string, page: string }) => {
         </div>
     )
 
+    const outerNavigation = (
+        <div className="flex justify-center p-3 my-4 bg-white border-b-2 border-gray-100"
+            style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
+            <a
+                onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
+                style={{ display: props.page == "0" ? "none" : undefined }}
+                className="cursor-pointer text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            >
+                {t("btn.prev")}
+                <ArrowLeftIcon />
+            </a>
+            <div className="flex-1" />
+            <a
+                onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) + 1) : "" }}
+                style={{ display: (posts.length + 1) != loadedCount ? "none" : undefined }}
+                className="cursor-pointer text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            >
+                {t("btn.next")}
+                <ArrowRightIcon />
+            </a>
+        </div>
+    )
+
 
     if (isLoading) return (
         <div>
@@ -106,15 +127,36 @@ const PostsList = (props: { tagId: string, page: string }) => {
 
     return (
         <div className="w-full max-w-3xl">
-            {navigation}
-            <div >
-                {posts.map(function (p: FeedBlock, idx) {
-                    return (
-                        <PostPreview key={idx} post={p} />
-                    )
-                })}
-            </div>
-            {navigation}
+            {!props.hideTopNavigation && (props.onNavigate ? outerNavigation : navigation)}
+            {!props.tableView && (
+                <div>
+                    {posts.map(function (p: FeedBlock, idx) {
+                        return (
+                            <PostPreview key={idx} post={p} tableView={props.tableView} />
+                        )
+                    })}
+                </div>
+
+            )}
+            {props.tableView && (
+                <table className="table-auto w-full">
+                    <thead>
+                        <tr className="bg-white">
+                            <th>UUID</th>
+                            <th>Topic</th>
+                            <th>Author</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {posts.map(function (p: FeedBlock, idx) {
+                            return (
+                                <PostPreview key={idx} post={p} tableView={props.tableView} />
+                            )
+                        })}
+                    </tbody>
+                </table>
+            )}
+            {!props.hideBottomNavigation && (props.onNavigate ? outerNavigation : navigation)}
         </div>
     )
 }

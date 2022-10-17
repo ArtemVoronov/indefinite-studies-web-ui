@@ -9,7 +9,10 @@ import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import Overlay from "../../overlay/overlay"
 import PostEdit from "../edit/posts.edit"
 import { useTranslation } from "next-i18next"
+import { POSTS_SERVICE, POST_STATES } from "../../../services/posts/posts.service"
+import Router from "next/router"
 
+// TODO: add athor name to the page
 const PostView = (props: { postUuid: string }) => {
     const { t } = useTranslation()
     const [profile] = useProfile()
@@ -22,6 +25,14 @@ const PostView = (props: { postUuid: string }) => {
 
     const handleEditEvent = () => {
         setShowEditPostForm(true)
+    }
+
+    const handleChangeStateEvent = async (state: string) => {
+        const response = await POSTS_SERVICE.update({ postUuid: PostUuid, state: state })
+
+        if (response.status == 200) {
+            Router.reload()
+        }
     }
 
     const handleNewCommentEvent = () => {
@@ -67,8 +78,34 @@ const PostView = (props: { postUuid: string }) => {
 
     const { PostUuid, PostTopic, PostText, AuthorUuid } = post.Post
 
+    const ModerationPanel = (
+        <>
+            <button
+                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                onClick={() => { handleChangeStateEvent(POST_STATES.NEW) }}
+            >
+                {t("btn.new")}
+            </button>
+            <button
+                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                onClick={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }}
+            >
+                {t("btn.moderate")}
+            </button >
+            <button
+                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                onClick={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }}
+            >
+                {t("btn.publish")}
+            </button >
+        </>
+    )
+
+
     const EditPanel = (
         <div className="flex justify-end">
+
+            {!profile || profile.Role != ROLES.OWNER ? "" : ModerationPanel}
             <button
                 className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 onClick={handleEditEvent}
@@ -77,7 +114,6 @@ const PostView = (props: { postUuid: string }) => {
             </button>
         </div>
     )
-
     const AddCommentButton = (
         <button
             className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-2 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"

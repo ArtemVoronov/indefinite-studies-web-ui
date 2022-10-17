@@ -22,7 +22,10 @@
         "next": "Вперед",
         "sign.in": "Войти",
         "sign.up": "Зарегистрироваться",
-        "sign.out": "Выйти"
+        "sign.out": "Выйти",
+        "new": "Пометить новым",
+        "moderate": "Отправить на модерацию",
+        "publish": "Опубликовать"
     },
     "select": {
         "default.option.label": "Выберите опцию"
@@ -35,6 +38,9 @@
     "admin.page.header.posts": "Управление постами",
     "admin.page.header.users": "Управление пользователями",
     "admin.page.header.feed": "Управление лентой",
+    "admin.page.header.posts.new": "Новые посты",
+    "admin.page.header.posts.on.moderations": "Посты на модерации",
+    "admin.page.header.comments.new": "Комментарии на модерации",
     "admin.page.header.tags.list": "Тэги",
     "admin.page.header.tags.create": "Добавить тэг",
     "admin.page.header.tags.edit": "Редактировать тэг",

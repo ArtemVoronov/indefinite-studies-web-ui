@@ -2,10 +2,11 @@ import type { GetServerSidePropsContext, NextPage } from "next"
 import * as React from "react"
 import PostsList from "../../components/posts/list/posts.list"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { POST_STATES } from "../../services/posts/posts.service"
 
 const PostsPage: NextPage = (props: { tagId?: string, page?: string }) => {
 	return (
-		<PostsList tagId={`${props.tagId}`} page={`${props.page}`} />
+		<PostsList tagId={`${props.tagId}`} page={`${props.page}`} postState={POST_STATES.PUBLISHED} />
 	)
 }
 

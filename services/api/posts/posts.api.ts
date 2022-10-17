@@ -50,13 +50,14 @@ export class PostsApi {
   }
 
   async update(options: UpdatePostOptions): Promise<any> {
-    const { postUuid, authorUuid, text, topic, previewText, tagIds } = options
+    const { postUuid, authorUuid, text, topic, previewText, state, tagIds } = options
     return this.api.apisauce.put("/api/v1/posts/", {
       Uuid: postUuid,
       authorUuid,
       text,
       topic,
       previewText,
+      state,
       tagIds
     })
   }
@@ -94,7 +95,7 @@ export class PostsApi {
 
 export type GetPostOptions = { postUuid: string }
 export type CreatePostOptions = { authorUuid: string, text: string, topic: string, previewText: string, tagIds: Array<number> }
-export type UpdatePostOptions = { postUuid: string, authorUuid: string, text: string, topic: string, previewText: string, tagIds: Array<number> }
+export type UpdatePostOptions = { postUuid: string, authorUuid?: string, text?: string, topic?: string, previewText?: string, state?: string, tagIds?: Array<number> }
 export type CreateTagOptions = { name: string }
 export type UpdateTagOptions = { id: number, name: string }
 export type AssignTagOptions = { postUuid: string, tagId: number }
