@@ -23,6 +23,20 @@ export class FeedService {
         })
         return result
     }
+
+    async sync(): Promise<ApiResponse<any>> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => this.client.feed.sync()
+        })
+        return result
+    }
+
+    async clear(): Promise<ApiResponse<any>> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => this.client.feed.clear()
+        })
+        return result
+    }
 }
 
 

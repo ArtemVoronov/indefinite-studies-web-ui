@@ -23,7 +23,7 @@ const LoginForm = () => {
                     return
                 }
                 setProfile(res)
-                Router.push("/")
+                Router.push("/posts/0")
             })
         })
     }

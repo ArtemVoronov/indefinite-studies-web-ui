@@ -34,56 +34,56 @@ const NotAuthorizedUserButton = () => {
                         <Menu.Item>
                             {({ active }) => (
                                 <DropDownMenuLink href="/login">
-                                    <a
+                                    <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
                                         {t("navbar.menu.sign.in")}
-                                    </a>
+                                    </div>
                                 </DropDownMenuLink>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
                                 <DropDownMenuLink href="/signup">
-                                    <a
+                                    <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
                                         {t("navbar.menu.sign.up")}
-                                    </a>
+                                    </div>
                                 </DropDownMenuLink>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
                                 <DropDownMenuLink href="/" locale="ru">
-                                    <a
+                                    <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
                                         {t("navbar.menu.to.russian")}
-                                    </a>
+                                    </div>
                                 </DropDownMenuLink>
                             )}
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
                                 <DropDownMenuLink href="/" locale="en">
-                                    <a
+                                    <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                                             'block px-4 py-2 text-base font-medium'
                                         )}
                                     >
                                         {t("navbar.menu.to.english")}
-                                    </a>
+                                    </div>
                                 </DropDownMenuLink>
                             )}
                         </Menu.Item>
