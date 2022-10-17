@@ -24,6 +24,9 @@
         "sign.up": "Зарегистрироваться",
         "sign.out": "Выйти"
     },
+    "select": {
+        "default.option.label": "Выберите опцию"
+    },
     "no.data": "Нет данных",
     "overlay.header": "Загрузка",
     "overlay.subheader": "Это может занять несколько секунд, пожалуйста, не закрывайте страницу",
@@ -71,13 +74,14 @@
     "post.page.comment.text.placeholder": "Введите текст ...",
     "post.page.post.topic.label": "Название",
     "post.page.post.topic.placeholder": "Введите название ...",
-    "post.page.post.text.label": "Текс",
+    "post.page.post.text.label": "Текст",
     "post.page.post.text.placeholder": "Введите текст ...",
     "post.page.post.preview.text.label": "Краткая версия текста (предпросмотр)",
     "post.page.post.preview.text.placeholder": "Введите текст ...",
     "post.page.post.tag.id.label": "Тэг",
     "post.page.comment.header": "Комментарии",
     "post.page.btn.new.comment": "Комментировать",
+    "post.page.tags.label": "Тэги",
     "POSTS_PAGE": "----------------------------------------------------------------",
     "posts.page.no.comments": "Нет комментариев",
     "posts.page.comment.count": "комментариев",

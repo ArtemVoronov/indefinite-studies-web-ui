@@ -61,7 +61,7 @@ const NotAuthorizedUserButton = () => {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <DropDownMenuLink href="/" locale="ru">
+                                <DropDownMenuLink href="/posts/0" locale="ru">
                                     <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -75,7 +75,7 @@ const NotAuthorizedUserButton = () => {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <DropDownMenuLink href="/" locale="en">
+                                <DropDownMenuLink href="/posts/0" locale="en">
                                     <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',

@@ -68,7 +68,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <DropDownMenuLink href="/">
+                                <DropDownMenuLink href="/posts/0">
                                     <div
                                         onClick={logout}
                                         className={classNames(
@@ -83,7 +83,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <DropDownMenuLink href="/" locale="ru">
+                                <DropDownMenuLink href="/posts/0" locale="ru">
                                     <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -97,7 +97,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                         </Menu.Item>
                         <Menu.Item>
                             {({ active }) => (
-                                <DropDownMenuLink href="/" locale="en">
+                                <DropDownMenuLink href="/posts/0" locale="en">
                                     <div
                                         className={classNames(
                                             active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',

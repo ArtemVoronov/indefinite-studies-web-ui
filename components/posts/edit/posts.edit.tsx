@@ -1,19 +1,21 @@
 import * as React from "react"
 import { useForm } from "react-hook-form"
-import { POSTS_SERVICE } from "../../../services/posts/posts.service"
+import { POSTS_SERVICE, Tag } from "../../../services/posts/posts.service"
 import Router from "next/router"
 import { FullPostInfo } from "../../../services/feed/feed.service"
 import { useTranslation } from "next-i18next"
+import AssignTagsForm from "../tags/assign.tags.form"
 
 const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
     const { register, handleSubmit } = useForm()
     const { t } = useTranslation()
-    const { PostUuid, AuthorUuid } = props.post.Post
+    const [tags, setTags] = React.useState([] as Tag[])
+    const { PostUuid, AuthorUuid, Tags } = props.post.Post
 
     const updatePost = async (data: any) => {
         const { topic, text, previewText } = data
 
-        const response = await POSTS_SERVICE.update({ postUuid: PostUuid, authorUuid: AuthorUuid, text, topic, previewText })
+        const response = await POSTS_SERVICE.update({ postUuid: PostUuid, authorUuid: AuthorUuid, text, topic, previewText, tagIds: [...tags.map(e => e.Id)] })
 
         if (response.status == 200) {
             Router.reload()
@@ -70,6 +72,11 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
                             defaultValue={props.post.Post.PostPreviewText}
                         />
                     </div>
+                </div>
+
+
+                <div>
+                    <AssignTagsForm initialValue={Tags} onChange={(tags: Tag[]) => { setTags(tags) }} />
                 </div>
 
                 <div className="flex justify-center">

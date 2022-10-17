@@ -24,6 +24,9 @@
         "sign.up": "Sign up",
         "sign.out": "Sign out"
     },
+    "select": {
+        "default.option.label": "Select option"
+    },
     "no.data": "No Data",
     "overlay.header": "Loading",
     "overlay.subheader": "This may take a few seconds, please dont close this page",
@@ -78,6 +81,7 @@
     "post.page.post.tag.id.label": "Tag",
     "post.page.comment.header": "Comments",
     "post.page.btn.new.comment": "New comment",
+    "post.page.tags.label": "Tags",
     "POSTS_PAGE": "----------------------------------------------------------------",
     "posts.page.no.comments": "No comments",
     "posts.page.comment.count": "comments",

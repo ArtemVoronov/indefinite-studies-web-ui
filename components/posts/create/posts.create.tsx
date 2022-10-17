@@ -4,68 +4,16 @@ import { POSTS_SERVICE, Tag } from "../../../services/posts/posts.service"
 import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
-import Overlay from "../../overlay/overlay"
-import { DEFAULT_LIMIT, SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
+import AssignTagsForm from "../tags/assign.tags.form"
 
 const PostCreate = () => {
     const [profile] = useProfile()
     const { register, handleSubmit } = useForm()
     const { t } = useTranslation()
-
-    const [isLoading, setIsLoading] = React.useState(false)
-    const [tags, setTags] = React.useState([])
-    const [isAllFetched, setIsAllFetched] = React.useState(false)
-    const [offset, setOffset] = React.useState(0)
-
-    const fetchTags = async () => {
-        if (isAllFetched) {
-            return
-        }
-        const timer = setTimeout(() => {
-            setIsLoading(true)
-        }, SPIN_ICON_SHOWING_TIMEOUT)
-
-        try {
-            const response = await POSTS_SERVICE.getTags({ offset, limit: DEFAULT_LIMIT })
-            clearTimeout(timer)
-            if (response.status === 200) {
-                const count = response.data.Count
-                const portion = response.data.Data
-                if (count != 0) {
-                    setTags(tags.concat(portion))
-                }
-                if (portion.length == DEFAULT_LIMIT) {
-                    setOffset(offset + DEFAULT_LIMIT)
-                }
-                if (portion.length < DEFAULT_LIMIT) {
-                    setIsAllFetched(true)
-                }
-            }
-        } finally {
-            clearTimeout(timer)
-            setIsLoading(false)
-        }
-    }
-
-    React.useEffect(() => {
-        fetchTags()
-    }, [offset])
-
-
-    if (isLoading) return (
-        <div>
-            <Overlay />
-        </div>
-    )
-
-    if (tags.length == 0) return (
-        <div>
-            {t("no.data")}
-        </div>
-    )
+    const [tags, setTags] = React.useState([] as Tag[])
 
     const createPost = async (data: any) => {
-        const { tagId, topic, text, previewText } = data
+        const { topic, text, previewText } = data
 
         if (!profile) {
             // TODO: show error
@@ -73,7 +21,7 @@ const PostCreate = () => {
             return
         }
 
-        const response = await POSTS_SERVICE.create({ authorUuid: profile.Uuid, text, topic, previewText, tagId: parseInt(tagId) })
+        const response = await POSTS_SERVICE.create({ authorUuid: profile.Uuid, text, topic, previewText, tagIds: [...tags.map(e => e.Id)] })
 
         if (response.status != 201) {
             // TODO: show error
@@ -132,15 +80,8 @@ const PostCreate = () => {
                     </div>
                 </div>
 
-                <div className="col-span-6 sm:col-span-3">
-                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">{t("post.page.post.tag.id.label")}</label>
-                    <select id="tagId" required {...register("tagId")} className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                        {tags.map(function (p: Tag, idx) {
-                            return (
-                                <option value={p.Id} key={idx}>{p.Name}</option>
-                            )
-                        })}
-                    </select>
+                <div>
+                    <AssignTagsForm onChange={(tags: Tag[]) => { setTags(tags) }} />
                 </div>
 
                 <div className="flex justify-center">
@@ -152,7 +93,6 @@ const PostCreate = () => {
                     </button>
                 </div>
             </form>
-
         </div>
     )
 }

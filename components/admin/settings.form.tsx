@@ -76,9 +76,6 @@ const AdminSettingsForm = () => {
                     <div>
                         TODO: list of comments awaiting moderation
                     </div>
-                    <div>
-                        TODO: assign and remove tags for post form
-                    </div>
                 </div>
             </div>
             <div className="flex flex-1 flex-col justify-center my-2">

@@ -39,24 +39,25 @@ export class PostsApi {
   }
 
   async create(options: CreatePostOptions): Promise<any> {
-    const { authorUuid, text, topic, previewText, tagId } = options
+    const { authorUuid, text, topic, previewText, tagIds } = options
     return this.api.apisauce.post("/api/v1/posts", {
       authorUuid,
       text,
       topic,
       previewText,
-      tagId
+      tagIds
     })
   }
 
   async update(options: UpdatePostOptions): Promise<any> {
-    const { postUuid, authorUuid, text, topic, previewText } = options
+    const { postUuid, authorUuid, text, topic, previewText, tagIds } = options
     return this.api.apisauce.put("/api/v1/posts/", {
       Uuid: postUuid,
       authorUuid,
       text,
       topic,
-      previewText
+      previewText,
+      tagIds
     })
   }
 
@@ -92,8 +93,8 @@ export class PostsApi {
 }
 
 export type GetPostOptions = { postUuid: string }
-export type CreatePostOptions = { authorUuid: string, text: string, topic: string, previewText: string, tagId: number }
-export type UpdatePostOptions = { postUuid: string, authorUuid: string, text: string, topic: string, previewText: string }
+export type CreatePostOptions = { authorUuid: string, text: string, topic: string, previewText: string, tagIds: Array<number> }
+export type UpdatePostOptions = { postUuid: string, authorUuid: string, text: string, topic: string, previewText: string, tagIds: Array<number> }
 export type CreateTagOptions = { name: string }
 export type UpdateTagOptions = { id: number, name: string }
 export type AssignTagOptions = { postUuid: string, tagId: number }
