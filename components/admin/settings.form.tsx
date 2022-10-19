@@ -7,11 +7,13 @@ import { ArrowPathRoundedSquareIcon, TrashIcon } from "@heroicons/react/20/solid
 import { FEED_SERVICE } from "../../services/feed/feed.service"
 import PostsList from "../posts/list/posts.list"
 import { POST_STATES } from "../../services/posts/posts.service"
+import UsersList from "../users/users.list"
 
 const AdminSettingsForm = () => {
     const { t } = useTranslation()
     const [newPostsPage, setNewPostsPage] = React.useState(0)
     const [moderatedPostsPage, setModeratedPostsPage] = React.useState(0)
+    const [usersPage, setUsersPage] = React.useState(0)
 
     return (
         <div className="flex flex-1 justify-between flex-col min-h-full">
@@ -101,6 +103,7 @@ const AdminSettingsForm = () => {
                 <div className="">
                     <div>
                         TODO: block and unblock users, change states if needs
+                        <UsersList page={`${usersPage}`} pageSize={3} hideTopNavigation onNavigate={(page) => { setUsersPage(page) }} />
                     </div>
                     <div>
                         TODO: add karma to users (after some sum of karma no need to modearte of comments, posts, etc)

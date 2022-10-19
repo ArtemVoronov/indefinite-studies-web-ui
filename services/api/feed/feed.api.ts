@@ -48,7 +48,22 @@ export class FeedApi {
   async clear(): Promise<any> {
     return this.api.apisauce.post(`/api/v1/feed/clear`)
   }
+
+  async getUsers(options: GetFeedUsersOptions): Promise<any> {
+    const { offset, limit } = options
+    const url = "/api/v1/feed/users"
+    const params = []
+    if (!isNil(offset)) {
+      params.push(new QueryParameter("offset", offset))
+    }
+    if (!isNil(limit)) {
+      params.push(new QueryParameter("limit", limit))
+    }
+    const builder = new UrlBuilder(url, params)
+    return this.api.apisauce.get(builder.build())
+  }
 }
 
 export type GetFeedPostOptions = { postUuid: string }
 export type GetFeedAllOptions = { offset?: number, limit?: number, tagId?: string, state?: string }
+export type GetFeedUsersOptions = { offset?: number, limit?: number }

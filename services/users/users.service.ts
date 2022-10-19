@@ -75,3 +75,9 @@ export type User = {
 export const ROLES = {
     "OWNER": "OWNER"
 }
+
+export const USER_STATES = {
+    "NEW": "NEW",
+    "CONFIRMED": "CONFIRMED",
+    "BLOCKED": "BLOCKED"
+}
