@@ -36,7 +36,7 @@ export class UsersApi {
   }
 }
 
-export type UpdateUserOptions = { Uuid: string, login: string, password: string }
+export type UpdateUserOptions = { Uuid: string, login?: string, password?: string, state?: string }
 export type SignUpOptions = { login: string, email: string, password: string }
 export type SignUpConfirmationOptions = { token: string }
 export type SignResendConfirmationOptions = { email: string }

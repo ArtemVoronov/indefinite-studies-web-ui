@@ -102,7 +102,6 @@ const AdminSettingsForm = () => {
                 </h2>
                 <div className="">
                     <div>
-                        TODO: block and unblock users, change states if needs
                         <UsersList page={`${usersPage}`} pageSize={3} hideTopNavigation onNavigate={(page) => { setUsersPage(page) }} />
                     </div>
                     <div>

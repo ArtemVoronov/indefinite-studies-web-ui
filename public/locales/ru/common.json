@@ -49,6 +49,8 @@
     "admin.page.tag.id.label": "Тэг",
     "admin.page.feed.sync.btn": "Синхронизовать",
     "admin.page.feed.clear.btn": "Очистить",
+    "admin.page.user.block.btn": "Заблокировать",
+    "admin.page.user.unblock.btn": "Разблокировать",
     "SIGN_UP_PAGE": "----------------------------------------------------------------",
     "email.was.confirmed": "Адрес электронной почты подтверждён!",
     "sign.in": "Авторизоваться",

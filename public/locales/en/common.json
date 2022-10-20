@@ -49,6 +49,8 @@
     "admin.page.tag.id.label": "Tag",
     "admin.page.feed.sync.btn": "Sync feed",
     "admin.page.feed.clear.btn": "Clear feed",
+    "admin.page.user.block.btn": "Block",
+    "admin.page.user.unblock.btn": "Unblock",
     "SIGN_UP_PAGE": "----------------------------------------------------------------",
     "email.was.confirmed": "Email was confirmed!",
     "sign.in": "Sign in",

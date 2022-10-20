@@ -4,7 +4,8 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import Overlay from "../overlay/overlay"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
 import { useTranslation } from "next-i18next"
-import { User } from "../../services/users/users.service"
+import { ROLES, User, USERS_SERVICE, USER_STATES } from "../../services/users/users.service"
+import Router from "next/router"
 
 const DEFAULT_MAX_USERS_PER_PAGE = 5
 
@@ -37,6 +38,28 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
         } finally {
             clearTimeout(timer)
             setIsLoading(false)
+        }
+    }
+
+    const handleBlockUserEvent = async (userUuid: string) => {
+        const response = await USERS_SERVICE.update({ Uuid: userUuid, state: USER_STATES.BLOCKED })
+
+        if (response.status == 200) {
+            Router.reload()
+        } else {
+            // TODO: show error
+            console.error("unable to update user")
+        }
+    }
+
+    const handleUnblockUserEvent = async (userUuid: string) => {
+        const response = await USERS_SERVICE.update({ Uuid: userUuid, state: USER_STATES.CONFIRMED })
+
+        if (response.status == 200) {
+            Router.reload()
+        } else {
+            // TODO: show error
+            console.error("unable to update user")
         }
     }
 
@@ -93,6 +116,7 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
                         <th>Name</th>
                         <th>Role</th>
                         <th>State</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,6 +139,24 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
                                 </td>
                                 <td className="text-center">
                                     {p.State}
+                                </td>
+                                <td className="text-center">
+                                    {p.Role != ROLES.OWNER && p.State == USER_STATES.CONFIRMED && (
+                                        <button
+                                            className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            onClick={() => handleBlockUserEvent(p.Uuid)}
+                                        >
+                                            {t("admin.page.user.block.btn")}
+                                        </button>
+                                    )}
+                                    {p.Role != ROLES.OWNER && p.State == USER_STATES.BLOCKED && (
+                                        <button
+                                            className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                            onClick={() => handleUnblockUserEvent(p.Uuid)}
+                                        >
+                                            {t("admin.page.user.unblock.btn")}
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         )
