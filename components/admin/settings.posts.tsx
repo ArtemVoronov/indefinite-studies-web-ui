@@ -18,13 +18,13 @@ const AdminSettingsPostsForm = () => {
                     <h3 className="font-bold leading-tight text-2xl my-2">
                         {t("admin.page.header.posts.new")}
                     </h3>
-                    <PostsList tagId={``} page={`${newPostsPage}`} postState={POST_STATES.NEW} tableView pageSize={10} hideTopNavigation onNavigate={(page) => { setNewPostsPage(page) }} />
+                    <PostsList tagId="" userUuid="" page={`${newPostsPage}`} postState={POST_STATES.NEW} tableView pageSize={10} hideTopNavigation onNavigate={(page) => { setNewPostsPage(page) }} />
                 </div>
                 <div>
                     <h3 className="font-bold leading-tight text-2xl my-2">
                         {t("admin.page.header.posts.on.moderations")}
                     </h3>
-                    <PostsList tagId={``} page={`${moderatedPostsPage}`} postState={POST_STATES.ON_MODERATION} tableView pageSize={10} hideTopNavigation onNavigate={(page) => { setModeratedPostsPage(page) }} />
+                    <PostsList tagId="" userUuid="" page={`${moderatedPostsPage}`} postState={POST_STATES.ON_MODERATION} tableView pageSize={10} hideTopNavigation onNavigate={(page) => { setModeratedPostsPage(page) }} />
                 </div>
                 <div>
                     <h3 className="font-bold leading-tight text-2xl my-2">

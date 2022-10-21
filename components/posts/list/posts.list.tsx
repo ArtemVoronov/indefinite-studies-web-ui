@@ -9,7 +9,7 @@ import Link from "next/link"
 
 const DEFAULT_MAX_POSTS_PER_PAGE = 5
 
-const PostsList = (props: { tagId: string, page: string, postState: string, hideTopNavigation?: boolean, hideBottomNavigation?: boolean, tableView?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
+const PostsList = (props: { tagId: string, page: string, postState: string, userUuid: string, hideTopNavigation?: boolean, hideBottomNavigation?: boolean, tableView?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [posts, setPosts] = React.useState([])
     const [loadedCount, setLoadedCount] = React.useState(0)
@@ -23,7 +23,7 @@ const PostsList = (props: { tagId: string, page: string, postState: string, hide
         }, SPIN_ICON_SHOWING_TIMEOUT)
 
         try {
-            const response = await FEED_SERVICE.getAll({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: LIMIT, tagId: props.tagId, state: props.postState })
+            const response = await FEED_SERVICE.getAll({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: LIMIT, tagId: props.tagId, state: props.postState, userUuid: props.userUuid })
             clearTimeout(timer)
             if (response.status === 200) {
                 const portion = response.data.Data

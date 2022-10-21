@@ -17,7 +17,7 @@ export class FeedApi {
   }
 
   async getAll(options: GetFeedAllOptions): Promise<any> {
-    const { offset, limit, tagId, state } = options
+    const { offset, limit, tagId, state, userUuid } = options
     const url = "/api/v1/feed"
     const params = []
     if (!isNil(offset)) {
@@ -31,6 +31,9 @@ export class FeedApi {
     }
     if (!isNil(tagId)) {
       params.push(new QueryParameter("state", state))
+    }
+    if (!isNil(userUuid)) {
+      params.push(new QueryParameter("userUuid", userUuid))
     }
     const builder = new UrlBuilder(url, params)
     return this.api.apisauce.get(builder.build())
@@ -65,5 +68,5 @@ export class FeedApi {
 }
 
 export type GetFeedPostOptions = { postUuid: string }
-export type GetFeedAllOptions = { offset?: number, limit?: number, tagId?: string, state?: string }
+export type GetFeedAllOptions = { offset?: number, limit?: number, tagId?: string, state?: string, userUuid?: string }
 export type GetFeedUsersOptions = { offset?: number, limit?: number }
