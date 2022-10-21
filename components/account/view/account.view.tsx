@@ -1,16 +1,21 @@
 import * as React from "react"
 import { User } from "../../../services/users/users.service"
-import Router from "next/router"
 import { useTranslation } from "next-i18next"
+import AccountEdit from "../edit/account.edit"
 
 const AccountView = (props: { user: User }) => {
     const { t } = useTranslation()
+    const [showEditAccountForm, setShowEditAccountForm] = React.useState(false)
 
     const { Login, Email, Role } = props.user
 
     const handleEditEvent = () => {
-        Router.push("/account/edit/")
+        setShowEditAccountForm(true)
     }
+
+    if (showEditAccountForm) return (
+        <AccountEdit user={props.user} onCancel={() => { setShowEditAccountForm(false) }} />
+    )
 
     return (
         <div className="overflow-hidden bg-white shadow sm:rounded-lg flex-1">

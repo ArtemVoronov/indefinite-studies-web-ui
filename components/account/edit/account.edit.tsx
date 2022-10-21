@@ -5,7 +5,7 @@ import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
 
-const AccountView = (props: { user: User, onCancel: () => void }) => {
+const AccountEdit = (props: { user: User, onCancel: () => void }) => {
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const [, setProfile] = useProfile()
@@ -23,7 +23,7 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
                     return
                 }
                 setProfile(res)
-                Router.push("/account/")
+                Router.reload()
             })
         } else {
             // TODO: show error
@@ -106,4 +106,4 @@ const AccountView = (props: { user: User, onCancel: () => void }) => {
     )
 }
 
-export default AccountView
+export default AccountEdit
