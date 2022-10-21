@@ -7,13 +7,13 @@ import AdminSettingsSidebar from "./settings.sidebar"
 
 export const ADMINS_SETTINGS_PANELS = {
     "TAGS": "TAGS",
-    "FEED": "TFEEDAGS",
-    "USERS": "TAUSERSGS",
+    "FEED": "FEED",
+    "USERS": "USERS",
     "POSTS": "POSTS"
 }
 
 const AdminSettingsForm = () => {
-    const [visiblePanel, setVisiblePanel] = React.useState(ADMINS_SETTINGS_PANELS.FEED)
+    const [visiblePanel, setVisiblePanel] = React.useState(ADMINS_SETTINGS_PANELS.POSTS)
 
     return (
         <div className="flex flex-1 justify-between flex-col min-h-full">
