@@ -6,6 +6,8 @@ const AdminSettingsPostsForm = () => {
     const { t } = useTranslation()
     const [newPostsPage, setNewPostsPage] = React.useState(0)
     const [moderatedPostsPage, setModeratedPostsPage] = React.useState(0)
+    const [publishedPage, setPublishedPostsPage] = React.useState(0)
+    const [blockedPage, setBlockedPostsPage] = React.useState(0)
 
     return (
 
@@ -18,13 +20,25 @@ const AdminSettingsPostsForm = () => {
                     <h3 className="font-bold leading-tight text-2xl my-2">
                         {t("admin.page.header.posts.new")}
                     </h3>
-                    <PostsList tagId="" userUuid="" page={`${newPostsPage}`} postState={POST_STATES.NEW} tableView pageSize={10} hideTopNavigation onNavigate={(page) => { setNewPostsPage(page) }} />
+                    <PostsList tagId="" userUuid="" page={`${newPostsPage}`} postState={POST_STATES.NEW} tableView tableViewAdmin pageSize={10} hideTopNavigation onNavigate={(page) => { setNewPostsPage(page) }} />
                 </div>
                 <div>
                     <h3 className="font-bold leading-tight text-2xl my-2">
                         {t("admin.page.header.posts.on.moderations")}
                     </h3>
-                    <PostsList tagId="" userUuid="" page={`${moderatedPostsPage}`} postState={POST_STATES.ON_MODERATION} tableView pageSize={10} hideTopNavigation onNavigate={(page) => { setModeratedPostsPage(page) }} />
+                    <PostsList tagId="" userUuid="" page={`${moderatedPostsPage}`} postState={POST_STATES.ON_MODERATION} tableView tableViewAdmin pageSize={10} hideTopNavigation onNavigate={(page) => { setModeratedPostsPage(page) }} />
+                </div>
+                <div>
+                    <h3 className="font-bold leading-tight text-2xl my-2">
+                        {t("admin.page.header.posts.published")}
+                    </h3>
+                    <PostsList tagId="" userUuid="" page={`${publishedPage}`} postState={POST_STATES.PUBLISHED} tableView tableViewAdmin pageSize={10} hideTopNavigation onNavigate={(page) => { setPublishedPostsPage(page) }} />
+                </div>
+                <div>
+                    <h3 className="font-bold leading-tight text-2xl my-2">
+                        {t("admin.page.header.posts.blocked")}
+                    </h3>
+                    <PostsList tagId="" userUuid="" page={`${blockedPage}`} postState={POST_STATES.BLOCKED} tableView tableViewAdmin pageSize={10} hideTopNavigation onNavigate={(page) => { setBlockedPostsPage(page) }} />
                 </div>
                 <div>
                     <h3 className="font-bold leading-tight text-2xl my-2">

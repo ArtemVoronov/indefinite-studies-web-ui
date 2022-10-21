@@ -9,7 +9,10 @@ import Link from "next/link"
 
 const DEFAULT_MAX_POSTS_PER_PAGE = 5
 
-const PostsList = (props: { tagId: string, page: string, postState: string, userUuid: string, hideTopNavigation?: boolean, hideBottomNavigation?: boolean, tableView?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
+const PostsList = (props: {
+    tagId: string, page: string, postState: string, userUuid: string,
+    hideTopNavigation?: boolean, hideBottomNavigation?: boolean, tableView?: boolean, tableViewAdmin?: boolean, pageSize?: number, onNavigate?: (page: number) => void
+}) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [posts, setPosts] = React.useState([])
     const [loadedCount, setLoadedCount] = React.useState(0)
@@ -132,7 +135,7 @@ const PostsList = (props: { tagId: string, page: string, postState: string, user
                 <div>
                     {posts.map(function (p: FeedBlock, idx) {
                         return (
-                            <PostPreview key={idx} post={p} tableView={props.tableView} />
+                            <PostPreview key={idx} post={p} />
                         )
                     })}
                 </div>
@@ -142,15 +145,16 @@ const PostsList = (props: { tagId: string, page: string, postState: string, user
                 <table className="table-auto w-full">
                     <thead>
                         <tr className="bg-white">
-                            <th>UUID</th>
-                            <th>Topic</th>
-                            <th>Author</th>
+                            <th>{t("posts.page.table.head.uuid")}</th>
+                            <th>{t("posts.page.table.head.topic")}</th>
+                            <th>{t("posts.page.table.head.author")}</th>
+                            <th>{t("posts.page.table.head.action")}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {posts.map(function (p: FeedBlock, idx) {
                             return (
-                                <PostPreview key={idx} post={p} tableView={props.tableView} />
+                                <PostPreview key={idx} post={p} tableView={props.tableView} tableViewAdmin={props.tableViewAdmin} />
                             )
                         })}
                     </tbody>

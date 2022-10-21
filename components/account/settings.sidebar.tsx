@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next"
 import { classNames } from "../../utils/utils"
 import { ACCOUNT_SETTINGS_PANELS } from "./settings.form"
 
+// TODO: add chosing option by anchor
 const AccountSettingsSidebar = (props: { chosen: string, onChoose: (val: string) => void }) => {
     const { t } = useTranslation()
 

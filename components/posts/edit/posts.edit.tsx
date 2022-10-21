@@ -2,25 +2,62 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { POSTS_SERVICE, Tag } from "../../../services/posts/posts.service"
 import Router from "next/router"
-import { FullPostInfo } from "../../../services/feed/feed.service"
+import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
 import { useTranslation } from "next-i18next"
 import AssignTagsForm from "../tags/assign.tags.form"
+import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
+import Overlay from "../../overlay/overlay"
 
-const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
+const PostEdit = (props: { postUuid: string }) => {
     const { register, handleSubmit } = useForm()
     const { t } = useTranslation()
     const [tags, setTags] = React.useState([] as Tag[])
-    const { PostUuid, AuthorUuid, Tags } = props.post.Post
+
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [post, setPost] = React.useState({} as FullPostInfo)
 
     const updatePost = async (data: any) => {
         const { topic, text, previewText } = data
 
-        const response = await POSTS_SERVICE.update({ postUuid: PostUuid, authorUuid: AuthorUuid, text, topic, previewText, tagIds: [...tags.map(e => e.Id)] })
+        const response = await POSTS_SERVICE.update({ postUuid: post.Post.PostUuid, authorUuid: post.Post.AuthorUuid, text, topic, previewText, tagIds: [...tags.map(e => e.Id)] })
 
         if (response.status == 200) {
             Router.reload()
         }
     }
+
+    const fetchPost = async () => {
+        const timer = setTimeout(() => {
+            setIsLoading(true)
+        }, SPIN_ICON_SHOWING_TIMEOUT)
+
+        try {
+            const response = await FEED_SERVICE.get({ postUuid: props.postUuid })
+            clearTimeout(timer)
+            if (response.status === 200) {
+                setPost(response.data)
+            }
+        } finally {
+            clearTimeout(timer)
+            setIsLoading(false)
+        }
+    }
+
+    React.useEffect(() => {
+        fetchPost()
+    }, [])
+
+    if (isLoading) return (
+        <div>
+            <Overlay />
+        </div>
+    )
+
+    if (!post || Object.keys(post).length === 0) return (
+        <div>
+            {t("no.data")}
+        </div>
+    )
 
     return (
         <div>
@@ -37,7 +74,7 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
                             {...register("topic")}
                             className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                             placeholder={t("post.page.post.topic.placeholder")}
-                            defaultValue={props.post.Post.PostTopic}
+                            defaultValue={post.Post.PostTopic}
                         />
                     </div>
                 </div>
@@ -53,7 +90,7 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
                             className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                             placeholder={t("post.page.post.text.placeholder")}
                             rows={30}
-                            defaultValue={props.post.Post.PostText}
+                            defaultValue={post.Post.PostText}
                         />
                     </div>
                 </div>
@@ -69,14 +106,14 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
                             className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                             placeholder={t("post.page.post.preview.text.placeholder")}
                             rows={10}
-                            defaultValue={props.post.Post.PostPreviewText}
+                            defaultValue={post.Post.PostPreviewText}
                         />
                     </div>
                 </div>
 
 
                 <div>
-                    <AssignTagsForm initialValue={Tags} onChange={(tags: Tag[]) => { setTags(tags) }} />
+                    <AssignTagsForm initialValue={post.Post.Tags} onChange={(tags: Tag[]) => { setTags(tags) }} />
                 </div>
 
 
@@ -93,7 +130,7 @@ const PostEdit = (props: { post: FullPostInfo, onCancel: () => void }) => {
             <div className="flex justify-center">
                 <button
                     type="submit"
-                    onClick={props.onCancel}
+                    onClick={() => { Router.replace(`/account`) }}
                     className="group relative w-52 mt-3 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                     {t("btn.cancel")}

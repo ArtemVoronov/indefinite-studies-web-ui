@@ -25,7 +25,8 @@
         "sign.out": "Выйти",
         "new": "Пометить новым",
         "moderate": "Отправить на модерацию",
-        "publish": "Опубликовать"
+        "publish": "Опубликовать",
+        "block": "Блокировать"
     },
     "select": {
         "default.option.label": "Выберите опцию"
@@ -40,6 +41,8 @@
     "admin.page.header.feed": "Управление лентой",
     "admin.page.header.posts.new": "Новые посты",
     "admin.page.header.posts.on.moderations": "Посты на модерации",
+    "admin.page.header.posts.published": "Посты опубликованные",
+    "admin.page.header.posts.blocked": "Посты заблокированные",
     "admin.page.header.comments.new": "Комментарии на модерации",
     "admin.page.header.tags.list": "Тэги",
     "admin.page.header.tags.create": "Добавить тэг",
@@ -97,6 +100,10 @@
     "POSTS_PAGE": "----------------------------------------------------------------",
     "posts.page.no.comments": "Нет комментариев",
     "posts.page.comment.count": "комментариев",
+    "posts.page.table.head.uuid": "UUID",
+    "posts.page.table.head.topic": "Название",
+    "posts.page.table.head.author": "Автор",
+    "posts.page.table.head.action": "Действие",
     "ACCOUNT_PAGE": "----------------------------------------------------------------",
     "account.page.settings.header": "Настройки",
     "account.page.settings.subheader": "Данные пользователя",
