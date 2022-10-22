@@ -9,7 +9,9 @@ import Overlay from "../../overlay/overlay"
 import { useTranslation } from "next-i18next"
 import { POST_STATES } from "../../../services/posts/posts.service"
 
-// TODO: add author name to the page
+// TODO: add author name
+// TODO: add create date
+// TODO: add closing edit/create comments (to fordbidd multuple edit/create forms showing)
 const PostView = (props: { postUuid: string }) => {
     const { t } = useTranslation()
     const [profile] = useProfile()

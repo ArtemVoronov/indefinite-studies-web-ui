@@ -2,15 +2,20 @@ import * as React from "react"
 import Link from "next/link"
 import { FeedBlock } from "../../../services/feed/feed.service"
 import MarkDown from "../../markdown/markdown"
-import moment from "moment"
 import { useTranslation } from "next-i18next"
 import { POSTS_SERVICE, POST_STATES, Tag } from "../../../services/posts/posts.service"
 import Router from "next/router"
+import { formatDate } from "../../../utils/i18n"
 
+// TODO: add tag i18n
 const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdmin?: boolean }) => {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
     const { PostUuid, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount, Tags } = props.post
+    const [createDateFormatted, setCreateDateFormatted] = React.useState(formatDate(CreateDate, i18n.language))
 
+    React.useEffect(() => {
+        setCreateDateFormatted(formatDate(CreateDate, i18n.language))
+    }, [i18n])
 
     const handleChangeStateEvent = async (state: string) => {
         const response = await POSTS_SERVICE.update({ postUuid: PostUuid, state: state })
@@ -91,8 +96,6 @@ const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdm
         )
     }
 
-    // TODO: add tag i18n
-    // TODO: add date format i18n
     return (
         <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100">
             <div className="mb-3 text-center text-2xl">
@@ -104,7 +107,7 @@ const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdm
             </div>
             <div className="flex justify-between">
                 <div className="flex items-center">
-                    <div className="text-xs">{moment(CreateDate).format('MMMM Do YYYY, hh:mm')}</div>
+                    <div className="text-xs">{createDateFormatted}</div>
                     <span className="mx-2">|</span>
                     <div className="text-xs">{AuthorName}</div>
                     <span className="mx-2">|</span>
@@ -128,7 +131,7 @@ const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdm
             <div>
                 <MarkDown text={PostPreviewText} />
             </div>
-        </div>
+        </div >
     )
 }
 
