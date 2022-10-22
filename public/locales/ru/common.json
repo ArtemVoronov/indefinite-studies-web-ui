@@ -97,6 +97,8 @@
     "post.page.comment.header": "Комментарии",
     "post.page.btn.new.comment": "Комментировать",
     "post.page.tags.label": "Тэги",
+    "post.page.comment.header.new": "Новый комментарий",
+    "post.page.comment.header.edit": "Изменение комментария",
     "POSTS_PAGE": "----------------------------------------------------------------",
     "posts.page.no.comments": "Нет комментариев",
     "posts.page.comment.count": "комментариев",

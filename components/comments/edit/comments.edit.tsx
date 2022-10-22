@@ -7,7 +7,7 @@ import { useProfile } from '../../hooks/use.profile.hook'
 import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
 
-const CommentEdit = (props: { comment: FeedComment, linkedComment?: FeedCommentWithIndex, onCancel: () => void }) => {
+const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: FeedCommentWithIndex, onCancel: () => void }) => {
     const [profile] = useProfile()
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
@@ -34,8 +34,9 @@ const CommentEdit = (props: { comment: FeedComment, linkedComment?: FeedCommentW
     }
 
     return (
-        <div>
-            <form className="mt-8 space-y-4" onSubmit={handleSubmit(updateComment)}>
+        <div id={props.id} className="border-dashed border-gray-500 border-2 p-4 rounded-lg my-2">
+            <div className="flex justify-center">{t("post.page.comment.header.edit")}</div>
+            <form className="mt-1 space-y-4" onSubmit={handleSubmit(updateComment)}>
                 {props.linkedComment && (
                     <div className="text-xs">
                         {t("post.page.to") + ": "}

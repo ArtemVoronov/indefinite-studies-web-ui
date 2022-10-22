@@ -2,55 +2,69 @@ import * as React from "react"
 import { FeedComment, FeedCommentWithIndex } from "../../../services/feed/feed.service"
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentCreate from "../create/comments.create"
-import moment from "moment"
 import CommentEdit from "../edit/comments.edit"
 import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
 import DateFormatted from "../../date/date.formatted"
+import Link from "next/link"
 
 // TODO: add markdown for comment text
-const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number }) => {
+const CommentView = (props: {
+    comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number,
+    onReplyCommentBtnClick: () => void,
+    onEditCommentBtnClick: () => void,
+    renderedFormIndex: number,
+    setRenderedFormIndex: (v: number) => void
+}) => {
     const { t } = useTranslation()
     const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
     const [showEditCommentForm, setShowEditCommentForm] = React.useState(false)
     const [profile] = useProfile()
     const { CommentUuid, AuthorUuid, CommentText, AuthorName, LastUpdateDate, PostUuid } = props.comment
-    moment.locale("ru")
 
     const handleEditEvent = () => {
         setShowEditCommentForm(true)
+        setShowReplyCommentForm(false)
+        props.onReplyCommentBtnClick()
+        props.setRenderedFormIndex(props.index)
     }
 
     const handleReplyEvent = () => {
         setShowReplyCommentForm(true)
+        setShowEditCommentForm(false)
+        props.onEditCommentBtnClick()
+        props.setRenderedFormIndex(props.index)
     }
 
     const EditButton = (
-        <>
-            <span className="mx-1">|</span>
+        <Link href={"#edit_comment_form_" + props.index}>
             <button
                 className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
                 onClick={handleEditEvent}
             >
                 {t("btn.edit")}
             </button>
-        </>
+        </Link>
     )
     const ReplyButton = (
-        <>
-            <span className="mx-1">|</span>
+        <Link href={"#reply_comment_form_" + props.index}>
             <button
                 className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
                 onClick={handleReplyEvent}
             >
                 {t("btn.reply")}
             </button>
-        </>
+        </Link>
     )
 
-    if (showEditCommentForm) {
+    if (showEditCommentForm && props.renderedFormIndex == props.index) {
         return (
-            <CommentEdit comment={props.comment} linkedComment={props.linkedComment} onCancel={() => { setShowEditCommentForm(false) }} />
+            <CommentEdit id={"edit_comment_form_" + props.index} comment={props.comment} linkedComment={props.linkedComment}
+                onCancel={() => {
+                    setShowEditCommentForm(false)
+                    props.setRenderedFormIndex(-1)
+                }}
+            />
         )
     }
 
@@ -59,14 +73,15 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
             <div id={"comment_" + props.index} className="p-3 my-4 bg-white border-1 border-gray-100 flex">
                 <div className="flex-1 flex flex-col">
                     <div className="flex flex-1 p-0 border-b-2">
+                        <div className="flex items-center my-1 flex-1">
+                            <div className="text-xs px-3 py-1 flex-1">{AuthorName}</div>
+                        </div>
                         <div className="flex items-center my-1">
-                            <div className="text-xs px-3 py-1">{AuthorName}</div>
-                            <span className="mx-1">|</span>
-                            <div className="text-xs px-3 py-1"><DateFormatted date={LastUpdateDate} /></div>
                             {!profile ? "" : ReplyButton}
                             {!profile || profile.Uuid != AuthorUuid ? "" : EditButton}
                         </div>
                         <div className="flex flex-1 items-center justify-end">
+                            <div className="text-xs px-3 py-1"><DateFormatted date={LastUpdateDate} /></div>
                             <div className="text-xs">
                                 <CommentLink postUuid={PostUuid} commentIndex={props.index} />
                             </div>
@@ -90,8 +105,13 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                 </div>
             </div>
 
-            {showReplyCommentForm && (
-                <CommentCreate postUuid={PostUuid} linkedCommentUuid={CommentUuid} linkedCommentIndex={props.index} onCancel={() => { setShowReplyCommentForm(false) }} />
+            {showReplyCommentForm && props.renderedFormIndex == props.index && (
+                <CommentCreate id={"reply_comment_form_" + props.index} postUuid={PostUuid} linkedCommentUuid={CommentUuid} linkedCommentIndex={props.index}
+                    onCancel={() => {
+                        setShowReplyCommentForm(false)
+                        props.setRenderedFormIndex(-1)
+                    }}
+                />
             )}
         </>
     )

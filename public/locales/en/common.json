@@ -97,6 +97,8 @@
     "post.page.comment.header": "Comments",
     "post.page.btn.new.comment": "New comment",
     "post.page.tags.label": "Tags",
+    "post.page.comment.header.new": "New comment",
+    "post.page.comment.header.edit": "Edit comment",
     "POSTS_PAGE": "----------------------------------------------------------------",
     "posts.page.no.comments": "No comments",
     "posts.page.comment.count": "comments",

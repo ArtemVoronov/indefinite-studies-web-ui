@@ -11,7 +11,6 @@ import { POST_STATES, Tag } from "../../../services/posts/posts.service"
 import DateFormatted from "../../date/date.formatted"
 import Link from "next/link"
 
-// TODO: add closing edit/create comments (to fordbidd multuple edit/create forms showing)
 const PostView = (props: { postUuid: string }) => {
     const { t } = useTranslation()
     const [profile] = useProfile()
@@ -63,12 +62,14 @@ const PostView = (props: { postUuid: string }) => {
     const { PostUuid, PostTopic, PostText, CreateDate, AuthorName, Tags } = post.Post
 
     const AddCommentButton = (
-        <button
-            className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-2 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            onClick={handleNewCommentEvent}
-        >
-            {t("post.page.btn.new.comment")}
-        </button>
+        <Link href="#new_comment_form">
+            <button
+                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-2 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                onClick={handleNewCommentEvent}
+            >
+                {t("post.page.btn.new.comment")}
+            </button>
+        </Link>
     )
 
     return (
@@ -99,9 +100,19 @@ const PostView = (props: { postUuid: string }) => {
                     {!profile ? "" : AddCommentButton}
                 </div>
                 {showCreateCommentForm && (
-                    <CommentCreate postUuid={PostUuid} linkedCommentUuid="" onCancel={() => { setShowCreateCommentForm(false) }} />
+                    <CommentCreate id="new_comment_form" postUuid={PostUuid} linkedCommentUuid=""
+                        onCancel={() => {
+                            setShowCreateCommentForm(false)
+                        }} />
                 )}
-                <CommentsList comments={post.Comments} commentsMap={post.CommentsMap} />
+
+                <CommentsList comments={post.Comments} commentsMap={post.CommentsMap}
+                    onReplyCommentBtnClick={() => {
+                        setShowCreateCommentForm(false)
+                    }}
+                    onEditCommentBtnClick={() => {
+                        setShowCreateCommentForm(false)
+                    }} />
             </div>
         </div>
     )
