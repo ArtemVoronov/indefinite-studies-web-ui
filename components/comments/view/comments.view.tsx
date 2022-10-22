@@ -7,8 +7,8 @@ import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
 import DateFormatted from "../../date/date.formatted"
 import Link from "next/link"
+import MarkDown from "../../markdown/markdown"
 
-// TODO: add markdown for comment text
 const CommentView = (props: {
     comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number,
     onReplyCommentBtnClick: () => void,
@@ -72,11 +72,11 @@ const CommentView = (props: {
         <>
             <div id={"comment_" + props.index} className="p-3 my-4 bg-white border-1 border-gray-100 flex">
                 <div className="flex-1 flex flex-col">
-                    <div className="flex flex-1 p-0 border-b-2">
-                        <div className="flex items-center my-1 flex-1">
+                    <div className="flex flex-1 p-0 border-b-2 pb-1">
+                        <div className="flex items-center flex-1">
                             <div className="text-xs px-3 py-1 flex-1">{AuthorName}</div>
                         </div>
-                        <div className="flex items-center my-1">
+                        <div className="flex items-center">
                             {!profile ? "" : ReplyButton}
                             {!profile || profile.Uuid != AuthorUuid ? "" : EditButton}
                         </div>
@@ -88,18 +88,16 @@ const CommentView = (props: {
                         </div>
                     </div>
                     <div className="flex flex-col p-3">
-                        <div className="mb-3">
-                            {props.linkedComment && (
-                                <div className="text-xs">
-                                    <span className="mr-1">{t("post.page.to") + ": "}</span>
-                                    <span>{props.linkedComment?.AuthorName}</span>
-                                    <span className="mr-1">,</span>
-                                    <CommentLink postUuid={PostUuid} commentIndex={props.linkedComment?.Index + 1 ?? 0} />
-                                </div>
-                            )}
-                        </div>
+                        {props.linkedComment && (
+                            <div className="mb-3 text-xs">
+                                <span className="mr-1">{t("post.page.to") + ": "}</span>
+                                <span>{props.linkedComment?.AuthorName}</span>
+                                <span className="mr-1">,</span>
+                                <CommentLink postUuid={PostUuid} commentIndex={props.linkedComment?.Index + 1 ?? 0} />
+                            </div>
+                        )}
                         <div>
-                            {CommentText}
+                            <MarkDown text={CommentText} className="prose lg:prose-xl -my-5" />
                         </div>
                     </div>
                 </div>
