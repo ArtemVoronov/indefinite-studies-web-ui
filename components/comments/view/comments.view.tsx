@@ -6,6 +6,7 @@ import moment from "moment"
 import CommentEdit from "../edit/comments.edit"
 import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
+import DateFormatted from "../../date/date.formatted"
 
 const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number }) => {
     const { t } = useTranslation()
@@ -61,7 +62,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
                 <div className="flex-1 flex flex-col">
                     <div className="flex flex-1 p-0 border-b-2">
                         <div className="flex items-center">
-                            <div className="text-xs px-3">{moment(LastUpdateDate).format('MMMM Do YYYY, hh:mm')}</div>
+                            <div className="text-xs px-3"><DateFormatted date={LastUpdateDate} /></div>
                             {!profile ? "" : ReplyButton}
                             {!profile || profile.Uuid != AuthorUuid ? "" : EditButton}
                         </div>

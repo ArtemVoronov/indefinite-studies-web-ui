@@ -5,18 +5,12 @@ import MarkDown from "../../markdown/markdown"
 import { useTranslation } from "next-i18next"
 import { POSTS_SERVICE, POST_STATES, Tag } from "../../../services/posts/posts.service"
 import Router from "next/router"
-import { formatDate } from "../../../utils/i18n"
+import DateFormatted from "../../date/date.formatted"
 
 // TODO: add tag i18n
 const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdmin?: boolean }) => {
-    const { t, i18n } = useTranslation()
+    const { t } = useTranslation()
     const { PostUuid, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount, Tags } = props.post
-    const [createDateFormatted, setCreateDateFormatted] = React.useState(formatDate(CreateDate, i18n.language))
-
-    React.useEffect(() => {
-        setCreateDateFormatted(formatDate(CreateDate, i18n.language))
-    }, [i18n])
-
     const handleChangeStateEvent = async (state: string) => {
         const response = await POSTS_SERVICE.update({ postUuid: PostUuid, state: state })
 
@@ -107,12 +101,13 @@ const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdm
             </div>
             <div className="flex justify-between">
                 <div className="flex items-center">
-                    <div className="text-xs">{createDateFormatted}</div>
+                    <div className="text-xs"><DateFormatted date={CreateDate} /></div>
                     <span className="mx-2">|</span>
                     <div className="text-xs">{AuthorName}</div>
                     <span className="mx-2">|</span>
                     <div className="text-xs">
                         <Link href={"/post/" + PostUuid} >
+                            {/* TODO: fix text for 0, 1, 2, multiple comments cases in different locales */}
                             <a className="text-indigo-600 hover:text-indigo-500">{CommentsCount} {t("posts.page.comment.count")}</a>
                         </Link>
                     </div>

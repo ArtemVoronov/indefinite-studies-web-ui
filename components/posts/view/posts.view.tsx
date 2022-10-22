@@ -7,10 +7,10 @@ import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import Overlay from "../../overlay/overlay"
 import { useTranslation } from "next-i18next"
-import { POST_STATES } from "../../../services/posts/posts.service"
+import { POST_STATES, Tag } from "../../../services/posts/posts.service"
+import DateFormatted from "../../date/date.formatted"
+import Link from "next/link"
 
-// TODO: add author name
-// TODO: add create date
 // TODO: add closing edit/create comments (to fordbidd multuple edit/create forms showing)
 const PostView = (props: { postUuid: string }) => {
     const { t } = useTranslation()
@@ -60,7 +60,7 @@ const PostView = (props: { postUuid: string }) => {
         </div>
     )
 
-    const { PostUuid, PostTopic, PostText } = post.Post
+    const { PostUuid, PostTopic, PostText, CreateDate, AuthorName, Tags } = post.Post
 
     const AddCommentButton = (
         <button
@@ -74,6 +74,22 @@ const PostView = (props: { postUuid: string }) => {
     return (
         <div>
             <div className="p-3 my-4 bg-white border-1 border-gray-100">
+                <div className="flex justify-between">
+                    <div className="flex items-center">
+                        <div className="text-xs"><DateFormatted date={CreateDate} /></div>
+                        <span className="mx-2">|</span>
+                        <div className="text-xs">{AuthorName}</div>
+                    </div>
+                    <div className="flex items-center text-xs">
+                        {Tags.map(function (tag: Tag, idx) {
+                            return (
+                                <Link href={"/posts/" + tag.Id + "/0"} key={idx}>
+                                    <a className="text-indigo-600 hover:text-indigo-500 mx-1">{tag.Name}</a>
+                                </Link>
+                            )
+                        })}
+                    </div>
+                </div>
                 <h1 className="font-extrabold leading-tight text-6xl mt-0 mb-2 text-center">{PostTopic}</h1>
                 <MarkDown text={PostText} />
             </div>
