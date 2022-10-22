@@ -22,7 +22,7 @@ const PostEdit = (props: { postUuid: string }) => {
         const response = await POSTS_SERVICE.update({ postUuid: post.Post.PostUuid, authorUuid: post.Post.AuthorUuid, text, topic, previewText, tagIds: [...tags.map(e => e.Id)] })
 
         if (response.status == 200) {
-            Router.reload()
+            Router.push("/post/" + post.Post.PostUuid)
         }
     }
 
@@ -35,7 +35,9 @@ const PostEdit = (props: { postUuid: string }) => {
             const response = await FEED_SERVICE.get({ postUuid: props.postUuid })
             clearTimeout(timer)
             if (response.status === 200) {
-                setPost(response.data)
+                const feedPost = response.data as FullPostInfo
+                setPost(feedPost)
+                setTags(feedPost.Post.Tags)
             }
         } finally {
             clearTimeout(timer)
