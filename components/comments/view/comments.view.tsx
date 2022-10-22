@@ -8,6 +8,7 @@ import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
 import DateFormatted from "../../date/date.formatted"
 
+// TODO: add markdown for comment text
 const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number }) => {
     const { t } = useTranslation()
     const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
@@ -26,7 +27,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
 
     const EditButton = (
         <>
-            <span className="m-1">|</span>
+            <span className="mx-1">|</span>
             <button
                 className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
                 onClick={handleEditEvent}
@@ -37,7 +38,7 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
     )
     const ReplyButton = (
         <>
-            <span className="m-1">|</span>
+            <span className="mx-1">|</span>
             <button
                 className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
                 onClick={handleReplyEvent}
@@ -56,13 +57,12 @@ const CommentView = (props: { comment: FeedComment, linkedComment?: FeedCommentW
     return (
         <>
             <div id={"comment_" + props.index} className="p-3 my-4 bg-white border-1 border-gray-100 flex">
-                <div className="flex justify-center items-center p-3 border-r-2">
-                    {AuthorName}
-                </div>
                 <div className="flex-1 flex flex-col">
                     <div className="flex flex-1 p-0 border-b-2">
-                        <div className="flex items-center">
-                            <div className="text-xs px-3"><DateFormatted date={LastUpdateDate} /></div>
+                        <div className="flex items-center my-1">
+                            <div className="text-xs px-3 py-1">{AuthorName}</div>
+                            <span className="mx-1">|</span>
+                            <div className="text-xs px-3 py-1"><DateFormatted date={LastUpdateDate} /></div>
                             {!profile ? "" : ReplyButton}
                             {!profile || profile.Uuid != AuthorUuid ? "" : EditButton}
                         </div>
