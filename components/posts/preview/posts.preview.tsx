@@ -6,16 +6,23 @@ import { useTranslation } from "next-i18next"
 import { POSTS_SERVICE, POST_STATES, Tag } from "../../../services/posts/posts.service"
 import Router from "next/router"
 import DateFormatted from "../../date/date.formatted"
+import { useErrorModal } from "../../hooks/use.error.modal.hook"
 
 // TODO: add tag i18n
 const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdmin?: boolean }) => {
     const { t } = useTranslation()
+    const [showErrorModal] = useErrorModal()
     const { PostUuid, PostTopic, PostPreviewText, AuthorName, CreateDate, CommentsCount, Tags } = props.post
     const handleChangeStateEvent = async (state: string) => {
         const response = await POSTS_SERVICE.update({ postUuid: PostUuid, state: state })
 
         if (response.status == 200) {
             Router.reload()
+        } else {
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.update.post") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
         }
     }
 

@@ -6,9 +6,11 @@ import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
+import { useErrorModal } from "../../hooks/use.error.modal.hook"
 
 const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: FeedCommentWithIndex, onCancel: () => void }) => {
     const [profile] = useProfile()
+    const [showErrorModal] = useErrorModal()
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const { comment } = props
@@ -18,16 +20,20 @@ const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: 
         const { text } = data
 
         if (!profile) {
-            // TODO: show error
-            console.log("unable to get profile")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
 
         const response = await COMMENTS_SERVICE.update({ authorUuid: profile.Uuid, postUuid: PostUuid, commentId: CommentId, commentUuid: CommentUuid, text })
 
         if (response.status != 200) {
-            // TODO: show error
-            console.log("unable to update comment")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.update.comment") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
         Router.reload()

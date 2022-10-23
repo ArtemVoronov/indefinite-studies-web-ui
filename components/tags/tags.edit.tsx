@@ -6,9 +6,11 @@ import { useProfile } from '../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
 import { DEFAULT_LIMIT, SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
 import Overlay from "../overlay/overlay"
+import { useErrorModal } from "../hooks/use.error.modal.hook"
 
 const TagEditForm = () => {
     const [profile] = useProfile()
+    const [showErrorModal] = useErrorModal()
     const { register, handleSubmit } = useForm()
     const { t } = useTranslation()
 
@@ -69,16 +71,20 @@ const TagEditForm = () => {
         const { id, name } = data
 
         if (!profile) {
-            // TODO: show error
-            console.log("unable to get profile")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
 
         const response = await POSTS_SERVICE.updateTag({ id: parseInt(id), name })
 
         if (response.status != 200) {
-            // TODO: show error
-            console.log("unable to update tag")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.update.tag") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
         Router.reload()

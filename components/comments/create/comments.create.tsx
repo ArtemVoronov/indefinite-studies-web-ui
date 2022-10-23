@@ -5,10 +5,12 @@ import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
+import { useErrorModal } from "../../hooks/use.error.modal.hook"
 
 const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid: string, linkedCommentIndex?: number, onCancel: () => void }) => {
     const [profile] = useProfile()
     const { t } = useTranslation()
+    const [showErrorModal] = useErrorModal()
     const { register, handleSubmit } = useForm()
     const { postUuid, linkedCommentUuid, linkedCommentIndex } = props
 
@@ -16,16 +18,20 @@ const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid:
         const { text } = data
 
         if (!profile) {
-            // TODO: show error
-            console.log("unable to get profile")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
 
         const response = await COMMENTS_SERVICE.create({ authorUuid: profile.Uuid, text, postUuid, linkedCommentUuid })
 
         if (response.status != 201) {
-            // TODO: show error
-            console.log("unable to create comment")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.create.comment") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
         Router.reload()

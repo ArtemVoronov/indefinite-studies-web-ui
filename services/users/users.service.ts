@@ -10,9 +10,6 @@ export class UsersService {
         })
 
         if (response.status != 200) {
-            // TODO: show error
-            // TODO: add modal error component or notify error component
-            console.log("unable to get profile")
             return undefined
         }
 

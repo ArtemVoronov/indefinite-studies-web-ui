@@ -5,22 +5,22 @@ import Image from 'next/image'
 import faviconPic from '../../public/favicon.ico'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { useTranslation } from "next-i18next"
+import { useErrorModal } from "../hooks/use.error.modal.hook"
 
 const SignUpForm = () => {
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
+    const [showErrorModal] = useErrorModal()
     const [isEmailSent, setIsEmailSent] = React.useState(false)
 
     const signup = (data: any) => {
         const { login, email, password } = data
         USERS_SERVICE.register({ login, email, password }).then((res) => {
-            console.log("res: ", res) // todo clean
-            if (!res) {
-                // TODO; show error
-                return
-            }
-            if (res.status != 200) {
-                // TODO; show error
+            if (!res || res.status != 200) {
+                showErrorModal(true,
+                    t("error.page.unexpected.error.occurred"),
+                    t("error.page.unable.to.sign.up") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+                )
                 return
             }
             setIsEmailSent(true)

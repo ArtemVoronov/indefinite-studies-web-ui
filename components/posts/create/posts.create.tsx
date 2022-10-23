@@ -5,9 +5,11 @@ import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
 import AssignTagsForm from "../tags/assign.tags.form"
+import { useErrorModal } from "../../hooks/use.error.modal.hook"
 
 const PostCreate = () => {
     const [profile] = useProfile()
+    const [showErrorModal] = useErrorModal()
     const { register, handleSubmit } = useForm()
     const { t } = useTranslation()
     const [tags, setTags] = React.useState([] as Tag[])
@@ -16,16 +18,20 @@ const PostCreate = () => {
         const { topic, text, previewText } = data
 
         if (!profile) {
-            // TODO: show error
-            console.log("unable to get profile")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
 
         const response = await POSTS_SERVICE.create({ authorUuid: profile.Uuid, text, topic, previewText, tagIds: [...tags.map(e => e.Id)] })
 
         if (response.status != 201) {
-            // TODO: show error
-            console.log("unable to create post")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.create.post") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
             return
         }
         Router.push("/post/" + response.data)

@@ -6,12 +6,14 @@ import { SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
 import { useTranslation } from "next-i18next"
 import { ROLES, User, USERS_SERVICE, USER_STATES } from "../../services/users/users.service"
 import Router from "next/router"
+import { useErrorModal } from "../hooks/use.error.modal.hook"
 
 const DEFAULT_MAX_USERS_PER_PAGE = 5
 
 const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBottomNavigation?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [users, setUsers] = React.useState([])
+    const [showErrorModal] = useErrorModal()
     const [loadedCount, setLoadedCount] = React.useState(0)
     const { t } = useTranslation()
     const MAX_USERS_PER_PAGE = props.pageSize ? props.pageSize : DEFAULT_MAX_USERS_PER_PAGE
@@ -47,8 +49,10 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
         if (response.status == 200) {
             Router.reload()
         } else {
-            // TODO: show error
-            console.error("unable to update user")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.update.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
         }
     }
 
@@ -58,8 +62,10 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
         if (response.status == 200) {
             Router.reload()
         } else {
-            // TODO: show error
-            console.error("unable to update user")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.update.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
         }
     }
 

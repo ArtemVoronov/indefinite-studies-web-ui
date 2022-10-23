@@ -6,22 +6,22 @@ import faviconPic from '../../public/favicon.ico'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
+import { useErrorModal } from "../hooks/use.error.modal.hook"
 
 const RestorePasswordForm = (props: { token: string }) => {
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
+    const [showErrorModal] = useErrorModal()
     const [isDone, setDone] = React.useState(false)
     const { token } = props
     const resend = (data: any) => {
         const { password } = data
         USERS_SERVICE.confirmPassword({ token, password }).then((res) => {
-            console.log("res: ", res) // todo clean
-            if (!res) {
-                // TODO; show error
-                return
-            }
-            if (res.status != 200) {
-                // TODO; show error
+            if (!res || res.status != 200) {
+                showErrorModal(true,
+                    t("error.page.unexpected.error.occurred"),
+                    t("error.page.unable.to.restore.password") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+                )
                 return
             }
             setDone(true)

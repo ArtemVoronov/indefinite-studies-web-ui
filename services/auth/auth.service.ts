@@ -13,7 +13,6 @@ export class AuthService {
         result.then((response) => {
             if (!response.ok) {
                 console.error("Unable to login")
-                // TODO: show error
                 return
             }
 
@@ -30,8 +29,6 @@ export class AuthService {
         const result = API_CLIENT.auth.refreshToken(refreshToken)
         result.then((response) => {
             if (!response.ok) {
-                console.error("Unable to refresh token")
-                // TODO: show error
                 return
             }
 

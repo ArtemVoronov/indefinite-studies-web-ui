@@ -9,9 +9,11 @@ import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { useProfile } from '../hooks/use.profile.hook'
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
+import { useErrorModal } from "../hooks/use.error.modal.hook"
 
 const LoginForm = () => {
     const { register, handleSubmit } = useForm()
+    const [showErrorModal] = useErrorModal()
     const { t } = useTranslation()
     const [, setProfile] = useProfile()
 
@@ -20,11 +22,20 @@ const LoginForm = () => {
         AUTH_SERVICE.login(email, password).then(() => {
             USERS_SERVICE.getMe().then((res) => {
                 if (!res) {
+                    showErrorModal(true,
+                        t("error.page.unexpected.error.occurred"),
+                        t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+                    )
                     return
                 }
                 setProfile(res)
                 Router.push("/posts/0")
             })
+        }).catch(() => {
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.sign.in") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
         })
     }
 

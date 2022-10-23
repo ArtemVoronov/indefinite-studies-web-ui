@@ -7,10 +7,12 @@ import { useTranslation } from "next-i18next"
 import AssignTagsForm from "../tags/assign.tags.form"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import Overlay from "../../overlay/overlay"
+import { useErrorModal } from "../../hooks/use.error.modal.hook"
 
 const PostEdit = (props: { postUuid: string }) => {
     const { register, handleSubmit } = useForm()
     const { t } = useTranslation()
+    const [showErrorModal] = useErrorModal()
     const [tags, setTags] = React.useState([] as Tag[])
 
     const [isLoading, setIsLoading] = React.useState(false)
@@ -23,6 +25,11 @@ const PostEdit = (props: { postUuid: string }) => {
 
         if (response.status == 200) {
             Router.push("/post/" + post.Post.PostUuid)
+        } else {
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.update.post") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
         }
     }
 

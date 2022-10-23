@@ -4,11 +4,13 @@ import { User, USERS_SERVICE } from "../../../services/users/users.service"
 import Router from "next/router"
 import { useProfile } from '../../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
+import { useErrorModal } from "../../hooks/use.error.modal.hook"
 
 const AccountEdit = (props: { user: User, onCancel: () => void }) => {
     const { t } = useTranslation()
     const { register, handleSubmit } = useForm()
     const [, setProfile] = useProfile()
+    const [showErrorModal] = useErrorModal()
 
     const { Uuid, Login } = props.user
 
@@ -26,8 +28,10 @@ const AccountEdit = (props: { user: User, onCancel: () => void }) => {
                 Router.reload()
             })
         } else {
-            // TODO: show error
-            console.error("unable to update user")
+            showErrorModal(true,
+                t("error.page.unexpected.error.occurred"),
+                t("error.page.unable.to.update.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+            )
         }
     }
 
