@@ -100,6 +100,7 @@
     "sign.in.page.forgot.password.link": "Forgot your password?",
     "sign.in.page.header": "Sign in to your account",
     "sign.in.page.forgot.password.btn.sign.in": "Sign in",
+    "sign.in.page.error.wrong.credentials": "Wrong credentials",
     "POST_PAGE": "----------------------------------------------------------------",
     "post.page.to": "To",
     "post.page.comment.text.label": "Comment text",

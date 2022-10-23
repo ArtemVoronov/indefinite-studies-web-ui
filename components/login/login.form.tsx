@@ -5,14 +5,14 @@ import { USERS_SERVICE } from "../../services/users/users.service"
 import Router from "next/router"
 import Image from 'next/image'
 import faviconPic from '../../public/favicon.ico'
-import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { ExclamationTriangleIcon, LockClosedIcon } from '@heroicons/react/20/solid'
 import { useProfile } from '../hooks/use.profile.hook'
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
 
 const LoginForm = () => {
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm()
     const [showErrorModal] = useErrorModal()
     const { t } = useTranslation()
     const [, setProfile] = useProfile()
@@ -22,10 +22,7 @@ const LoginForm = () => {
         AUTH_SERVICE.login(email, password).then(() => {
             USERS_SERVICE.getMe().then((res) => {
                 if (!res) {
-                    showErrorModal(true,
-                        t("error.page.unexpected.error.occurred"),
-                        t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
-                    )
+                    setError("wrongCreds", { type: "focus", message: t("sign.in.page.error.wrong.credentials") }, { shouldFocus: true });
                     return
                 }
                 setProfile(res)
@@ -41,14 +38,18 @@ const LoginForm = () => {
 
     return (
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-            <div className="w-full max-w-md space-y-8">
+            <div className="w-full max-w-lg space-y-8">
                 <div className="text-center">
                     <Image src={faviconPic} alt="Indefinite Studies" />
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                         {t("sign.in.page.header")}
                     </h2>
                 </div>
-                <form className="mt-8 space-y-6" onSubmit={handleSubmit(login)}>
+                <form className="mt-8 space-y-6"
+                    onSubmit={(e) => {
+                        clearErrors()
+                        handleSubmit(login)(e)
+                    }}>
                     <input type="hidden" name="remember" defaultValue="true" />
                     <div className="-space-y-px rounded-md shadow-sm">
                         <div>
@@ -79,6 +80,14 @@ const LoginForm = () => {
                                 placeholder={t("sign.in.page.password.placeholder")}
                             />
                         </div>
+                        {errors.wrongCreds && (
+                            <div className="my-1 py-2 px-2 rounded-md bg-red-200 text-red-800 text-sm flex justify-center items-center">
+                                <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                    <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                                </div>
+                                <div className="ml-2">{`${errors.wrongCreds.message}`}</div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex items-center justify-between">

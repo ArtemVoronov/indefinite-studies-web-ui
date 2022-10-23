@@ -100,6 +100,7 @@
     "sign.in.page.forgot.password.link": "Забыли пароль?",
     "sign.in.page.header": "Авторизация",
     "sign.in.page.forgot.password.btn.sign.in": "Войти",
+    "sign.in.page.error.wrong.credentials": "Неправильный логин/пароль",
     "POST_PAGE": "----------------------------------------------------------------",
     "post.page.to": "Кому",
     "post.page.comment.text.label": "Текст комментария",
