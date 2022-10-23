@@ -16,6 +16,8 @@
     "btn": {
         "submit": "Отправить",
         "cancel": "Отменить",
+        "close": "Закрыть",
+        "confirm": "Подтвердить",
         "edit": "Редактировать",
         "reply": "Ответить",
         "prev": "Назад",
@@ -34,6 +36,8 @@
     "no.data": "Нет данных",
     "overlay.header": "Загрузка",
     "overlay.subheader": "Это может занять несколько секунд, пожалуйста, не закрывайте страницу",
+    "error.page.unexpected.error.occurred": "Произошла ошибка",
+    "error.page.please.repeat.action.or.reload.the.page": "Пожалуйста, повторите действие или перезагрузите страницу",
     "ADMIN_PAGE": "----------------------------------------------------------------",
     "admin.page.header.tags": "Управление тэгами",
     "admin.page.header.posts": "Управление постами",

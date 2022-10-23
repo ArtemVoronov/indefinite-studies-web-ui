@@ -16,6 +16,8 @@
     "btn": {
         "submit": "Submit",
         "cancel": "Cancel",
+        "close": "Close",
+        "confirm": "Confirm",
         "edit": "Edit",
         "reply": "Reply",
         "prev": "Prev",
@@ -34,6 +36,8 @@
     "no.data": "No Data",
     "overlay.header": "Loading",
     "overlay.subheader": "This may take a few seconds, please dont close this page",
+    "error.page.unexpected.error.occurred": "Unexpected error occurred",
+    "error.page.please.repeat.action.or.reload.the.page": "Please repeat the action or reload the page",
     "ADMIN_PAGE": "----------------------------------------------------------------",
     "admin.page.header.tags": "Tags management",
     "admin.page.header.posts": "Posts management",
