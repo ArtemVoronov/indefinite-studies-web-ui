@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useTranslation } from "next-i18next"
-import PostsList from "../posts/list/posts.list"
 import { useProfile } from '../../components/hooks/use.profile.hook'
+import PostsTable from "../posts/list/posts.table"
 
 const AccountSettingsPostsForm = () => {
     const { t } = useTranslation()
@@ -16,7 +16,7 @@ const AccountSettingsPostsForm = () => {
             </h2>
             <div className="">
                 <div>
-                    <PostsList tagId="" postState="" userUuid={!profile ? "" : profile.Uuid} page={`${postsPage}`} tableView pageSize={10} hideTopNavigation onNavigate={(page) => { setPostsPage(page) }} />
+                    <PostsTable tagId="" postState="" userUuid={!profile ? "" : profile.Uuid} page={`${postsPage}`} pageSize={10} onNavigate={(page) => { setPostsPage(page) }} />
                 </div>
             </div>
         </div>

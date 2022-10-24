@@ -120,6 +120,8 @@
     "POSTS_PAGE": "----------------------------------------------------------------",
     "posts.page.no.comments": "No comments",
     "posts.page.comment.count": "comments",
+    "posts.page.comment.count.1": "comment",
+    "posts.page.comment.count.2.3.4": "comments",
     "posts.page.table.head.uuid": "UUID",
     "posts.page.table.head.topic": "Topic",
     "posts.page.table.head.author": "Author",

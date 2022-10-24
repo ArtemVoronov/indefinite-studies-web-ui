@@ -120,6 +120,8 @@
     "POSTS_PAGE": "----------------------------------------------------------------",
     "posts.page.no.comments": "Нет комментариев",
     "posts.page.comment.count": "комментариев",
+    "posts.page.comment.count.1": "комментарий",
+    "posts.page.comment.count.2.3.4": "комментария",
     "posts.page.table.head.uuid": "UUID",
     "posts.page.table.head.topic": "Название",
     "posts.page.table.head.author": "Автор",

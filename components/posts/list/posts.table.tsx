@@ -1,18 +1,15 @@
 import * as React from "react"
 import { FEED_SERVICE, FeedBlock } from "../../../services/feed/feed.service"
-import PostPreview from "../preview/posts.preview"
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import Overlay from "../../overlay/overlay"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import { useTranslation } from "next-i18next"
 import Link from "next/link"
+import PostRow from "../preview/posts.row"
 
 const DEFAULT_MAX_POSTS_PER_PAGE = 5
 
-const PostsList = (props: {
-    tagId: string, page: string, postState: string, userUuid: string,
-    hideTopNavigation?: boolean, hideBottomNavigation?: boolean, pageSize?: number, onNavigate?: (page: number) => void
-}) => {
+const PostsTable = (props: { tagId: string, page: string, postState: string, userUuid: string, withModeratorActions?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [posts, setPosts] = React.useState([])
     const [loadedCount, setLoadedCount] = React.useState(0)
@@ -130,17 +127,26 @@ const PostsList = (props: {
 
     return (
         <div className="w-full max-w-3xl">
-            {!props.hideTopNavigation && (props.onNavigate ? outerNavigation : navigation)}
-            <div>
-                {posts.map(function (p: FeedBlock, idx) {
-                    return (
-                        <PostPreview key={idx} post={p} />
-                    )
-                })}
-            </div>
-            {!props.hideBottomNavigation && (props.onNavigate ? outerNavigation : navigation)}
+            <table className="table-auto w-full">
+                <thead>
+                    <tr className="bg-white">
+                        <th>{t("posts.page.table.head.uuid")}</th>
+                        <th>{t("posts.page.table.head.topic")}</th>
+                        <th>{t("posts.page.table.head.author")}</th>
+                        <th>{t("posts.page.table.head.action")}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {posts.map(function (p: FeedBlock, idx) {
+                        return (
+                            <PostRow key={idx} post={p} withModeratorActions={props.withModeratorActions} />
+                        )
+                    })}
+                </tbody>
+            </table>
+            {props.onNavigate ? outerNavigation : navigation}
         </div>
     )
 }
 
-export default PostsList
+export default PostsTable

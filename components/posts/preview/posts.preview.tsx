@@ -115,7 +115,11 @@ const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdm
                     <div className="text-xs">
                         <Link href={"/post/" + PostUuid} >
                             {/* TODO: fix text for 0, 1, 2, multiple comments cases in different locales */}
-                            <a className="text-indigo-600 hover:text-indigo-500">{CommentsCount} {t("posts.page.comment.count")}</a>
+                            <a className="text-indigo-600 hover:text-indigo-500">
+                                {(CommentsCount != 1 && CommentsCount != 2 && CommentsCount != 3 && CommentsCount != 4) && (CommentsCount + " " + t("posts.page.comment.count"))}
+                                {CommentsCount == 1 && (CommentsCount + " " + t("posts.page.comment.count.1"))}
+                                {(CommentsCount == 2 || CommentsCount == 3 || CommentsCount == 4) && (CommentsCount + " " + t("posts.page.comment.count.2.3.4"))}
+                            </a>
                         </Link>
                     </div>
                 </div>

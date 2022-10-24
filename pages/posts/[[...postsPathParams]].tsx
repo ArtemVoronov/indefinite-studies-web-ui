@@ -6,7 +6,7 @@ import { POST_STATES } from "../../services/posts/posts.service"
 
 const PostsPage: NextPage = (props: { tagId?: string, page?: string }) => {
 	return (
-		<PostsList tagId={`${props.tagId}`} page={`${props.page}`} postState={POST_STATES.PUBLISHED} />
+		<PostsList tagId={`${props.tagId}`} page={`${props.page}`} userUuid="" postState={POST_STATES.PUBLISHED} />
 	)
 }
 
