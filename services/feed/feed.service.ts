@@ -1,7 +1,7 @@
 import { ApiResponse } from "apisauce"
 import { ApiClient, API_CLIENT, API_CLIENT_SERVER_SIDE } from "../api/api-client"
 import { API_ERROR_HANDLER } from '../api/api-error-handler'
-import { GetFeedAllOptions, GetFeedPostOptions, GetFeedUsersOptions, } from "../api/feed/feed.api"
+import { GetFeedAllOptions, GetFeedCommentsOptions, GetFeedPostOptions, GetFeedUsersOptions, } from "../api/feed/feed.api"
 
 // TODO: service should some maningful results instead of response
 export class FeedService {
@@ -41,6 +41,13 @@ export class FeedService {
     async getUsers(options: GetFeedUsersOptions): Promise<ApiResponse<any>> {
         const result = await API_ERROR_HANDLER.callWithErrorHandling({
             action: () => this.client.feed.getUsers(options),
+        })
+        return result
+    }
+
+    async getComments(options: GetFeedCommentsOptions): Promise<ApiResponse<any>> {
+        const result = await API_ERROR_HANDLER.callWithErrorHandling({
+            action: () => this.client.feed.getComments(options),
         })
         return result
     }
