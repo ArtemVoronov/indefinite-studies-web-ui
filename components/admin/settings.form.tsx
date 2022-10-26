@@ -17,7 +17,7 @@ const AdminSettingsForm = () => {
 
     return (
         <div className="flex flex-1">
-            <div className="flex flex-col flex-1 flex-grow-0">
+            <div className="flex flex-col flex-1 flex-grow-0 h-full">
                 <AdminSettingsSidebar chosen={visiblePanel} onChoose={(val) => { setVisiblePanel(val) }} />
             </div>
             <div className="flex-1">

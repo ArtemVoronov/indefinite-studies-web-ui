@@ -10,7 +10,7 @@ const AccountViewPage: NextPage = () => {
     const [profile] = useProfile()
 
     return (
-        <div className="w-full max-w-3xl m-3 p-3 flex-1 flex items-start justify-center">
+        <div className="w-full flex flex-1">
             {!profile ? t("no.data") : <AccountSettingsForm />}
         </div>
     )
