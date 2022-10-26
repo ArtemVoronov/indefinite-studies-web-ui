@@ -79,6 +79,7 @@ export type Tag = {
     Id: number
     Name: string
 }
+
 export const POST_STATES = {
     "NEW": "NEW",
     "ON_MODERATION": "ON_MODERATION",

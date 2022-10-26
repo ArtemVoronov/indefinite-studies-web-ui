@@ -8,6 +8,7 @@ import { useTranslation } from "next-i18next"
 import DateFormatted from "../../date/date.formatted"
 import Link from "next/link"
 import MarkDown from "../../markdown/markdown"
+import { COMMENT_STATES } from "../../../services/comments/comments.service"
 
 const CommentView = (props: {
     comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number,
@@ -20,7 +21,7 @@ const CommentView = (props: {
     const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
     const [showEditCommentForm, setShowEditCommentForm] = React.useState(false)
     const [profile] = useProfile()
-    const { CommentUuid, AuthorUuid, CommentText, AuthorName, LastUpdateDate, PostUuid } = props.comment
+    const { CommentUuid, AuthorUuid, CommentText, AuthorName, LastUpdateDate, PostUuid, CommentState } = props.comment
 
     const handleEditEvent = () => {
         setShowEditCommentForm(true)
@@ -97,7 +98,13 @@ const CommentView = (props: {
                             </div>
                         )}
                         <div>
-                            <MarkDown text={CommentText} className="prose lg:prose-xl -my-5" />
+                            {/* TODO: in future we can add moderation workflow via states: COMMENT_STATES.NEW, COMMENT_STATES.ON_MODERATION, COMMENT_STATES.PUBLISHED */}
+                            {(CommentState == COMMENT_STATES.BLOCKED) && (
+                                t("post.page.comment.blocked")
+                            )}
+                            {(CommentState != COMMENT_STATES.BLOCKED) && (
+                                <MarkDown text={CommentText} className="lg:prose-base -my-2" />
+                            )}
                         </div>
                     </div>
                 </div>

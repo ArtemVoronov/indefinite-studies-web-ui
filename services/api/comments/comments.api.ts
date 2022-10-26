@@ -17,4 +17,4 @@ export class CommentsApi {
 }
 
 export type CreateCommentOptions = { authorUuid: string, postUuid: string, text: string, linkedCommentUuid: string }
-export type UpdateCommentOptions = { authorUuid: string, postUuid: string, commentId: number, commentUuid: string, text: string }
+export type UpdateCommentOptions = { authorUuid: string, postUuid: string, commentId: number, commentUuid: string, text?: string, state?: string }
