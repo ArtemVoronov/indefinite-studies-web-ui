@@ -10,7 +10,7 @@ const AdminPage: NextPage = () => {
     const [profile] = useProfile()
 
     return (
-        <div className="w-full">
+        <div className="w-full flex flex-1">
             {!profile ? t("no.data") : <AdminSettingsForm />}
         </div>
     )

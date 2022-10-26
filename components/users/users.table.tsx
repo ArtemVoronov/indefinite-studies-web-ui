@@ -8,9 +8,9 @@ import { ROLES, User, USERS_SERVICE, USER_STATES } from "../../services/users/us
 import Router from "next/router"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
 
-const DEFAULT_MAX_USERS_PER_PAGE = 5
+const DEFAULT_MAX_USERS_PER_PAGE = 25
 
-const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBottomNavigation?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
+const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page: number) => void }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const [users, setUsers] = React.useState([])
     const [showErrorModal] = useErrorModal()
@@ -71,7 +71,7 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
 
     React.useEffect(() => {
         fetchUsers()
-    }, [props.page])
+    }, [props.page, props.pageSize])
 
 
     const navigation = (
@@ -112,9 +112,9 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
     )
 
     return (
-        <div className="w-full max-w-3xl">
-            {!props.hideTopNavigation && navigation}
-            <table className="table-auto w-full">
+        <div className="flex flex-1 flex-col">
+            {navigation}
+            <table className="table-auto flex-1">
                 <thead>
                     <tr className="bg-white">
                         <th>UUID</th>
@@ -169,9 +169,8 @@ const UsersList = (props: { page: string, hideTopNavigation?: boolean, hideBotto
                     })}
                 </tbody>
             </table>
-            {!props.hideBottomNavigation && navigation}
         </div>
     )
 }
 
-export default UsersList
+export default UsersTable
