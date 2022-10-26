@@ -16,12 +16,16 @@ const AdminSettingsForm = () => {
     const [visiblePanel, setVisiblePanel] = React.useState(ADMINS_SETTINGS_PANELS.POSTS)
 
     return (
-        <div className="flex flex-1 justify-between flex-col min-h-full">
-            <AdminSettingsSidebar chosen={visiblePanel} onChoose={(val) => { setVisiblePanel(val) }} />
-            {visiblePanel == ADMINS_SETTINGS_PANELS.FEED && <AdminSettingsFeedForm />}
-            {visiblePanel == ADMINS_SETTINGS_PANELS.POSTS && <AdminSettingsPostsForm />}
-            {visiblePanel == ADMINS_SETTINGS_PANELS.TAGS && <AdminSettingsTagForm />}
-            {visiblePanel == ADMINS_SETTINGS_PANELS.USERS && <AdminSettingsUserForm />}
+        <div className="flex flex-1">
+            <div className="flex flex-col flex-1 flex-grow-0">
+                <AdminSettingsSidebar chosen={visiblePanel} onChoose={(val) => { setVisiblePanel(val) }} />
+            </div>
+            <div className="flex-1">
+                {visiblePanel == ADMINS_SETTINGS_PANELS.FEED && <AdminSettingsFeedForm />}
+                {visiblePanel == ADMINS_SETTINGS_PANELS.POSTS && <AdminSettingsPostsForm />}
+                {visiblePanel == ADMINS_SETTINGS_PANELS.TAGS && <AdminSettingsTagForm />}
+                {visiblePanel == ADMINS_SETTINGS_PANELS.USERS && <AdminSettingsUserForm />}
+            </div>
         </div>
     )
 }

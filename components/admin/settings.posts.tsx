@@ -7,55 +7,56 @@ import CommentsTable from "../comments/list/comments.table"
 
 const AdminSettingsPostsForm = () => {
     const { t } = useTranslation()
-    const [newPostsPage, setNewPostsPage] = React.useState(0)
-    const [moderatedPostsPage, setModeratedPostsPage] = React.useState(0)
-    const [publishedPage, setPublishedPostsPage] = React.useState(0)
-    const [blockedPage, setBlockedPostsPage] = React.useState(0)
-    const [newCommentsPage, setNewCommentsPage] = React.useState(0)
+    const [postState, setPostState] = React.useState(POST_STATES.NEW)
+    const [commentState, setCommentState] = React.useState(COMMENT_STATES.NEW)
+    const [pageSize, setPageSize] = React.useState(5)
+    const [postsPage, setPostsPage] = React.useState(0)
+    const [commentsPage, setCommentsPage] = React.useState(0)
 
     return (
-
         <div className="flex flex-1 flex-col justify-center my-2">
-            <h2 className="flex justify-center font-extrabold leading-tight text-4xl mt-0 mb-2 text-center">
-                {t("admin.page.header.posts")}
-            </h2>
-            <div className="">
-                <div>
-                    <h3 className="font-bold leading-tight text-2xl my-2">
-                        {t("admin.page.header.posts.new")}
-                    </h3>
-                    <PostsTable tagId="" userUuid="" page={`${newPostsPage}`} postState={POST_STATES.NEW} pageSize={5} withModeratorActions onNavigate={(page) => { setNewPostsPage(page) }} />
+            <div className="flex justify-center">
+                <div className="m-2">
+                    <label>{t("admin.page.label.post.state")}</label>
+                    <select onChange={(e: any) => { setPostState(e.target.value) }} className="mt-1 block max-w-xs w-48 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                        {Object.values(POST_STATES).map((p: string, idx: number) => {
+                            return <option key={idx} value={p} label={p} />
+                        })}
+                    </select>
                 </div>
-                <div>
-                    <h3 className="font-bold leading-tight text-2xl my-2">
-                        {t("admin.page.header.posts.on.moderations")}
-                    </h3>
-                    <PostsTable tagId="" userUuid="" page={`${moderatedPostsPage}`} postState={POST_STATES.ON_MODERATION} withModeratorActions pageSize={5} onNavigate={(page) => { setModeratedPostsPage(page) }} />
+                <div className="m-2">
+                    <label>{t("admin.page.label.comment.state")}</label>
+                    <select onChange={(e: any) => { setCommentState(e.target.value) }} className="mt-1 block max-w-xs w-48 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                        {Object.values(COMMENT_STATES).map((p: string, idx: number) => {
+                            return <option key={idx} value={p} label={p} />
+                        })}
+                    </select>
                 </div>
-                <div>
-                    <h3 className="font-bold leading-tight text-2xl my-2">
-                        {t("admin.page.header.posts.published")}
-                    </h3>
-                    <PostsTable tagId="" userUuid="" page={`${publishedPage}`} postState={POST_STATES.PUBLISHED} pageSize={5} withModeratorActions onNavigate={(page) => { setPublishedPostsPage(page) }} />
+                <div className="m-2 w-36">
+                    <label>{t("admin.page.label.page.size")}</label>
+                    <select onChange={(e: any) => { setPageSize(e.target.value) }} className="mt-1 block max-w-xs w-48 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                        <option>5</option>
+                        <option>10</option>
+                        <option>25</option>
+                        <option>50</option>
+                    </select>
                 </div>
-                <div>
-                    <h3 className="font-bold leading-tight text-2xl my-2">
-                        {t("admin.page.header.posts.blocked")}
-                    </h3>
-                    <PostsTable tagId="" userUuid="" page={`${blockedPage}`} postState={POST_STATES.BLOCKED} pageSize={5} withModeratorActions onNavigate={(page) => { setBlockedPostsPage(page) }} />
+            </div>
+            <div className="flex flex-1">
+                <div className="m-2 flex-1">
+                    <h2 className="flex justify-center font-extrabold leading-tight text-4xl mt-0 mb-2 text-center">
+                        {t("admin.page.header.posts")}
+                    </h2>
+                    <PostsTable tagId="" userUuid="" page={`${postsPage}`} postState={postState} pageSize={pageSize} withModeratorActions onNavigate={(page) => { setPostsPage(page) }} />
                 </div>
-                <div>
-                    <h3 className="font-bold leading-tight text-2xl my-2">
-                        {t("admin.page.header.comments.new")}
-                    </h3>
-                    <CommentsTable page={`${newCommentsPage}`} commentState={COMMENT_STATES.NEW} pageSize={5} onNavigate={(page) => { setNewCommentsPage(page) }} />
+                <div className="m-2 flex-1">
+                    <h2 className="flex justify-center font-extrabold leading-tight text-4xl mt-0 mb-2 text-center">
+                        {t("admin.page.header.comments")}
+                    </h2>
+                    <CommentsTable page={`${commentsPage}`} commentState={commentState} pageSize={pageSize} onNavigate={(page) => { setCommentsPage(page) }} />
                 </div>
-                <div>
-                    <h3 className="font-bold leading-tight text-2xl my-2">
-                        {t("admin.page.header.comments.blocked")}
-                    </h3>
-                    <CommentsTable page={`${newCommentsPage}`} commentState={COMMENT_STATES.BLOCKED} pageSize={5} onNavigate={(page) => { setNewCommentsPage(page) }} />
-                </div>
+
+
             </div>
         </div>
 

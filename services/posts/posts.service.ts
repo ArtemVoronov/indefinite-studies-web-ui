@@ -86,3 +86,10 @@ export const POST_STATES = {
     "PUBLISHED": "PUBLISHED",
     "BLOCKED": "BLOCKED",
 }
+
+// export enum POST_STATES {
+//     NEW = "NEW",
+//     ON_MODERATION = "ON_MODERATION",
+//     PUBLISHED = "PUBLISHED",
+//     BLOCKED = "BLOCKED"
+// }

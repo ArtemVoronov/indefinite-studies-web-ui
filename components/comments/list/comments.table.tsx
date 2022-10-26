@@ -42,7 +42,7 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
 
     React.useEffect(() => {
         fetchComments()
-    }, [props.page])
+    }, [props.page, props.commentState, props.pageSize])
 
     const navigation = (
         <div className="flex justify-center p-3 my-4 bg-white border-b-2 border-gray-100"
@@ -77,13 +77,13 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
     if (comments.length == 0) return (
         <div>
             {t("no.data")}
-            {navigation}
         </div>
     )
 
     return (
-        <div className="w-full max-w-3xl">
-            <table className="table-auto w-full">
+        <div className="flex flex-1 flex-col">
+            {navigation}
+            <table className="table-auto flex-1">
                 <thead>
                     <tr className="bg-white">
                         <th>{t("admin.page.comments.table.head.uuid")}</th>
@@ -100,7 +100,6 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
                     })}
                 </tbody>
             </table>
-            {navigation}
         </div>
     )
 }
