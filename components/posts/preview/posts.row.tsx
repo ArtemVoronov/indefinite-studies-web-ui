@@ -5,6 +5,8 @@ import { useTranslation } from "next-i18next"
 import { POSTS_SERVICE, POST_STATES } from "../../../services/posts/posts.service"
 import Router from "next/router"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
+import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon, PencilIcon } from "@heroicons/react/24/solid"
+import ButtonWithToolTip from "../../buttons/button.wit.tooltip"
 
 const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => {
     const { t } = useTranslation()
@@ -29,30 +31,10 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
 
     const ModeratorActionsPanel = (
         <>
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-0 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(POST_STATES.NEW) }}
-            >
-                {t("btn.new")}
-            </button>
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-1 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }}
-            >
-                {t("btn.moderate")}
-            </button >
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-1 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }}
-            >
-                {t("btn.publish")}
-            </button >
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-1 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }}
-            >
-                {t("btn.block")}
-            </button >
+            <ButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(POST_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <ButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <ButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <ButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
         </>
     )
 
@@ -62,26 +44,18 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
                 <Link href={"/post/" + PostUuid}>
                     <a>
                         <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
-                            {PostUuid}
+                            {PostTopic}
                         </div>
                     </a>
                 </Link>
             </td>
-            <td className="text-center">
-                {PostTopic}
-            </td>
-            <td className="text-center">
+            <td className="text-center w-64">
                 {AuthorName}
             </td>
-            <td className="text-center">
-                <div className="flex flex-col">
+            <td className="text-center w-64">
+                <div className="flex justify-center">
                     {!props.withModeratorActions ? "" : ModeratorActionsPanel}
-                    <button
-                        className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-1 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        onClick={handleEditEvent}
-                    >
-                        {t("btn.edit")}
-                    </button>
+                    <ButtonWithToolTip text={t("btn.edit")} action={handleEditEvent} icon={<PencilIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
                 </div>
             </td>
         </tr>

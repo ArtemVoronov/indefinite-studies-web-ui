@@ -5,6 +5,8 @@ import { useTranslation } from "next-i18next"
 import Router from "next/router"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { COMMENTS_SERVICE, COMMENT_STATES } from "../../../services/comments/comments.service"
+import ButtonWithToolTip from "../../buttons/button.wit.tooltip"
+import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon } from "@heroicons/react/20/solid"
 
 const CommentRow = (props: { comment: FeedComment }) => {
     const { t } = useTranslation()
@@ -26,53 +28,31 @@ const CommentRow = (props: { comment: FeedComment }) => {
 
     const ModeratorActionsPanel = (
         <>
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-0 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(COMMENT_STATES.NEW) }}
-            >
-                {t("btn.new")}
-            </button>
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-1 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(COMMENT_STATES.ON_MODERATION) }}
-            >
-                {t("btn.moderate")}
-            </button >
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-1 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(COMMENT_STATES.PUBLISHED) }}
-            >
-                {t("btn.publish")}
-            </button >
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-1 py-1 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={() => { handleChangeStateEvent(COMMENT_STATES.BLOCKED) }}
-            >
-                {t("btn.block")}
-            </button >
+            <ButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(COMMENT_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <ButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(COMMENT_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <ButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(COMMENT_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <ButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(COMMENT_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
         </>
     )
 
     return (
         <tr className="bg-white">
-            <td className="text-center">
-                <Link href={"/post/" + PostUuid}>
-                    <a>
-                        <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
-                            {PostUuid}
-                        </div>
-                    </a>
-                </Link>
-            </td>
-            <td className="text-center">
+            <td className="text-center w-64">
                 {AuthorName}
             </td>
             <td className="text-center">
                 {CommentText}
             </td>
-            <td className="text-center">
-                <div className="flex flex-col">
+            <td className="text-center w-64">
+                <div className="flex">
                     {ModeratorActionsPanel}
+                    <Link href={"/post/" + PostUuid}>
+                        <a>
+                            <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
+                                {t("btn.open")}
+                            </div>
+                        </a>
+                    </Link>
                 </div>
             </td>
         </tr>

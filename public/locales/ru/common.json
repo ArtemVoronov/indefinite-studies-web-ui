@@ -14,6 +14,7 @@
         }
     },
     "btn": {
+        "open": "Открыть",
         "submit": "Отправить",
         "cancel": "Отменить",
         "close": "Закрыть",
@@ -74,7 +75,6 @@
     "admin.page.sidebar.tags": "Тэги",
     "admin.page.sidebar.posts": "Посты",
     "admin.page.sidebar.users": "Пользователи",
-    "admin.page.comments.table.head.uuid": "Пост",
     "admin.page.comments.table.head.author": "Автор",
     "admin.page.comments.table.head.text": "Текст",
     "admin.page.comments.table.head.action": "Действия",
@@ -127,7 +127,6 @@
     "posts.page.comment.count": "комментариев",
     "posts.page.comment.count.1": "комментарий",
     "posts.page.comment.count.2.3.4": "комментария",
-    "posts.page.table.head.uuid": "UUID",
     "posts.page.table.head.topic": "Название",
     "posts.page.table.head.author": "Автор",
     "posts.page.table.head.action": "Действие",

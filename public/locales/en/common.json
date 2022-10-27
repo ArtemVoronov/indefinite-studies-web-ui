@@ -14,6 +14,7 @@
         }
     },
     "btn": {
+        "open": "Open",
         "submit": "Submit",
         "cancel": "Cancel",
         "close": "Close",
@@ -74,7 +75,6 @@
     "admin.page.sidebar.tags": "Tags",
     "admin.page.sidebar.posts": "Posts",
     "admin.page.sidebar.users": "Users",
-    "admin.page.comments.table.head.uuid": "Post UUID",
     "admin.page.comments.table.head.author": "Author",
     "admin.page.comments.table.head.text": "Text",
     "admin.page.comments.table.head.action": "Actions",
@@ -127,7 +127,6 @@
     "posts.page.comment.count": "comments",
     "posts.page.comment.count.1": "comment",
     "posts.page.comment.count.2.3.4": "comments",
-    "posts.page.table.head.uuid": "UUID",
     "posts.page.table.head.topic": "Topic",
     "posts.page.table.head.author": "Author",
     "posts.page.table.head.action": "Action",

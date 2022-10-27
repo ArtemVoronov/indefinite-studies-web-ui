@@ -42,7 +42,7 @@ const AdminSettingsPostsForm = () => {
                     </select>
                 </div>
             </div>
-            <div className="flex flex-1">
+            <div className="flex flex-1 flex-col">
                 <div className="m-2 flex-1">
                     <h2 className="flex justify-center font-extrabold leading-tight text-4xl mt-0 mb-2 text-center">
                         {t("admin.page.header.posts")}
