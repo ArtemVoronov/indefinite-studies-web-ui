@@ -6,7 +6,7 @@ import { POSTS_SERVICE, POST_STATES } from "../../../services/posts/posts.servic
 import Router from "next/router"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon, PencilIcon } from "@heroicons/react/24/solid"
-import ButtonWithToolTip from "../../buttons/button.wit.tooltip"
+import ButtonWithToolTip from "../../buttons/button.with.tooltip"
 
 const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => {
     const { t } = useTranslation()

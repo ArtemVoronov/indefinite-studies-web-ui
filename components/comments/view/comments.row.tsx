@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next"
 import Router from "next/router"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { COMMENTS_SERVICE, COMMENT_STATES } from "../../../services/comments/comments.service"
-import ButtonWithToolTip from "../../buttons/button.wit.tooltip"
+import ButtonWithToolTip from "../../buttons/button.with.tooltip"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon } from "@heroicons/react/20/solid"
 
 const CommentRow = (props: { comment: FeedComment }) => {
