@@ -56,7 +56,7 @@ const SignUpForm = () => {
                                 autoComplete="login"
                                 {...register("login")}
                                 required
-                                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                className="dark:bg-slate-400 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 placeholder={t("sign.up.page.login.placeholder")}
                             />
                         </div>
@@ -70,7 +70,7 @@ const SignUpForm = () => {
                                 autoComplete="email"
                                 {...register("email")}
                                 required
-                                className="relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                className="dark:bg-slate-400 relative block w-full appearance-none rounded-none border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 placeholder={t("sign.up.page.email.placeholder")}
                             />
                         </div>
@@ -84,7 +84,7 @@ const SignUpForm = () => {
                                 autoComplete="current-password"
                                 required
                                 {...register("password")}
-                                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                className="dark:bg-slate-400 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 placeholder={t("sign.up.page.password.placeholder")}
                             />
                         </div>

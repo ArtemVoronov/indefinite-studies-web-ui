@@ -39,7 +39,7 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
     )
 
     return (
-        <tr className="bg-white">
+        <tr className="bg-white dark:bg-slate-400">
             <td className="text-center">
                 <Link href={"/post/" + PostUuid}>
                     <a>

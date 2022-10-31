@@ -104,7 +104,7 @@ const AssignTagsForm = (props: { initialValue?: Tag[], onChange: (tags: Tag[]) =
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="tagId" className="block text-sm font-medium text-gray-700">{t("post.page.tags.label")}</label>
-                    <select multiple onChange={handleSelectTag} id="tagId" className="mt-1 block max-w-xs rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <select multiple onChange={handleSelectTag} id="tagId" className="mt-1 block max-w-xs rounded-md border border-gray-300 bg-white dark:bg-slate-400 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                         {tags.map(function (p: Tag, idx) {
                             return selectedTags.map(e => e.Id).indexOf(p.Id) != -1 ? "" : (
                                 <option value={p.Id} label={p.Name} key={idx} />

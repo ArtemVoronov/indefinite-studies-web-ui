@@ -75,7 +75,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
 
 
     const navigation = (
-        <div className="flex justify-center p-3 my-4 bg-white border-b-2 border-gray-100"
+        <div className="flex justify-center p-3 my-4 bg-white dark:bg-slate-400 border-b-2 border-gray-100 dark:border-gray-800"
             style={{ display: (users.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <a
                 onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
@@ -116,7 +116,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
             {navigation}
             <table className="table-auto flex-1">
                 <thead>
-                    <tr className="bg-white">
+                    <tr className="bg-white dark:bg-slate-400">
                         <th>UUID</th>
                         <th>Email</th>
                         <th>Name</th>
@@ -128,7 +128,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
                 <tbody>
                     {users.map(function (p: User, idx) {
                         return (
-                            <tr className="bg-white" key={idx}>
+                            <tr className="bg-white dark:bg-slate-400" key={idx}>
                                 <td className="text-center">
                                     <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
                                         {p.Uuid}

@@ -1,11 +1,9 @@
 import * as React from "react"
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-
-import { classNames } from "../../utils/utils"
 import { UserIcon } from '@heroicons/react/24/outline'
 import { useTranslation } from 'next-i18next'
-import DropDownMenuLink from "./dropdown.menu.link"
+import MenuButton from "./menu.button"
 
 const NotAuthorizedUserButton = () => {
     const { t } = useTranslation()
@@ -28,65 +26,13 @@ const NotAuthorizedUserButton = () => {
                 leaveTo="transform opacity-0 scale-95"
             >
                 <Menu.Items
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-slate-400 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                     <div className="py-1">
-                        <Menu.Item>
-                            {({ active }) => (
-                                <DropDownMenuLink href="/login">
-                                    <div
-                                        className={classNames(
-                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                            'block px-4 py-2 text-base font-medium'
-                                        )}
-                                    >
-                                        {t("navbar.menu.sign.in")}
-                                    </div>
-                                </DropDownMenuLink>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                                <DropDownMenuLink href="/signup">
-                                    <div
-                                        className={classNames(
-                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                            'block px-4 py-2 text-base font-medium'
-                                        )}
-                                    >
-                                        {t("navbar.menu.sign.up")}
-                                    </div>
-                                </DropDownMenuLink>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                                <DropDownMenuLink href="/posts/0" locale="ru">
-                                    <div
-                                        className={classNames(
-                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                            'block px-4 py-2 text-base font-medium'
-                                        )}
-                                    >
-                                        {t("navbar.menu.to.russian")}
-                                    </div>
-                                </DropDownMenuLink>
-                            )}
-                        </Menu.Item>
-                        <Menu.Item>
-                            {({ active }) => (
-                                <DropDownMenuLink href="/posts/0" locale="en">
-                                    <div
-                                        className={classNames(
-                                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                            'block px-4 py-2 text-base font-medium'
-                                        )}
-                                    >
-                                        {t("navbar.menu.to.english")}
-                                    </div>
-                                </DropDownMenuLink>
-                            )}
-                        </Menu.Item>
+                        <MenuButton href="/login" text={t("navbar.menu.sign.in")} />
+                        <MenuButton href="/signup" text={t("navbar.menu.sign.up")} />
+                        <MenuButton href="/posts/0" text={t("navbar.menu.to.russian")} locale="ru" />
+                        <MenuButton href="/posts/0" text={t("navbar.menu.to.english")} locale="en" />
                     </div>
                 </Menu.Items>
             </Transition>

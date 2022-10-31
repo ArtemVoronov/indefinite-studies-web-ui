@@ -45,7 +45,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
     }, [props.page, props.tagId, props.postState, props.pageSize])
 
     const navigation = (
-        <div className="flex justify-center p-0 my-0 bg-white border-b-2"
+        <div className="flex justify-center p-0 my-0 bg-white dark:bg-slate-400 border-b-2 dark:border-gray-800"
             style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <a
                 onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
@@ -85,7 +85,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
             {navigation}
             <table className="table-auto flex-1">
                 <thead>
-                    <tr className="bg-white">
+                    <tr className="bg-white dark:bg-slate-400">
                         <th>{t("posts.page.table.head.topic")}</th>
                         <th className="w-64">{t("posts.page.table.head.author")}</th>
                         <th className="w-64">{t("posts.page.table.head.action")}</th>

@@ -36,7 +36,7 @@ const CommentRow = (props: { comment: FeedComment }) => {
     )
 
     return (
-        <tr className="bg-white">
+        <tr className="bg-white dark:bg-slate-400">
             <td className="text-center w-64">
                 {AuthorName}
             </td>

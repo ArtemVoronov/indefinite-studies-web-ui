@@ -74,7 +74,7 @@ const PostView = (props: { postUuid: string }) => {
 
     return (
         <div>
-            <div className="p-3 my-4 bg-white border-1 border-gray-100">
+            <div className="p-3 my-4 bg-white border-1 border-gray-100 dark:bg-slate-400">
                 <div className="flex justify-between">
                     <div className="flex items-center">
                         <div className="text-xs"><DateFormatted date={CreateDate} /></div>

@@ -67,7 +67,7 @@ const PostsList = (props: {
     }
 
     const navigation = (
-        <div className="flex justify-center p-3 my-4 bg-white border-b-2 border-gray-100"
+        <div className="flex justify-center p-3 my-4 bg-white dark:bg-slate-400 border-b-2 border-gray-100 dark:border-gray-800"
             style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <Link href={getNavPathPrev()}>
                 <a

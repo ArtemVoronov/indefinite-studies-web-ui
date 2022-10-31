@@ -98,7 +98,7 @@ const PostPreview = (props: { post: FeedBlock, tableView?: boolean, tableViewAdm
     }
 
     return (
-        <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100">
+        <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100 dark:bg-slate-400">
             <div className="mb-3 text-center text-2xl">
                 <Link href={"/post/" + PostUuid} >
                     <a>

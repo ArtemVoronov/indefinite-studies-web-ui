@@ -45,7 +45,7 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
     }, [props.page, props.commentState, props.pageSize])
 
     const navigation = (
-        <div className="flex justify-center p-0 my-0 bg-white border-b-2"
+        <div className="flex justify-center p-0 my-0 bg-white dark:bg-slate-400 border-b-2 dark:border-gray-800"
             style={{ display: (comments.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <a
                 onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
@@ -85,7 +85,7 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
             {navigation}
             <table className="table-auto flex-1">
                 <thead>
-                    <tr className="bg-white">
+                    <tr className="bg-white dark:bg-slate-400">
                         <th className="w-64">{t("admin.page.comments.table.head.author")}</th>
                         <th>{t("admin.page.comments.table.head.text")}</th>
                         <th className="w-64">{t("admin.page.comments.table.head.action")}</th>
