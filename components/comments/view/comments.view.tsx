@@ -9,6 +9,7 @@ import DateFormatted from "../../date/date.formatted"
 import Link from "next/link"
 import MarkDown from "../../markdown/markdown"
 import { COMMENT_STATES } from "../../../services/comments/comments.service"
+import StyledLinkButton from "../../buttons/styled.link.button"
 
 const CommentView = (props: {
     comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number,
@@ -39,22 +40,12 @@ const CommentView = (props: {
 
     const EditButton = (
         <Link href={"#edit_comment_form_" + props.index}>
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
-                onClick={handleEditEvent}
-            >
-                {t("btn.edit")}
-            </button>
+            <StyledLinkButton text={t("btn.edit")} onClick={handleEditEvent} />
         </Link>
     )
     const ReplyButton = (
         <Link href={"#reply_comment_form_" + props.index}>
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent uppercase px-3 py-1 text-xs outline-none focus:outline-none ease-linear transition-all duration-150"
-                onClick={handleReplyEvent}
-            >
-                {t("btn.reply")}
-            </button>
+            <StyledLinkButton text={t("btn.reply")} onClick={handleReplyEvent} />
         </Link>
     )
 

@@ -2,6 +2,7 @@ import * as React from "react"
 import { User } from "../../../services/users/users.service"
 import { useTranslation } from "next-i18next"
 import AccountEdit from "../edit/account.edit"
+import StyledButton from "../../buttons/styled.button"
 
 const AccountView = (props: { user: User }) => {
     const { t } = useTranslation()
@@ -22,12 +23,7 @@ const AccountView = (props: { user: User }) => {
             <div className="px-4 py-5 sm:px-6">
                 <div className="flex justify-between">
                     <h3 className="text-lg font-medium leading-6 text-gray-900">{t("account.page.settings.header")}</h3>
-                    <button
-                        className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        onClick={handleEditEvent}
-                    >
-                        {t("btn.edit")}
-                    </button>
+                    <StyledButton text={t("btn.edit")} onClick={handleEditEvent} />
                 </div>
                 <p className="mt-1 max-w-2xl text-sm text-gray-500">{t("account.page.settings.subheader")}</p>
             </div>

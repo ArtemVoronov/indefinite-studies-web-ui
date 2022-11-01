@@ -7,6 +7,7 @@ import { useTranslation } from "next-i18next"
 import { ROLES, User, USERS_SERVICE, USER_STATES } from "../../services/users/users.service"
 import Router from "next/router"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
+import StyledLinkButton from "../buttons/styled.link.button"
 
 const DEFAULT_MAX_USERS_PER_PAGE = 25
 
@@ -148,20 +149,10 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
                                 </td>
                                 <td className="text-center">
                                     {p.Role != ROLES.OWNER && p.State == USER_STATES.CONFIRMED && (
-                                        <button
-                                            className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                            onClick={() => handleBlockUserEvent(p.Uuid)}
-                                        >
-                                            {t("admin.page.user.block.btn")}
-                                        </button>
+                                        <StyledLinkButton text={t("admin.page.user.block.btn")} onClick={() => handleBlockUserEvent(p.Uuid)} />
                                     )}
                                     {p.Role != ROLES.OWNER && p.State == USER_STATES.BLOCKED && (
-                                        <button
-                                            className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                            onClick={() => handleUnblockUserEvent(p.Uuid)}
-                                        >
-                                            {t("admin.page.user.unblock.btn")}
-                                        </button>
+                                        <StyledLinkButton text={t("admin.page.user.unblock.btn")} onClick={() => handleUnblockUserEvent(p.Uuid)} />
                                     )}
                                 </td>
                             </tr>

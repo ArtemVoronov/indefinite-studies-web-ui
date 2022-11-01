@@ -7,6 +7,7 @@ import { useProfile } from '../../hooks/use.profile.hook'
 import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
+import StyledButton from "../../buttons/styled.button"
 
 const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: FeedCommentWithIndex, onCancel: () => void }) => {
     const [profile] = useProfile()
@@ -67,22 +68,11 @@ const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: 
                 </div>
 
                 <div className="flex justify-center">
-                    <button
-                        type="submit"
-                        className="group relative w-52 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                        {t("btn.submit")}
-                    </button>
+                    <StyledButton text={t("btn.submit")} />
                 </div>
             </form>
             <div className="flex justify-center">
-                <button
-                    type="submit"
-                    onClick={props.onCancel}
-                    className="group relative w-52 mt-3 rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    {t("btn.cancel")}
-                </button>
+                <StyledButton text={t("btn.cancel")} onClick={props.onCancel} />
             </div>
 
         </div>

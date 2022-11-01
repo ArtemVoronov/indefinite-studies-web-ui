@@ -10,6 +10,7 @@ import { useProfile } from '../hooks/use.profile.hook'
 import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
+import StyledButton from "../buttons/styled.button"
 
 const LoginForm = () => {
     const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm()
@@ -100,17 +101,14 @@ const LoginForm = () => {
                         </div>
                     </div>
 
-                    <div>
-                        <button
-                            type="submit"
-                            className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
-                            </span>
-                            {t("btn.sign.in")}
-                        </button>
-
+                    <div className="flex justify-center">
+                        <StyledButton text={t("btn.sign.in")} classes="w-52"
+                            icon={
+                                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
+                                </span>
+                            }
+                        />
                     </div>
                 </form>
 

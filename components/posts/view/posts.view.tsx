@@ -10,6 +10,7 @@ import { useTranslation } from "next-i18next"
 import { POST_STATES, Tag } from "../../../services/posts/posts.service"
 import DateFormatted from "../../date/date.formatted"
 import Link from "next/link"
+import StyledLinkButton from "../../buttons/styled.link.button"
 
 const PostView = (props: { postUuid: string }) => {
     const { t } = useTranslation()
@@ -63,12 +64,7 @@ const PostView = (props: { postUuid: string }) => {
 
     const AddCommentButton = (
         <Link href="#new_comment_form">
-            <button
-                className="text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-2 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                onClick={handleNewCommentEvent}
-            >
-                {t("post.page.btn.new.comment")}
-            </button>
+            <StyledLinkButton text={t("post.page.btn.new.comment")} onClick={handleNewCommentEvent} classes="uppercase font-bold text-lg outline-none mr-1 mb-1 ease-linear transition-all duration-150" />
         </Link>
     )
 
