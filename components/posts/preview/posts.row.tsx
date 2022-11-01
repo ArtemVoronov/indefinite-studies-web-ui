@@ -1,5 +1,4 @@
 import * as React from "react"
-import Link from "next/link"
 import { FeedBlock } from "../../../services/feed/feed.service"
 import { useTranslation } from "next-i18next"
 import { POSTS_SERVICE, POST_STATES } from "../../../services/posts/posts.service"
@@ -7,6 +6,7 @@ import Router from "next/router"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon, PencilIcon } from "@heroicons/react/24/solid"
 import ButtonWithToolTip from "../../buttons/button.with.tooltip"
+import StyledLink from "../../buttons/styled.link"
 
 const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => {
     const { t } = useTranslation()
@@ -41,13 +41,7 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
     return (
         <tr className="bg-white dark:bg-slate-400">
             <td className="text-center">
-                <Link href={"/post/" + PostUuid}>
-                    <a>
-                        <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
-                            {PostTopic}
-                        </div>
-                    </a>
-                </Link>
+                <StyledLink href={"/post/" + PostUuid} text={PostTopic} classes="p-1 my-1 text-center" />
             </td>
             <td className="text-center w-64">
                 {AuthorName}

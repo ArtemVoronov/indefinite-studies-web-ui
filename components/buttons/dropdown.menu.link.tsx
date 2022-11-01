@@ -1,17 +1,13 @@
 import { forwardRef } from "react"
-import Link from "next/link"
+import StyledLink from "./styled.link"
 
-const DropDownMenuLink = forwardRef((props: { href: any, children: any, locale?: any }, ref: any) => {
-    const { href, children, locale, ...rest } = props
+const DropDownMenuLink = forwardRef((props: { href: any, locale?: any, text: string, onClick?: () => void, classes?: string, style?: any, colorScheme?: string }, ref: any) => {
+    const { href, locale, text, onClick, classes, style, colorScheme } = props
     return (
-        <Link href={href} locale={locale}>
-            <a ref={ref} {...rest}>
-                {children}
-            </a>
-        </Link>
+        <StyledLink href={href} locale={locale} text={text} ref={ref} onClick={onClick} classes={classes} style={style} colorScheme={colorScheme} />
     )
 })
 
-DropDownMenuLink.displayName = 'DropDownMenuLink'
+DropDownMenuLink.displayName = 'DropDownMenuLink2'
 
 export default DropDownMenuLink

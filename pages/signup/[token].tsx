@@ -1,11 +1,11 @@
 import type { GetServerSidePropsContext, NextPage } from "next"
-import Link from "next/link"
 import * as React from "react"
 import Overlay from "../../components/overlay/overlay"
 import { USERS_SERVICE } from "../../services/users/users.service"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../utils/utils"
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from "next-i18next"
+import StyledLink from "../../components/buttons/styled.link"
 
 const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
     const { t } = useTranslation()
@@ -47,11 +47,7 @@ const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
         <div className="w-full max-w-3xl">
             <div className="flex flex-1 justify-center items-center flex-col h-screen">
                 <p>{t("email.was.confirmed")}</p>
-                <Link href="/login">
-                    <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                        {t("sign.in")}
-                    </a>
-                </Link>
+                <StyledLink href="/login" text={t("sign.in")} />
             </div>
         </div>
     )
@@ -60,11 +56,7 @@ const SignUpConfirmationPage: NextPage = (props: { token?: string }) => {
         <div className="w-full max-w-3xl">
             <div className="flex flex-1 justify-center items-center flex-col h-screen">
                 <p>{t("error.occured")}</p>
-                <Link href="/signup/resend">
-                    <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                        {t("resend.confirmation")}
-                    </a>
-                </Link>
+                <StyledLink href="/signup/resend" text={t("resend.confirmation")} />
             </div>
         </div>
     )

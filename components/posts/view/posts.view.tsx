@@ -11,6 +11,7 @@ import { POST_STATES, Tag } from "../../../services/posts/posts.service"
 import DateFormatted from "../../date/date.formatted"
 import Link from "next/link"
 import StyledLinkButton from "../../buttons/styled.link.button"
+import StyledLink from "../../buttons/styled.link"
 
 const PostView = (props: { postUuid: string }) => {
     const { t } = useTranslation()
@@ -80,9 +81,7 @@ const PostView = (props: { postUuid: string }) => {
                     <div className="flex items-center text-xs">
                         {Tags.map(function (tag: Tag, idx) {
                             return (
-                                <Link href={"/posts/" + tag.Id + "/0"} key={idx}>
-                                    <a className="text-indigo-600 hover:text-indigo-500 mx-1">{tag.Name}</a>
-                                </Link>
+                                <StyledLink href={"/posts/" + tag.Id + "/0"} text={tag.Name} key={idx} />
                             )
                         })}
                     </div>

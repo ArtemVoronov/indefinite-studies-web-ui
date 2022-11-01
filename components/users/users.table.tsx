@@ -78,23 +78,17 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
     const navigation = (
         <div className="flex justify-center p-3 my-4 bg-white dark:bg-slate-400 border-b-2 border-gray-100 dark:border-gray-800"
             style={{ display: (users.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
-            <a
+            <StyledLinkButton
+                text={t("btn.prev")} icon={<ArrowLeftIcon />}
                 onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
                 style={{ display: props.page == "0" ? "none" : undefined }}
-                className="cursor-pointer text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            >
-                {t("btn.prev")}
-                <ArrowLeftIcon />
-            </a>
+            />
             <div className="flex-1" />
-            <a
+            <StyledLinkButton
+                text={t("btn.next")} icon={<ArrowRightIcon />}
                 onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) + 1) : "" }}
                 style={{ display: (users.length + 1) != loadedCount ? "none" : undefined }}
-                className="cursor-pointer text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            >
-                {t("btn.next")}
-                <ArrowRightIcon />
-            </a>
+            />
         </div>
     )
 

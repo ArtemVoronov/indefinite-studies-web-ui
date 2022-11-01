@@ -7,10 +7,10 @@ import Image from 'next/image'
 import faviconPic from '../../public/favicon.ico'
 import { ExclamationTriangleIcon, LockClosedIcon } from '@heroicons/react/20/solid'
 import { useProfile } from '../hooks/use.profile.hook'
-import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
 import StyledButton from "../buttons/styled.button"
+import StyledLink from "../buttons/styled.link"
 
 const LoginForm = () => {
     const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm()
@@ -93,11 +93,7 @@ const LoginForm = () => {
 
                     <div className="flex items-center justify-between">
                         <div className="text-sm">
-                            <Link href="/restorepwd">
-                                <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    {t("sign.in.page.forgot.password.link")}
-                                </a>
-                            </Link>
+                            <StyledLink href="/restorepwd" text={t("sign.in.page.forgot.password.link")} />
                         </div>
                     </div>
 

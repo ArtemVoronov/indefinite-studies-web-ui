@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form"
 import { USERS_SERVICE } from "../../services/users/users.service"
 import Image from 'next/image'
 import faviconPic from '../../public/favicon.ico'
-import Link from "next/link"
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
 import StyledButton from "../buttons/styled.button"
+import StyledLink from "../buttons/styled.link"
 
 const RestorePasswordForm = (props: { token: string }) => {
     const { t } = useTranslation()
@@ -32,11 +32,7 @@ const RestorePasswordForm = (props: { token: string }) => {
         return (
             <div className="flex flex-1 justify-center items-center flex-col h-screen">
                 <p>{t("restore.pwd.page.password.was.changed")}</p>
-                <Link href="/login">
-                    <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                        {t("restore.pwd.page.sign.in.link")}
-                    </a>
-                </Link>
+                <StyledLink href={"/login"} text={t("restore.pwd.page.sign.in.link")} />
             </div>
         )
     }

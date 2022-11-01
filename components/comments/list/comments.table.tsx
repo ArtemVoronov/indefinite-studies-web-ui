@@ -5,6 +5,7 @@ import Overlay from "../../overlay/overlay"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import { useTranslation } from "next-i18next"
 import CommentRow from "../view/comments.row"
+import StyledLinkButton from "../../buttons/styled.link.button"
 
 const DEFAULT_MAX_COMMENTS_PER_PAGE = 10
 
@@ -47,23 +48,17 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
     const navigation = (
         <div className="flex justify-center p-0 my-0 bg-white dark:bg-slate-400 border-b-2 dark:border-gray-800"
             style={{ display: (comments.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
-            <a
+            <StyledLinkButton
+                text={t("btn.prev")} icon={<ArrowLeftIcon />}
                 onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
                 style={{ display: props.page == "0" ? "none" : undefined }}
-                className="cursor-pointer text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            >
-                {t("btn.prev")}
-                <ArrowLeftIcon />
-            </a>
+            />
             <div className="flex-1" />
-            <a
+            <StyledLinkButton
+                text={t("btn.next")} icon={<ArrowRightIcon />}
                 onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) + 1) : "" }}
                 style={{ display: (comments.length + 1) != loadedCount ? "none" : undefined }}
-                className="cursor-pointer text-indigo-600 hover:text-indigo-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            >
-                {t("btn.next")}
-                <ArrowRightIcon />
-            </a>
+            />
         </div>
     )
 

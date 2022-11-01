@@ -1,5 +1,4 @@
 import * as React from "react"
-import Link from "next/link"
 import { FeedComment } from "../../../services/feed/feed.service"
 import { useTranslation } from "next-i18next"
 import Router from "next/router"
@@ -7,6 +6,7 @@ import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { COMMENTS_SERVICE, COMMENT_STATES } from "../../../services/comments/comments.service"
 import ButtonWithToolTip from "../../buttons/button.with.tooltip"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon } from "@heroicons/react/20/solid"
+import StyledLink from "../../buttons/styled.link"
 
 const CommentRow = (props: { comment: FeedComment }) => {
     const { t } = useTranslation()
@@ -46,13 +46,7 @@ const CommentRow = (props: { comment: FeedComment }) => {
             <td className="text-center w-64">
                 <div className="flex">
                     {ModeratorActionsPanel}
-                    <Link href={"/post/" + PostUuid}>
-                        <a>
-                            <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
-                                {t("btn.open")}
-                            </div>
-                        </a>
-                    </Link>
+                    <StyledLink href={"/post/" + PostUuid} text={t("btn.open")} />
                 </div>
             </td>
         </tr>

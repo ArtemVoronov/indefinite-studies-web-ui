@@ -1,5 +1,4 @@
 import * as React from "react"
-import Link from "next/link"
 import faviconPic from '../../public/favicon.ico'
 import Image from "next/image"
 import { ROLES, USERS_SERVICE } from "../../services/users/users.service"
@@ -13,6 +12,8 @@ import ToggleButton from "../buttons/toggle.button"
 import { useTheme } from "../hooks/use.theme.hook"
 import { CURRENT_THEME_KEY, THEMES } from "../context/theme.context"
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid"
+import StyledLink from "../buttons/styled.link"
+import { LINK_COLOR_SCHEMES } from "../../utils/utils"
 
 const NavigationPanel = () => {
     const [profile, setProfile] = useProfile()
@@ -52,11 +53,10 @@ const NavigationPanel = () => {
     return (
         <div className="flex justify-between items-center max-w-3xl flex-1">
             <div className="flex items-center">
-                <Link href="/posts/0">
-                    <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center">
-                        <Image src={faviconPic} alt="Indefinite Studies" />
-                    </a>
-                </Link>
+                <StyledLink href="/posts/0" text=""
+                    icon={<Image src={faviconPic} alt="Indefinite Studies" />}
+                    classes="flex items-center text-base font-medium ml-5" colorScheme={LINK_COLOR_SCHEMES.MENU}
+                />
                 <div className="ml-5 flex items-center">
                     <ToggleButton action={() => { initTheme(theme == THEMES.DAY ? THEMES.NIGHT : THEMES.DAY) }}
                         icon={theme == THEMES.DAY ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
@@ -65,15 +65,9 @@ const NavigationPanel = () => {
                 </div>
             </div>
             <div className="flex items-center">
-                <Link href="/posts/0">
-                    <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center ml-5">
-                        {t("navbar.posts.link")}
-                    </a>
-                </Link>
+                <StyledLink href="/posts/0" text={t("navbar.posts.link")} classes="text-base font-medium ml-5" colorScheme={LINK_COLOR_SCHEMES.MENU} />
                 {profile && profile.Role == ROLES.OWNER && (
-                    <Link href="/post">
-                        <a className="text-base font-medium text-gray-500 hover:text-gray-900 flex items-center ml-5">{t("navbar.new.post.link")}</a>
-                    </Link>
+                    <StyledLink href="/post" text={t("navbar.new.post.link")} classes="text-base font-medium ml-5" colorScheme={LINK_COLOR_SCHEMES.MENU} />
                 )}
                 {!profile ? <NotAuthorizedUserButton /> : <AuthorizedUserButton user={profile} />}
             </div>
