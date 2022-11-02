@@ -11,6 +11,7 @@ import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
 import StyledButton from "../buttons/styled.button"
 import StyledLink from "../buttons/styled.link"
+import StyledTextInput from "../form/styled.input"
 
 const LoginForm = () => {
     const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm()
@@ -51,35 +52,18 @@ const LoginForm = () => {
                         clearErrors()
                         handleSubmit(login)(e)
                     }}>
-                    <input type="hidden" name="remember" defaultValue="true" />
                     <div className="-space-y-px rounded-md shadow-sm">
                         <div>
                             <label htmlFor="email-address" className="sr-only">
                                 {t("sign.in.page.email.label")}
                             </label>
-                            <input
-                                id="email-address"
-                                type="email"
-                                autoComplete="email"
-                                {...register("email")}
-                                required
-                                className="dark:bg-slate-400 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder={t("sign.in.page.email.placeholder")}
-                            />
+                            <StyledTextInput id="email-address" type="email" autoComplete="email" placeholder={t("sign.in.page.email.placeholder")} required register={register} />
                         </div>
                         <div>
                             <label htmlFor="password" className="sr-only">
                                 {t("sign.in.page.password.label")}
                             </label>
-                            <input
-                                id="password"
-                                type="password"
-                                autoComplete="current-password"
-                                required
-                                {...register("password")}
-                                className="dark:bg-slate-400 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder={t("sign.in.page.password.placeholder")}
-                            />
+                            <StyledTextInput id="password" type="password" autoComplete="current-password" placeholder={t("sign.in.page.password.placeholder")} required register={register} />
                         </div>
                         {errors.wrongCreds && (
                             <div className="my-1 py-2 px-2 rounded-md bg-red-200 text-red-800 text-sm flex justify-center items-center">

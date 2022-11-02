@@ -1,9 +1,11 @@
+import { forwardRef } from "react"
 import { classNames, LINK_COLOR_SCHEMES } from "../../utils/utils"
 
-const StyledLinkButton = (props: { text: any, onClick?: () => void, icon?: any, classes?: string, style?: any, colorScheme?: any, href?: any }) => {
+const StyledLinkButton = forwardRef((props: { text: any, onClick?: () => void, icon?: any, classes?: string, style?: any, colorScheme?: any, href?: any }, ref: any) => {
     const { text, onClick, icon, classes, style, colorScheme, href } = props
     return (
         <a
+            ref={ref}
             href={href}
             style={style}
             onClick={onClick}
@@ -20,6 +22,8 @@ const StyledLinkButton = (props: { text: any, onClick?: () => void, icon?: any, 
             </span >
         </a >
     )
-}
+})
+
+StyledLinkButton.displayName = 'StyledLinkButton'
 
 export default StyledLinkButton

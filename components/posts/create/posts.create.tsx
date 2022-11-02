@@ -7,6 +7,8 @@ import { useTranslation } from "next-i18next"
 import AssignTagsForm from "../tags/assign.tags.form"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import StyledButton from "../../buttons/styled.button"
+import StyledTextArea from "../../form/styled.textarea"
+import StyledTextInput from "../../form/styled.input"
 
 const PostCreate = () => {
     const [profile] = useProfile()
@@ -46,14 +48,7 @@ const PostCreate = () => {
                         {t("post.page.post.topic.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
-                        <input
-                            id="topic"
-                            required
-                            type="text"
-                            {...register("topic")}
-                            className="dark:bg-slate-400 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder={t("post.page.post.topic.placeholder")}
-                        />
+                        <StyledTextInput id="topic" required register={register} placeholder={t("post.page.post.topic.placeholder")} />
                     </div>
                 </div>
                 <div>
@@ -61,14 +56,7 @@ const PostCreate = () => {
                         {t("post.page.post.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
-                        <textarea
-                            id="text"
-                            required
-                            {...register("text")}
-                            className="dark:bg-slate-400 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder={t("post.page.post.text.placeholder")}
-                            rows={30}
-                        />
+                        <StyledTextArea id="text" required register={register} placeholder={t("post.page.post.text.placeholder")} rows={30} />
                     </div>
                 </div>
                 <div>
@@ -76,14 +64,7 @@ const PostCreate = () => {
                         {t("post.page.post.preview.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
-                        <textarea
-                            id="previewText"
-                            required
-                            {...register("previewText")}
-                            className="dark:bg-slate-400 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder={t("post.page.post.preview.text.placeholder")}
-                            rows={10}
-                        />
+                        <StyledTextArea id="previewText" required register={register} placeholder={t("post.page.post.preview.text.placeholder")} rows={10} />
                     </div>
                 </div>
 

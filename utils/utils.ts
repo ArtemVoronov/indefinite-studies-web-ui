@@ -43,3 +43,11 @@ export const LINK_COLOR_SCHEMES = {
 export const BUTTON_COLOR_SCHEMES = {
     "BASE": "bg-indigo-600 text-white dark:text-gray-300 hover:bg-indigo-700 focus:ring-indigo-500",
 }
+
+export const TEXTAREA_COLOR_SCHEMES = {
+    "BASE": "bg-white dark:bg-slate-400 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500",
+}
+
+export const TEXTINPUT_COLOR_SCHEMES = {
+    "BASE": "bg-white dark:bg-slate-400 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500",
+}

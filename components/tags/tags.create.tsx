@@ -6,6 +6,7 @@ import { useProfile } from '../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
 import StyledButton from "../buttons/styled.button"
+import StyledTextInput from "../form/styled.input"
 
 const TagCreateForm = () => {
     const [profile] = useProfile()
@@ -44,14 +45,7 @@ const TagCreateForm = () => {
                         {t("admin.page.tag.name.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
-                        <input
-                            id="name"
-                            required
-                            type="text"
-                            {...register("name")}
-                            className="dark:bg-slate-400 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder={t("admin.page.tag.name.placeholder")}
-                        />
+                        <StyledTextInput id="name" type="text" placeholder={t("admin.page.tag.name.placeholder")} required register={register} />
                     </div>
                 </div>
                 <div className="flex justify-center">

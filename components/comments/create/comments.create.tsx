@@ -7,6 +7,7 @@ import CommentLink from "../link/comments.link"
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import StyledButton from "../../buttons/styled.button"
+import StyledTextArea from "../../form/styled.textarea"
 
 const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid: string, linkedCommentIndex?: number, onCancel: () => void }) => {
     const [profile] = useProfile()
@@ -53,14 +54,7 @@ const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid:
                         {t("post.page.comment.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
-                        <textarea
-                            id="text"
-                            required
-                            {...register("text")}
-                            className="dark:bg-slate-400 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder={t("post.page.comment.text.placeholder")}
-                            rows={10}
-                        />
+                        <StyledTextArea id="text" required register={register} placeholder={t("post.page.comment.text.placeholder")} rows={10} />
                     </div>
                 </div>
 

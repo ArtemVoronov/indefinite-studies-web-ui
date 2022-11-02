@@ -6,6 +6,7 @@ import { useProfile } from '../../hooks/use.profile.hook'
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import StyledButton from "../../buttons/styled.button"
+import StyledTextInput from "../../form/styled.input"
 
 const AccountEdit = (props: { user: User, onCancel: () => void }) => {
     const { t } = useTranslation()
@@ -45,46 +46,16 @@ const AccountEdit = (props: { user: User, onCancel: () => void }) => {
                             {t("account.page.login.label")}
                         </label>
                         <div className="relative mt-1 rounded-md shadow-sm">
-                            <input
-                                id="login"
-                                required
-                                type="text"
-                                {...register("login")}
-                                className="dark:bg-slate-400 relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder={t("account.page.login.placeholder")}
-                                defaultValue={Login}
-                            />
+                            <StyledTextInput id="login" required register={register} placeholder={t("account.page.login.placeholder")} defaultValue={Login} />
                         </div>
                     </div>
                     {/* TODO: email changing with confirmation */}
-                    {/* <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            {t("account.page.email.label")}
-                        </label>
-                        <div className="relative mt-1 rounded-md shadow-sm">
-                            <input
-                                id="email"
-                                required
-                                {...register("email")}
-                                className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder={t("account.page.email.placeholder")}
-                                defaultValue={Email}
-                            />
-                        </div>
-                    </div> */}
 
                     <div>
                         <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                             {t("account.page.password.label")}
                         </label>
-                        <input
-                            id="password"
-                            type="password"
-                            autoComplete="current-password"
-                            {...register("password")}
-                            className="dark:bg-slate-400 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                            placeholder={t("account.page.password.placeholder")}
-                        />
+                        <StyledTextInput id="password" type="password" autoComplete="current-password" required register={register} placeholder={t("account.page.password.placeholder")} />
                     </div>
 
                     <div className="flex justify-center">

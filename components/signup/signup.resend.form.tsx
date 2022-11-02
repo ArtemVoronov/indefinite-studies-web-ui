@@ -6,6 +6,7 @@ import faviconPic from '../../public/favicon.ico'
 import { useTranslation } from "next-i18next"
 import { useErrorModal } from "../hooks/use.error.modal.hook"
 import StyledButton from "../buttons/styled.button"
+import StyledTextInput from "../form/styled.input"
 
 const ResendSignUpConfirmationForm = () => {
     const { t } = useTranslation()
@@ -45,21 +46,12 @@ const ResendSignUpConfirmationForm = () => {
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit(resend)}>
-                    <input type="hidden" name="remember" defaultValue="true" />
                     <div className="-space-y-px rounded-md shadow-sm">
                         <div>
                             <label htmlFor="email-address" className="sr-only">
                                 {t("sign.up.page.email.label")}
                             </label>
-                            <input
-                                id="email-address"
-                                type="email"
-                                autoComplete="email"
-                                {...register("email")}
-                                required
-                                className="dark:bg-slate-400 elative block w-full appearance-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                placeholder={t("sign.up.page.email.placeholder")}
-                            />
+                            <StyledTextInput id="email-address" type="email" autoComplete="email" placeholder={t("sign.up.page.email.placeholder")} required register={register} />
                         </div>
 
                     </div>

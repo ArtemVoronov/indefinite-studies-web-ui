@@ -65,7 +65,11 @@ const PostView = (props: { postUuid: string }) => {
 
     const AddCommentButton = (
         <Link href="#new_comment_form">
-            <StyledLinkButton text={t("post.page.btn.new.comment")} onClick={handleNewCommentEvent} classes="uppercase font-bold text-lg outline-none mr-1 mb-1 ease-linear transition-all duration-150" />
+            <StyledLinkButton
+                text={t("post.page.btn.new.comment")}
+                onClick={handleNewCommentEvent}
+                classes="uppercase font-bold text-lg outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            />
         </Link>
     )
 
