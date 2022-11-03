@@ -26,7 +26,7 @@ const NotAuthorizedUserButton = () => {
                 leaveTo="transform opacity-0 scale-95"
             >
                 <Menu.Items
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-slate-400 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-slate-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                     <div className="py-1">
                         <MenuButton href="/login" text={t("navbar.menu.sign.in")} />

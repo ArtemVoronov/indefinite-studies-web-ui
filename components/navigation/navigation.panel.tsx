@@ -12,8 +12,7 @@ import ToggleButton from "../buttons/toggle.button"
 import { useTheme } from "../hooks/use.theme.hook"
 import { CURRENT_THEME_KEY, THEMES } from "../context/theme.context"
 import { MoonIcon, SunIcon } from "@heroicons/react/20/solid"
-import StyledLink from "../buttons/styled.link"
-import { LINK_COLOR_SCHEMES } from "../../utils/utils"
+import StyledMenuLink from "../buttons/styled.menu.link"
 
 const NavigationPanel = () => {
     const [profile, setProfile] = useProfile()
@@ -53,9 +52,9 @@ const NavigationPanel = () => {
     return (
         <div className="flex justify-between items-center max-w-3xl flex-1">
             <div className="flex items-center">
-                <StyledLink href="/posts/0" text=""
+                <StyledMenuLink href="/posts/0" text=""
                     icon={<Image src={faviconPic} alt="Indefinite Studies" />}
-                    classes="flex items-center text-base font-medium ml-5" colorScheme={LINK_COLOR_SCHEMES.MENU}
+                    classes="flex items-center text-base font-medium ml-5"
                 />
                 <div className="ml-5 flex items-center">
                     <ToggleButton action={() => { initTheme(theme == THEMES.DAY ? THEMES.NIGHT : THEMES.DAY) }}
@@ -65,9 +64,9 @@ const NavigationPanel = () => {
                 </div>
             </div>
             <div className="flex items-center">
-                <StyledLink href="/posts/0" text={t("navbar.posts.link")} classes="text-base font-medium ml-5" colorScheme={LINK_COLOR_SCHEMES.MENU} />
+                <StyledMenuLink href="/posts/0" text={t("navbar.posts.link")} classes="text-base font-medium ml-5" />
                 {profile && profile.Role == ROLES.OWNER && (
-                    <StyledLink href="/post" text={t("navbar.new.post.link")} classes="text-base font-medium ml-5" colorScheme={LINK_COLOR_SCHEMES.MENU} />
+                    <StyledMenuLink href="/post" text={t("navbar.new.post.link")} classes="text-base font-medium ml-5" />
                 )}
                 {!profile ? <NotAuthorizedUserButton /> : <AuthorizedUserButton user={profile} />}
             </div>

@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { classNames, } from "../../utils/utils"
+import { classNames } from "../../utils/utils"
 
-const StyledLink = (props: { href: string, text: string, onClick?: () => void, icon?: any, classes?: string, style?: any, locale?: any, innerRef?: any }) => {
+const StyledMenuLink = (props: { href: string, text: string, onClick?: () => void, icon?: any, classes?: string, style?: any, locale?: any, innerRef?: any }) => {
     const { href, text, onClick, icon, classes, style, locale, innerRef } = props
     return (
         <Link href={href} locale={locale}>
@@ -10,7 +10,7 @@ const StyledLink = (props: { href: string, text: string, onClick?: () => void, i
                 style={style}
                 onClick={onClick}
                 className={classNames(
-                    classes ? classes : "", "text-indigo-600 hover:text-indigo-500"
+                    classes ? classes : "", "text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-400"
                 )}>
                 {text}
                 {icon}
@@ -19,4 +19,4 @@ const StyledLink = (props: { href: string, text: string, onClick?: () => void, i
     )
 }
 
-export default StyledLink
+export default StyledMenuLink

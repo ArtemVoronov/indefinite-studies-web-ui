@@ -21,7 +21,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="flex w-full justify-center text-base font-medium text-gray-500 hover:text-gray-900 ml-5">
+                <Menu.Button className="flex w-full justify-center text-base font-medium text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-400 ml-5">
                     <span>{Login}</span>
                     <UserIcon className="h-6 w-6" />
                 </Menu.Button>
@@ -36,7 +36,7 @@ const AuthorizedUserButton = (props: { user: User }) => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-slate-400 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-slate-800 shadow-lg ring-1 ring-black dark:ring-gray-200 ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                         <MenuButton href="/account" text={t("navbar.menu.account")} />
                         <MenuButton href="/admin" text={t("navbar.menu.admin.settings")} />
