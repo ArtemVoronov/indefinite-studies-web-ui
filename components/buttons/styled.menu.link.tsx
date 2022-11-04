@@ -10,7 +10,7 @@ const StyledMenuLink = (props: { href: string, text: string, onClick?: () => voi
                 style={style}
                 onClick={onClick}
                 className={classNames(
-                    classes ? classes : "", "text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-400"
+                    classes ? classes : "", "menu-link"
                 )}>
                 {text}
                 {icon}

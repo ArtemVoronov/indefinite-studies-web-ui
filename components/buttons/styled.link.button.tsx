@@ -11,8 +11,7 @@ const StyledLinkButton = forwardRef((props: { text: any, onClick?: () => void, i
             onClick={onClick}
             className={classNames(
                 classes ? classes : "",
-                "text-indigo-600 hover:text-indigo-500 \
-                background-transparent uppercase px-3 py-1 text-xs \
+                "primary-link background-transparent uppercase px-3 py-1 text-xs \
                 outline-none focus:outline-none ease-linear transition-all duration-150 cursor-pointer"
             )
             }>

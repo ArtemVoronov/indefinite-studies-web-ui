@@ -42,7 +42,7 @@ const AccountEdit = (props: { user: User, onCancel: () => void }) => {
             <div className="w-full max-w-3xl">
                 <form className="mt-8 space-y-4" onSubmit={handleSubmit(updateUser)}>
                     <div>
-                        <label htmlFor="login" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="login" className="block text-sm font-medium">
                             {t("account.page.login.label")}
                         </label>
                         <div className="relative mt-1 rounded-md shadow-sm">
@@ -52,7 +52,7 @@ const AccountEdit = (props: { user: User, onCancel: () => void }) => {
                     {/* TODO: email changing with confirmation */}
 
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="password" className="block text-sm font-medium">
                             {t("account.page.password.label")}
                         </label>
                         <StyledTextInput id="password" type="password" autoComplete="current-password" required register={register} placeholder={t("account.page.password.placeholder")} />

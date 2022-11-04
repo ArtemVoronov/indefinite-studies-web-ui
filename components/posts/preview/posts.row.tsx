@@ -5,7 +5,7 @@ import { POSTS_SERVICE, POST_STATES } from "../../../services/posts/posts.servic
 import Router from "next/router"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon, PencilIcon } from "@heroicons/react/24/solid"
-import ButtonWithToolTip from "../../buttons/button.with.tooltip"
+import StyledLinkButtonWithToolTip from "../../buttons/button.with.tooltip"
 import StyledLink from "../../buttons/styled.link"
 
 const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => {
@@ -31,15 +31,15 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
 
     const ModeratorActionsPanel = (
         <>
-            <ButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(POST_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <ButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <ButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <ButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(POST_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
         </>
     )
 
     return (
-        <tr className="bg-white dark:bg-slate-400">
+        <tr className="primary-content-block">
             <td className="text-center">
                 <StyledLink href={"/post/" + PostUuid} text={PostTopic} classes="p-1 my-1 text-center" />
             </td>
@@ -49,7 +49,7 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
             <td className="text-center w-64">
                 <div className="flex justify-center">
                     {!props.withModeratorActions ? "" : ModeratorActionsPanel}
-                    <ButtonWithToolTip text={t("btn.edit")} action={handleEditEvent} icon={<PencilIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+                    <StyledLinkButtonWithToolTip text={t("btn.edit")} action={handleEditEvent} icon={<PencilIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
                 </div>
             </td>
         </tr>

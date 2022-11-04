@@ -75,7 +75,7 @@ const PostEdit = (props: { postUuid: string }) => {
         <div>
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(updatePost)}>
                 <div>
-                    <label htmlFor="topic" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="topic" className="block text-sm font-medium">
                         {t("post.page.post.topic.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
@@ -83,7 +83,7 @@ const PostEdit = (props: { postUuid: string }) => {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="text" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="text" className="block text-sm font-medium">
                         {t("post.page.post.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">
@@ -91,7 +91,7 @@ const PostEdit = (props: { postUuid: string }) => {
                     </div>
                 </div>
                 <div>
-                    <label htmlFor="previewText" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="previewText" className="block text-sm font-medium">
                         {t("post.page.post.preview.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">

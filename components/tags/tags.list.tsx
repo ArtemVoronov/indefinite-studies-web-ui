@@ -63,7 +63,7 @@ const TagsList = () => {
             <div className="flex">
                 {tags.map(function (p: Tag, idx) {
                     return (
-                        <div className="bg-indigo-500 text-white p-1 m-1" key={idx}>{p.Name}</div>
+                        <div className="primary-button p-1 m-1" key={idx}>{p.Name}</div>
                     )
                 })}
             </div>

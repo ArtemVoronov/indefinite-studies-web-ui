@@ -11,7 +11,7 @@ export const useErrorModal = () => {
 
     const renderContent = (title: string, text: string) => (
         <>
-            <div className="bg-white dark:bg-slate-400 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div className="primary-content-block px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                     <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 dark:bg-gray-300 sm:mx-0 sm:h-10 sm:w-10">
                         <ExclamationTriangleIcon className="h-6 w-6 text-red-600 dark:text-red-900" aria-hidden="true" />
@@ -28,7 +28,7 @@ export const useErrorModal = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-50 dark:bg-slate-400 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <div className="primary-content-block px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                 <StyledButton text={t("btn.close")} onClick={() => setShowModal(false)} />
             </div>
         </>

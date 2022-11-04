@@ -24,7 +24,7 @@ const PostPreview = (props: { post: FeedBlock }) => {
     }
 
     return (
-        <div className="flex flex-col p-3 my-4 bg-white border-1 border-gray-100 dark:bg-slate-400">
+        <div className="flex flex-col p-3 my-4 border-1 primary-content-block">
             <div className="mb-3 text-center text-2xl">
                 <StyledLink href={"/post/" + PostUuid} text={PostTopic} classes="font-extrabold leading-tight text-4xl mt-0 mb-2 text-center" />
             </div>

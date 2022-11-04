@@ -92,7 +92,7 @@ const AssignTagsForm = (props: { initialValue?: Tag[], onChange: (tags: Tag[]) =
                         return (
                             <div
                                 onClick={() => { handleUnselectTag(p.Id) }}
-                                className="flex items-center py-2 pl-2 pr-1 m-1 cursor-pointer bg-indigo-500 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                className="primary-button flex items-center py-2 pl-2 pr-1 m-1 cursor-pointer text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2"
                                 key={idx}>
                                 {p.Name}
                                 <span>
@@ -103,8 +103,8 @@ const AssignTagsForm = (props: { initialValue?: Tag[], onChange: (tags: Tag[]) =
                     })}
                 </div>
                 <div className="flex flex-col">
-                    <label htmlFor="tagId" className="block text-sm font-medium text-gray-700">{t("post.page.tags.label")}</label>
-                    <select multiple onChange={handleSelectTag} id="tagId" className="mt-1 block max-w-xs rounded-md border border-gray-300 bg-white dark:bg-slate-400 py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <label htmlFor="tagId" className="block text-sm font-medium">{t("post.page.tags.label")}</label>
+                    <select multiple onChange={handleSelectTag} id="tagId" className="primary-input mt-1 block max-w-xs rounded-md border py-2 px-3 shadow-sm sm:text-sm">
                         {tags.map(function (p: Tag, idx) {
                             return selectedTags.map(e => e.Id).indexOf(p.Id) != -1 ? "" : (
                                 <option value={p.Id} label={p.Name} key={idx} />

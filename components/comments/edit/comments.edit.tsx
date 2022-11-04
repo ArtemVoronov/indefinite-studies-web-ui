@@ -52,7 +52,7 @@ const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: 
                     </div>
                 )}
                 <div>
-                    <label htmlFor="text" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="text" className="block text-sm font-medium">
                         {t("post.page.comment.text.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">

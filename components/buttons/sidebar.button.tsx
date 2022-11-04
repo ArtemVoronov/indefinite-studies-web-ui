@@ -19,8 +19,8 @@ const SidebarButton = (props: { href: string, text: string, onClick?: () => void
             onClick={onClick}
             classes={
                 classNames(
-                    active ? "bg-indigo-100 dark:bg-slate-600" : "",
-                    "flex items-center mb-2 p-2 text-base font-normal text-gray-900 rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 "
+                    active ? "sidebar-active-button" : "",
+                    "flex items-center mb-2 p-2 text-base font-normal rounded-lg sidebar-button"
                 )
             }
         />

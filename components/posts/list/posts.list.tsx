@@ -68,7 +68,7 @@ const PostsList = (props: {
     }
 
     const navigation = (
-        <div className="flex justify-center p-3 my-4 bg-white dark:bg-slate-400 border-b-2 border-gray-100 dark:border-gray-800"
+        <div className="flex justify-center p-3 my-4 border-b-2 primary-content-block"
             style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <StyledLink href={getNavPathPrev()} text={t("btn.prev")} icon={<ArrowLeftIcon />} style={{ display: props.page == "0" ? "none" : undefined }} />
             <div className="flex-1" />
@@ -77,7 +77,7 @@ const PostsList = (props: {
     )
 
     const outerNavigation = (
-        <div className="flex justify-center p-3 my-4 bg-white border-b-2 border-gray-100"
+        <div className="flex justify-center p-3 my-4 border-b-2 primary-content-block"
             style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <StyledLinkButton
                 text={t("btn.prev")} icon={<ArrowLeftIcon />}

@@ -11,7 +11,7 @@ const CommentsList = (props: { comments: FeedComment[], commentsMap: FeedComment
 
     if (comments.length == 0) return (
         <div className="w-full max-w-3xl">
-            <div className="p-3 my-4 bg-white dark:bg-slate-400 border-1 border-gray-100 dark:border-gray-800 text-center ">
+            <div className="p-3 my-4 border-1 primary-content-block text-center ">
                 {t("posts.page.no.comments")}
             </div>
         </div>

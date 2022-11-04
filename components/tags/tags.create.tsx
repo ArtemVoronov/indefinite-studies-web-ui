@@ -41,7 +41,7 @@ const TagCreateForm = () => {
         <div>
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(createTag)}>
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="name" className="block text-sm font-medium">
                         {t("admin.page.tag.name.label")}
                     </label>
                     <div className="relative mt-1 rounded-md shadow-sm">

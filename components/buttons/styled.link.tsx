@@ -10,7 +10,7 @@ const StyledLink = (props: { href: string, text: string, onClick?: () => void, i
                 style={style}
                 onClick={onClick}
                 className={classNames(
-                    classes ? classes : "", "text-indigo-600 hover:text-indigo-500"
+                    classes ? classes : "", "primary-link"
                 )}>
                 {text}
                 {icon}

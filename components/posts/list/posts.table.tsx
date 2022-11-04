@@ -46,7 +46,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
     }, [props.page, props.tagId, props.postState, props.pageSize])
 
     const navigation = (
-        <div className="flex justify-center p-0 my-0 bg-white dark:bg-slate-400 border-b-2 dark:border-gray-800"
+        <div className="flex justify-center p-0 my-0 border-b-2 primary-content-block"
             style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <StyledLinkButton
                 text={t("btn.prev")} icon={<ArrowLeftIcon />}
@@ -80,7 +80,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
             {navigation}
             <table className="table-auto flex-1">
                 <thead>
-                    <tr className="bg-white dark:bg-slate-400">
+                    <tr className="primary-content-block">
                         <th>{t("posts.page.table.head.topic")}</th>
                         <th className="w-64">{t("posts.page.table.head.author")}</th>
                         <th className="w-64">{t("posts.page.table.head.action")}</th>

@@ -5,3 +5,47 @@
 html {
     scroll-behavior: smooth;
 }
+
+@layer components {
+    .primary-link {
+        @apply text-indigo-600 hover:text-indigo-500;
+    }
+    .menu-link {
+        @apply text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-400;
+    }
+
+    .primary-button {
+        @apply bg-indigo-600 text-white dark:text-gray-300 hover:bg-indigo-700 focus:ring-indigo-500
+    }
+
+    .sidebar-button {
+        @apply text-gray-900 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700
+    }
+    .sidebar-active-button {
+        @apply bg-indigo-100 dark:bg-slate-600
+    }
+
+    .primary-dropdown {
+        @apply bg-white dark:bg-slate-800 shadow-lg ring-1 ring-black dark:ring-gray-200 ring-opacity-5 focus:outline-none
+    }
+
+    .primary-main {
+        @apply bg-gray-200 dark:bg-slate-600 
+    }
+
+    .primary-navbar {
+        @apply bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-600
+    }
+    
+    .primary-input {
+        @apply bg-white dark:bg-slate-400 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500
+    }
+    .primary-label {
+        @apply text-gray-700 dark:text-black
+    }
+
+    .primary-content-block {
+        @apply bg-white dark:bg-slate-400 border-gray-200 dark:border-gray-800
+    }
+    
+}

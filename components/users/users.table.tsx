@@ -76,7 +76,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
 
 
     const navigation = (
-        <div className="flex justify-center p-3 my-4 bg-white dark:bg-slate-400 border-b-2 border-gray-100 dark:border-gray-800"
+        <div className="flex justify-center p-3 my-4 border-b-2 primary-content-block"
             style={{ display: (users.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <StyledLinkButton
                 text={t("btn.prev")} icon={<ArrowLeftIcon />}
@@ -111,7 +111,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
             {navigation}
             <table className="table-auto flex-1">
                 <thead>
-                    <tr className="bg-white dark:bg-slate-400">
+                    <tr className="primary-content-block">
                         <th>UUID</th>
                         <th>Email</th>
                         <th>Name</th>
@@ -123,7 +123,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
                 <tbody>
                     {users.map(function (p: User, idx) {
                         return (
-                            <tr className="bg-white dark:bg-slate-400" key={idx}>
+                            <tr className="primary-content-block" key={idx}>
                                 <td className="text-center">
                                     <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
                                         {p.Uuid}

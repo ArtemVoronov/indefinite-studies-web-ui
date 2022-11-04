@@ -46,7 +46,7 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
     }, [props.page, props.commentState, props.pageSize])
 
     const navigation = (
-        <div className="flex justify-center p-0 my-0 bg-white dark:bg-slate-400 border-b-2 dark:border-gray-800"
+        <div className="flex justify-center p-0 my-0 border-b-2 primary-content-block"
             style={{ display: (comments.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
             <StyledLinkButton
                 text={t("btn.prev")} icon={<ArrowLeftIcon />}
@@ -80,7 +80,7 @@ const CommentsTable = (props: { page: string, commentState: string, pageSize?: n
             {navigation}
             <table className="table-auto flex-1">
                 <thead>
-                    <tr className="bg-white dark:bg-slate-400">
+                    <tr className="primary-content-block">
                         <th className="w-64">{t("admin.page.comments.table.head.author")}</th>
                         <th>{t("admin.page.comments.table.head.text")}</th>
                         <th className="w-64">{t("admin.page.comments.table.head.action")}</th>

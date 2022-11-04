@@ -19,7 +19,7 @@ const AccountView = (props: { user: User }) => {
     )
 
     return (
-        <div className="overflow-hidden bg-white dark:bg-slate-400 shadow sm:rounded-lg flex-1">
+        <div className="overflow-hidden primary-content-block shadow sm:rounded-lg flex-1">
             <div className="px-4 py-5 sm:px-6">
                 <div className="flex justify-between">
                     <h3 className="text-lg font-medium leading-6 text-gray-900">{t("account.page.settings.header")}</h3>
@@ -27,17 +27,17 @@ const AccountView = (props: { user: User }) => {
                 </div>
                 <p className="mt-1 max-w-2xl text-sm text-gray-500">{t("account.page.settings.subheader")}</p>
             </div>
-            <div className="border-t border-gray-200 dark:border-gray-800">
+            <div className="border-t primary-content-block">
                 <dl>
-                    <div className="bg-gray-50 dark:bg-slate-400 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div className="primary-content-block px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-medium text-gray-500">{t("account.page.login.label")}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{Login}</dd>
                     </div>
-                    <div className="bg-white dark:bg-slate-400 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div className="primary-content-block px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-medium text-gray-500">{t("account.page.email.label")}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{Email}</dd>
                     </div>
-                    <div className="bg-gray-50 dark:bg-slate-400 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <div className="primary-content-block px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-medium text-gray-500">{t("account.page.role.label")}</dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{Role}</dd>
                     </div>

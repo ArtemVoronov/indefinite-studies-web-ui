@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next"
 import Router from "next/router"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { COMMENTS_SERVICE, COMMENT_STATES } from "../../../services/comments/comments.service"
-import ButtonWithToolTip from "../../buttons/button.with.tooltip"
+import StyledLinkButtonWithToolTip from "../../buttons/button.with.tooltip"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon } from "@heroicons/react/20/solid"
 import StyledLink from "../../buttons/styled.link"
 
@@ -28,15 +28,15 @@ const CommentRow = (props: { comment: FeedComment }) => {
 
     const ModeratorActionsPanel = (
         <>
-            <ButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(COMMENT_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <ButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(COMMENT_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <ButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(COMMENT_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <ButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(COMMENT_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(COMMENT_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(COMMENT_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(COMMENT_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(COMMENT_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
         </>
     )
 
     return (
-        <tr className="bg-white dark:bg-slate-400">
+        <tr className="primary-content-block">
             <td className="text-center w-64">
                 {AuthorName}
             </td>

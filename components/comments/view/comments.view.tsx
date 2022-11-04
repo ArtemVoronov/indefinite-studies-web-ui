@@ -62,7 +62,7 @@ const CommentView = (props: {
 
     return (
         <>
-            <div id={"comment_" + props.index} className="p-3 my-4 bg-white border-1 border-gray-100 dark:bg-slate-400 flex">
+            <div id={"comment_" + props.index} className="p-3 my-4 border-1 primary-content-block flex">
                 <div className="flex-1 flex flex-col">
                     <div className="flex flex-1 p-0 border-b-2 pb-1 dark:border-gray-800">
                         <div className="flex items-center flex-1">

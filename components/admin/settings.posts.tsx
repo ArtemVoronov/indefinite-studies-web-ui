@@ -18,7 +18,7 @@ const AdminSettingsPostsForm = () => {
             <div className="flex justify-center">
                 <div className="m-2">
                     <label>{t("admin.page.label.post.state")}</label>
-                    <select onChange={(e: any) => { setPostState(e.target.value) }} className="dark:bg-slate-400 mt-1 block max-w-xs w-48 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <select onChange={(e: any) => { setPostState(e.target.value) }} className="primary-input mt-1 block max-w-xs w-48 rounded-md border sm:text-sm">
                         {Object.values(POST_STATES).map((p: string, idx: number) => {
                             return <option key={idx} value={p} label={p} />
                         })}
@@ -26,7 +26,7 @@ const AdminSettingsPostsForm = () => {
                 </div>
                 <div className="m-2">
                     <label>{t("admin.page.label.comment.state")}</label>
-                    <select onChange={(e: any) => { setCommentState(e.target.value) }} className="dark:bg-slate-400 mt-1 block max-w-xs w-48 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <select onChange={(e: any) => { setCommentState(e.target.value) }} className="primary-input mt-1 block max-w-xs w-48 rounded-md border sm:text-sm">
                         {Object.values(COMMENT_STATES).map((p: string, idx: number) => {
                             return <option key={idx} value={p} label={p} />
                         })}
@@ -34,7 +34,7 @@ const AdminSettingsPostsForm = () => {
                 </div>
                 <div className="m-2 w-36">
                     <label>{t("admin.page.label.page.size")}</label>
-                    <select onChange={(e: any) => { setPageSize(e.target.value) }} className="dark:bg-slate-400 mt-1 block max-w-xs w-48 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                    <select onChange={(e: any) => { setPageSize(e.target.value) }} className="primary-input mt-1 block max-w-xs w-48 rounded-md border sm:text-sm">
                         <option>5</option>
                         <option>10</option>
                         <option>25</option>
