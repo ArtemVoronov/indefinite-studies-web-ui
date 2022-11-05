@@ -31,10 +31,10 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
 
     const ModeratorActionsPanel = (
         <>
-            <StyledLinkButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(POST_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <StyledLinkButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <StyledLinkButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
-            <StyledLinkButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(POST_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
+            <StyledLinkButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
         </>
     )
 
@@ -49,7 +49,7 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
             <td className="text-center w-64">
                 <div className="flex justify-center">
                     {!props.withModeratorActions ? "" : ModeratorActionsPanel}
-                    <StyledLinkButtonWithToolTip text={t("btn.edit")} action={handleEditEvent} icon={<PencilIcon className="h-8 w-8 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />} />
+                    <StyledLinkButtonWithToolTip text={t("btn.edit")} action={handleEditEvent} icon={<PencilIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
                 </div>
             </td>
         </tr>

@@ -125,7 +125,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
                         return (
                             <tr className="primary-content-block" key={idx}>
                                 <td className="text-center">
-                                    <div className="p-1 my-1 text-center text-indigo-600 hover:text-indigo-500">
+                                    <div className="p-1 my-1 text-center">
                                         {p.Uuid}
                                     </div>
                                 </td>
