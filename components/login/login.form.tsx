@@ -66,9 +66,9 @@ const LoginForm = () => {
                             <StyledTextInput id="password" type="password" autoComplete="current-password" placeholder={t("sign.in.page.password.placeholder")} required register={register} />
                         </div>
                         {errors.wrongCreds && (
-                            <div className="my-1 py-2 px-2 rounded-md bg-red-200 text-red-800 text-sm flex justify-center items-center">
-                                <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                    <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                            <div className="primary-error-content-block my-1 py-2 px-2 rounded-md text-sm flex justify-center items-center">
+                                <div className="primary-modal-error-icon-wrapper mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                                    <ExclamationTriangleIcon className="h-6 w-6 primary-modal-error-icon" aria-hidden="true" />
                                 </div>
                                 <div className="ml-2">{`${errors.wrongCreds.message}`}</div>
                             </div>

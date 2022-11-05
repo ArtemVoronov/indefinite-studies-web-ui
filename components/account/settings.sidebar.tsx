@@ -9,7 +9,7 @@ const AccountSettingsSidebar = (props: { chosen: string, onChoose: (val: string)
     const { t } = useTranslation()
 
     return (
-        <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800 flex flex-col flex-1">
+        <div className="overflow-y-auto py-4 px-3 primary-navbar flex flex-col flex-1">
             <ul className="flex flex-col flex-1">
                 <li>
                     <SidebarButton href="#" text={t('account.page.sidebar.account')}

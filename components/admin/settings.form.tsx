@@ -4,12 +4,14 @@ import AdminSettingsPostsForm from "./settings.posts"
 import AdminSettingsTagForm from "./settings.tags"
 import AdminSettingsUserForm from "./settings.users"
 import AdminSettingsSidebar from "./settings.sidebar"
+import AdminSettingsUIForm from "./settings.ui"
 
 export const ADMINS_SETTINGS_PANELS = {
     "TAGS": "TAGS",
     "FEED": "FEED",
     "USERS": "USERS",
-    "POSTS": "POSTS"
+    "POSTS": "POSTS",
+    "UI": "UI"
 }
 
 const AdminSettingsForm = () => {
@@ -25,6 +27,7 @@ const AdminSettingsForm = () => {
                 {visiblePanel == ADMINS_SETTINGS_PANELS.POSTS && <AdminSettingsPostsForm />}
                 {visiblePanel == ADMINS_SETTINGS_PANELS.TAGS && <AdminSettingsTagForm />}
                 {visiblePanel == ADMINS_SETTINGS_PANELS.USERS && <AdminSettingsUserForm />}
+                {visiblePanel == ADMINS_SETTINGS_PANELS.UI && <AdminSettingsUIForm />}
             </div>
         </div>
     )

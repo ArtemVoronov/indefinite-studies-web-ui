@@ -13,11 +13,11 @@ export const useConfirmModal = () => {
             <div className="primary-content-block px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                        <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-900">
+                        <Dialog.Title as="h3" className="text-lg font-medium leading-6">
                             {title}
                         </Dialog.Title>
                         <div className="mt-2">
-                            <p className="text-sm text-gray-500 dark:text-gray-900">
+                            <p className="text-sm">
                                 {text}
                             </p>
                         </div>

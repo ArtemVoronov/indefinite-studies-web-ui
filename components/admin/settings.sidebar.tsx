@@ -2,7 +2,7 @@ import * as React from "react"
 import { useTranslation } from "next-i18next"
 import { ADMINS_SETTINGS_PANELS } from "./settings.form"
 import SidebarButton from "../buttons/sidebar.button"
-import { DocumentTextIcon, FilmIcon, HashtagIcon, UserIcon } from "@heroicons/react/24/solid"
+import { DocumentTextIcon, FilmIcon, HashtagIcon, UserIcon, WrenchIcon } from "@heroicons/react/24/solid"
 
 // TODO: add chosing option by anchor
 const AdminSettingsSidebar = (props: { chosen: string, onChoose: (val: string) => void }) => {
@@ -37,6 +37,13 @@ const AdminSettingsSidebar = (props: { chosen: string, onChoose: (val: string) =
                         active={props.chosen == ADMINS_SETTINGS_PANELS.FEED}
                         onClick={() => { props.onChoose(ADMINS_SETTINGS_PANELS.FEED) }}
                         icon={<FilmIcon />}
+                    />
+                </li>
+                <li>
+                    <SidebarButton href="#" text={t('admin.page.sidebar.ui')}
+                        active={props.chosen == ADMINS_SETTINGS_PANELS.UI}
+                        onClick={() => { props.onChoose(ADMINS_SETTINGS_PANELS.UI) }}
+                        icon={<WrenchIcon />}
                     />
                 </li>
             </ul>
