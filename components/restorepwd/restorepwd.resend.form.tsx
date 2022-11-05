@@ -41,17 +41,17 @@ const ResendRestorePasswordForm = () => {
             <div className="w-full max-w-md space-y-8">
                 <div className="text-center">
                     <Image src={faviconPic} alt="Indefinite Studies" />
-                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight">
                         {t("restore.pwd.page.header")}
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit(resend)}>
                     <div className="-space-y-px rounded-md shadow-sm">
                         <div>
-                            <label htmlFor="email-address" className="sr-only">
+                            <label htmlFor="email" className="sr-only">
                                 {t("restore.pwd.page.email.label")}
                             </label>
-                            <StyledTextInput id="email-address" type="email" autoComplete="email" placeholder={t("restore.pwd.page.email.placeholder")} required register={register} />
+                            <StyledTextInput id="email" type="email" autoComplete="email" placeholder={t("restore.pwd.page.email.placeholder")} required register={register} />
                         </div>
 
                     </div>

@@ -41,7 +41,7 @@ const SignUpForm = () => {
             <div className="w-full max-w-md space-y-8">
                 <div className="text-center">
                     <Image src={faviconPic} alt="Indefinite Studies" />
-                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                    <h2 className="mt-6 text-center text-3xl font-bold tracking-tight">
                         {t("sign.up.page.header")}
                     </h2>
                 </div>
@@ -54,10 +54,10 @@ const SignUpForm = () => {
                             <StyledTextInput id="login" required register={register} placeholder={t("sign.up.page.login.placeholder")} />
                         </div>
                         <div>
-                            <label htmlFor="email-address" className="sr-only">
+                            <label htmlFor="email" className="sr-only">
                                 {t("sign.up.page.email.label")}
                             </label>
-                            <StyledTextInput id="email-address" type="email" autoComplete="email" placeholder={t("sign.up.page.email.placeholder")} required register={register} />
+                            <StyledTextInput id="email" type="email" autoComplete="email" placeholder={t("sign.up.page.email.placeholder")} required register={register} />
                         </div>
                         <div>
                             <label htmlFor="password" className="sr-only">

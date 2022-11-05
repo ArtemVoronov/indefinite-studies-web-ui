@@ -13,9 +13,13 @@ html {
     .menu-link {
         @apply text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-400;
     }
+    
 
     .primary-button {
-        @apply bg-indigo-600 text-white dark:text-gray-300 hover:bg-indigo-700 focus:ring-indigo-500;
+        @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 primary-button-text;
+    }
+    .primary-button-text {
+        @apply text-white dark:text-gray-300;
     }
 
     .sidebar-button {
@@ -71,6 +75,10 @@ html {
     }
     .primary-toggle-text {
         @apply text-gray-900 dark:text-gray-300;
+    }
+
+    .primary-comment-border {
+        @apply border-dashed border-gray-500 border-2 p-4 rounded-lg my-2;
     }
 
 }

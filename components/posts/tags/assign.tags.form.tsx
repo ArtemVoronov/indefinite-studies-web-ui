@@ -96,7 +96,7 @@ const AssignTagsForm = (props: { initialValue?: Tag[], onChange: (tags: Tag[]) =
                                 key={idx}>
                                 {p.Name}
                                 <span>
-                                    <XMarkIcon className="h-5 w-5 text-white" aria-hidden="true" />
+                                    <XMarkIcon className="h-5 w-5 primary-button-text" aria-hidden="true" />
                                 </span>
                             </div>
                         )
