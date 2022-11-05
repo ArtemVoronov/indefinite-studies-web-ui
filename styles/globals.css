@@ -77,8 +77,11 @@ html {
         @apply text-gray-900 dark:text-gray-300;
     }
 
-    .primary-comment-border {
+    .primary-comment-edit-border {
         @apply border-dashed border-gray-500 border-2 p-4 rounded-lg my-2;
+    }
+    .primary-comment-view-border {
+        @apply border-b-2 pb-1 dark:border-gray-800;
     }
 
 }
