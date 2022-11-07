@@ -43,7 +43,7 @@ const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: 
 
     return (
         <div id={props.id} className="primary-comment-edit-border">
-            <div className="flex justify-center">{t("post.page.comment.header.edit")}</div>
+            <div className="flex justify-center text-xl font-bold">{t("post.page.comment.header.edit")}</div>
             <form className="mt-1 space-y-4" onSubmit={handleSubmit(updateComment)}>
                 {props.linkedComment && (
                     <div className="text-xs">

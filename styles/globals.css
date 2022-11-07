@@ -8,26 +8,41 @@ html {
 
 @layer components {
     .primary-link {
-        @apply text-indigo-600 hover:text-indigo-500;
+        @apply text-indigo-600 hover:text-indigo-500 dark:text-rose-600 dark:hover:text-rose-500;
     }
+
     .primary-link-icon {
-        @apply text-indigo-600 group-hover:text-indigo-500;
+        @apply text-indigo-600 group-hover:text-indigo-500 dark:text-rose-600 dark:hover:text-rose-500;
     }
+
     .menu-link {
         @apply text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-400;
     }
     
-
     .primary-button {
-        @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 primary-button-text;
+        @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 primary-button-text bg-rose-600 hover:bg-rose-700 focus:ring-rose-500;
     }
+
     .primary-button-text {
         @apply text-white dark:text-gray-300;
+    }
+
+    .primary-toggle {
+        @apply bg-gray-200 peer-checked:after:border-white dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 dark:peer-checked:bg-rose-600 peer-focus:ring-blue-300 dark:peer-focus:ring-rose-300 after:bg-white after:border-gray-300 dark:border-gray-600  dark:bg-gray-700;
+    }
+
+    .primary-toggle-text {
+        @apply text-gray-900 dark:text-gray-300;
+    }
+    
+    .primary-input {
+        @apply bg-white dark:bg-slate-400 border-gray-200 text-gray-900 placeholder-gray-500 dark:placeholder-gray-800 focus:border-indigo-500 focus:ring-indigo-500;
     }
 
     .sidebar-button {
         @apply text-gray-900 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700;
     }
+
     .sidebar-active-button {
         @apply bg-indigo-100 dark:bg-slate-600;
     }
@@ -37,30 +52,25 @@ html {
     }
 
     .primary-main {
-        @apply bg-gray-200 dark:bg-slate-600 ;
-    }
-
-    .primary-navbar {
-        @apply bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-600;
-    }
-    
-    .primary-input {
-        @apply bg-white dark:bg-slate-400 border-gray-300 text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-indigo-500;
-    }
-    .primary-label {
-        @apply text-gray-700 dark:text-black;
+        @apply bg-gray-200 dark:bg-slate-600;
     }
 
     .primary-content-block {
         @apply bg-white dark:bg-slate-400 border-gray-200 dark:border-gray-800;
     }
 
+    .primary-navbar {
+        @apply bg-white dark:bg-slate-800 border-gray-200 dark:border-slate-600;
+    }
+
     .primary-modal-error-icon-wrapper {
         @apply bg-red-100 dark:bg-gray-300;
     }
+
     .primary-modal-error-icon {
         @apply text-red-600 dark:text-red-900;
     }
+
     .primary-modal-shadow {
         @apply bg-gray-500;
     }
@@ -73,16 +83,10 @@ html {
         @apply bg-red-200 text-red-800;
     }
 
-    .primary-toggle {
-        @apply bg-gray-200 peer-checked:after:border-white peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 after:bg-white after:border-gray-300 dark:border-gray-600 peer-checked:bg-blue-600 dark:bg-gray-700;
-    }
-    .primary-toggle-text {
-        @apply text-gray-900 dark:text-gray-300;
-    }
-
     .primary-comment-edit-border {
         @apply border-dashed border-gray-500 border-2 p-4 rounded-lg my-2;
     }
+
     .primary-comment-view-border {
         @apply border-b-2 pb-1 dark:border-gray-800;
     }
@@ -90,6 +94,7 @@ html {
     .primary-loader {        
         @apply border-white border-t-indigo-600 dark:border-gray-300 dark:border-t-indigo-600;
     }
+
     .primary-loader-text {
         @apply text-gray-900 dark:text-gray-300;
     }

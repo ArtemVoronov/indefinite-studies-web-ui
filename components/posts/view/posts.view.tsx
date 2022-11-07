@@ -9,8 +9,6 @@ import Overlay from "../../overlay/overlay"
 import { useTranslation } from "next-i18next"
 import { POST_STATES, Tag } from "../../../services/posts/posts.service"
 import DateFormatted from "../../date/date.formatted"
-import Link from "next/link"
-import StyledLinkButton from "../../buttons/styled.link.button"
 import StyledLink from "../../buttons/styled.link"
 
 const PostView = (props: { postUuid: string }) => {
@@ -63,14 +61,13 @@ const PostView = (props: { postUuid: string }) => {
 
     const { PostUuid, PostTopic, PostText, CreateDate, AuthorName, Tags } = post.Post
 
+    // TODO: fix bug with closing new/edit comment form
     const AddCommentButton = (
-        <Link href="#new_comment_form">
-            <StyledLinkButton
-                text={t("post.page.btn.new.comment")}
-                onClick={handleNewCommentEvent}
-                classes="uppercase font-bold text-lg outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-            />
-        </Link>
+        <StyledLink href="#new_comment_form"
+            text={t("post.page.btn.new.comment")}
+            onClick={handleNewCommentEvent}
+            classes="uppercase font-bold text-lg outline-none ease-linear transition-all duration-150"
+        />
     )
 
     return (
@@ -94,8 +91,8 @@ const PostView = (props: { postUuid: string }) => {
                 <MarkDown text={PostText} />
             </div>
             <div className="mt-5">
-                <div className="flex justify-between">
-                    <h2 className="font-bold leading-tight text-3xl mt-0 mb-2 text-center">{t("post.page.comment.header")}</h2>
+                <div className="flex justify-between items-center">
+                    <h2 className="font-bold leading-tight text-3xl mt-0 text-center">{t("post.page.comment.header")}</h2>
                     {!profile ? "" : AddCommentButton}
                 </div>
                 {showCreateCommentForm && (
@@ -105,13 +102,15 @@ const PostView = (props: { postUuid: string }) => {
                         }} />
                 )}
 
-                <CommentsList comments={post.Comments} commentsMap={post.CommentsMap}
-                    onReplyCommentBtnClick={() => {
-                        setShowCreateCommentForm(false)
-                    }}
-                    onEditCommentBtnClick={() => {
-                        setShowCreateCommentForm(false)
-                    }} />
+                <div className="primary-content-block2">
+                    <CommentsList comments={post.Comments} commentsMap={post.CommentsMap}
+                        onReplyCommentBtnClick={() => {
+                            setShowCreateCommentForm(false)
+                        }}
+                        onEditCommentBtnClick={() => {
+                            setShowCreateCommentForm(false)
+                        }} />
+                </div>
             </div>
         </div>
     )

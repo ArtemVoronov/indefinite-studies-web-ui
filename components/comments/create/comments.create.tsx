@@ -41,7 +41,7 @@ const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid:
 
     return (
         <div id={props.id} className="primary-comment-edit-border">
-            <div className="flex justify-center">{t("post.page.comment.header.new")}</div>
+            <div className="flex justify-center text-xl font-bold">{t("post.page.comment.header.new")}</div>
             <form className="mt-8 space-y-4" onSubmit={handleSubmit(createComment)}>
                 {linkedCommentIndex && (
                     <div className="text-xs">
