@@ -5,6 +5,7 @@ import { PostsApi } from "../api/posts/posts.api"
 import { UsersApi } from "../api/users/users.api"
 import { FeedApi } from "../api/feed/feed.api"
 import { CommentsApi } from "../api/comments/comments.api"
+import * as uuid from "uuid";
 
 export class ApiClient {
 	apisauce: ApisauceInstance
@@ -30,6 +31,10 @@ export class ApiClient {
 		// const loggingMonitor = (response: ApiResponse<any>) => {
 		// }
 		// this.apisauce.addMonitor(loggingMonitor)
+
+		this.apisauce.addRequestTransform(request => {
+			request.headers['Request-Id'] = uuid.v4();
+		})
 
 		this.auth = new AuthApi(this)
 		this.posts = new PostsApi(this)
