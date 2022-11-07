@@ -15,27 +15,25 @@ const CommentView = (props: {
     comment: FeedComment, linkedComment?: FeedCommentWithIndex, index: number,
     onReplyCommentBtnClick: () => void,
     onEditCommentBtnClick: () => void,
-    renderedFormIndex: number,
-    setRenderedFormIndex: (v: number) => void
+    renderedCreateCommentFormIndex: number,
+    setRenderedCreateCommentFormIndex: (v: number) => void,
+    renderedEditCommentFormIndex: number,
+    setRenderedEditCommentFormIndex: (v: number) => void
 }) => {
     const { t } = useTranslation()
-    const [showReplyCommentForm, setShowReplyCommentForm] = React.useState(false)
-    const [showEditCommentForm, setShowEditCommentForm] = React.useState(false)
     const [profile] = useProfile()
     const { CommentUuid, AuthorUuid, CommentText, AuthorName, LastUpdateDate, PostUuid, CommentState } = props.comment
 
     const handleEditEvent = () => {
-        setShowEditCommentForm(true)
-        setShowReplyCommentForm(false)
         props.onReplyCommentBtnClick()
-        props.setRenderedFormIndex(props.index)
+        props.setRenderedCreateCommentFormIndex(-1)
+        props.setRenderedEditCommentFormIndex(props.index)
     }
 
     const handleReplyEvent = () => {
-        setShowReplyCommentForm(true)
-        setShowEditCommentForm(false)
         props.onEditCommentBtnClick()
-        props.setRenderedFormIndex(props.index)
+        props.setRenderedCreateCommentFormIndex(props.index)
+        props.setRenderedEditCommentFormIndex(-1)
     }
 
     const EditButton = (
@@ -49,12 +47,12 @@ const CommentView = (props: {
         </Link>
     )
 
-    if (showEditCommentForm && props.renderedFormIndex == props.index) {
+    if (props.renderedEditCommentFormIndex == props.index) {
         return (
             <CommentEdit id={"edit_comment_form_" + props.index} comment={props.comment} linkedComment={props.linkedComment}
                 onCancel={() => {
-                    setShowEditCommentForm(false)
-                    props.setRenderedFormIndex(-1)
+                    props.setRenderedCreateCommentFormIndex(-1)
+                    props.setRenderedEditCommentFormIndex(-1)
                 }}
             />
         )
@@ -101,11 +99,11 @@ const CommentView = (props: {
                 </div>
             </div>
 
-            {showReplyCommentForm && props.renderedFormIndex == props.index && (
+            {props.renderedCreateCommentFormIndex == props.index && (
                 <CommentCreate id={"reply_comment_form_" + props.index} postUuid={PostUuid} linkedCommentUuid={CommentUuid} linkedCommentIndex={props.index}
                     onCancel={() => {
-                        setShowReplyCommentForm(false)
-                        props.setRenderedFormIndex(-1)
+                        props.setRenderedCreateCommentFormIndex(-1)
+                        props.setRenderedEditCommentFormIndex(-1)
                     }}
                 />
             )}

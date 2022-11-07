@@ -4,9 +4,14 @@ import { FeedComment, FeedCommentsMap } from "../../../services/feed/feed.servic
 import CommentView from "../view/comments.view"
 
 
-const CommentsList = (props: { comments: FeedComment[], commentsMap: FeedCommentsMap, onReplyCommentBtnClick: () => void, onEditCommentBtnClick: () => void }) => {
+const CommentsList = (props: {
+    comments: FeedComment[], commentsMap: FeedCommentsMap, onReplyCommentBtnClick: () => void, onEditCommentBtnClick: () => void,
+    renderedCreateCommentFormIndex: number,
+    setRenderedCreateCommentFormIndex: (v: number) => void,
+    renderedEditCommentFormIndex: number,
+    setRenderedEditCommentFormIndex: (v: number) => void
+}) => {
     const { t } = useTranslation()
-    const [renderedFormIndex, setRenderedFormIndex] = React.useState(-1)
     const { comments, commentsMap } = props
 
     if (comments.length == 0) return (
@@ -28,8 +33,10 @@ const CommentsList = (props: { comments: FeedComment[], commentsMap: FeedComment
                             linkedComment={p.LinkedCommentUuid == "" ? undefined : commentsMap[p.LinkedCommentUuid]} index={idx + 1}
                             onReplyCommentBtnClick={props.onReplyCommentBtnClick}
                             onEditCommentBtnClick={props.onEditCommentBtnClick}
-                            renderedFormIndex={renderedFormIndex}
-                            setRenderedFormIndex={(v: number) => setRenderedFormIndex(v)}
+                            renderedCreateCommentFormIndex={props.renderedCreateCommentFormIndex}
+                            setRenderedCreateCommentFormIndex={(v: number) => props.setRenderedCreateCommentFormIndex(v)}
+                            renderedEditCommentFormIndex={props.renderedEditCommentFormIndex}
+                            setRenderedEditCommentFormIndex={(v: number) => props.setRenderedEditCommentFormIndex(v)}
                         />
                     )
                 })}

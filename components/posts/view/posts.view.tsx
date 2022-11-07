@@ -17,10 +17,14 @@ const PostView = (props: { postUuid: string }) => {
     const [showCreateCommentForm, setShowCreateCommentForm] = React.useState(false)
     const [isLoading, setIsLoading] = React.useState(false)
     const [post, setPost] = React.useState({} as FullPostInfo)
+    const [renderedCreateCommentFormIndex, setRenderedCreateCommentFormIndex] = React.useState(-1)
+    const [renderedEditCommentFormIndex, setRenderedEditCommentFormIndex] = React.useState(-1)
     const { postUuid } = props
 
     const handleNewCommentEvent = () => {
         setShowCreateCommentForm(true)
+        setRenderedCreateCommentFormIndex(-1)
+        setRenderedEditCommentFormIndex(-1)
     }
 
     const fetchPost = async () => {
@@ -61,7 +65,6 @@ const PostView = (props: { postUuid: string }) => {
 
     const { PostUuid, PostTopic, PostText, CreateDate, AuthorName, Tags } = post.Post
 
-    // TODO: fix bug with closing new/edit comment form
     const AddCommentButton = (
         <StyledLink href="#new_comment_form"
             text={t("post.page.btn.new.comment")}
@@ -109,7 +112,13 @@ const PostView = (props: { postUuid: string }) => {
                         }}
                         onEditCommentBtnClick={() => {
                             setShowCreateCommentForm(false)
-                        }} />
+                        }}
+                        renderedCreateCommentFormIndex={renderedCreateCommentFormIndex}
+                        setRenderedCreateCommentFormIndex={(v: number) => setRenderedCreateCommentFormIndex(v)}
+                        renderedEditCommentFormIndex={renderedEditCommentFormIndex}
+                        setRenderedEditCommentFormIndex={(v: number) => setRenderedEditCommentFormIndex(v)}
+                    />
+
                 </div>
             </div>
         </div>
