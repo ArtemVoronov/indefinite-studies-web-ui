@@ -76,7 +76,7 @@ const LoginForm = () => {
                     </div>
 
                     <div className="flex items-center justify-between">
-                        <div className="text-sm">
+                        <div className="text-sm font-bold">
                             <StyledLink href="/restorepwd" text={t("sign.in.page.forgot.password.link")} />
                         </div>
                     </div>
