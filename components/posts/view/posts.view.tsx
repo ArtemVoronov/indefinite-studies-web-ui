@@ -85,7 +85,7 @@ const PostView = (props: { postUuid: string }) => {
                     <div className="flex items-center text-xs">
                         {Tags.map(function (tag: Tag, idx) {
                             return (
-                                <StyledLink href={"/posts/" + tag.Id + "/0"} text={tag.Name} key={idx} />
+                                <StyledLink href={"/posts/" + tag.Id + "/0"} text={tag.Name} key={idx} classes="ml-2" />
                             )
                         })}
                     </div>
