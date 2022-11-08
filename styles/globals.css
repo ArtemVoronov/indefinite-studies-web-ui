@@ -20,7 +20,7 @@ html {
     }
     
     .primary-button {
-        @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 primary-button-text bg-rose-600 hover:bg-rose-700 focus:ring-rose-500;
+        @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 primary-button-text dark:bg-rose-600 dark:hover:bg-rose-700 dark:focus:ring-rose-500;
     }
 
     .primary-button-text {

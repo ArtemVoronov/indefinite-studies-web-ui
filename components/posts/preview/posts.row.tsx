@@ -43,9 +43,9 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
             <td className="text-center">
                 <StyledLink href={"/post/" + PostUuid} text={PostTopic} classes="p-1 my-1 text-center" />
             </td>
-            <td className="text-center w-64">
+            {props.withModeratorActions && (<td className="text-center w-64">
                 {AuthorName}
-            </td>
+            </td>)}
             <td className="text-center w-64">
                 <div className="flex justify-center">
                     {!props.withModeratorActions ? "" : ModeratorActionsPanel}

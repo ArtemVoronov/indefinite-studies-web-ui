@@ -82,7 +82,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
                 <thead>
                     <tr className="primary-content-block">
                         <th>{t("posts.page.table.head.topic")}</th>
-                        <th className="w-64">{t("posts.page.table.head.author")}</th>
+                        {props.withModeratorActions && (<th className="w-64">{t("posts.page.table.head.author")}</th>)}
                         <th className="w-64">{t("posts.page.table.head.action")}</th>
                     </tr>
                 </thead>
