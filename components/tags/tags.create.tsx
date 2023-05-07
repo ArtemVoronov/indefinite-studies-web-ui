@@ -9,52 +9,52 @@ import StyledButton from "../buttons/styled.button"
 import StyledTextInput from "../form/styled.input"
 
 const TagCreateForm = () => {
-    const [profile] = useProfile()
-    const [showErrorModal] = useErrorModal()
-    const { register, handleSubmit } = useForm()
-    const { t } = useTranslation()
+  const [profile] = useProfile()
+  const [showErrorModal] = useErrorModal()
+  const { register, handleSubmit } = useForm()
+  const { t } = useTranslation()
 
-    const createTag = async (data: any) => {
-        const { name } = data
+  const createTag = async (data: any) => {
+    const { name } = data
 
-        if (!profile) {
-            showErrorModal(true,
-                t("error.page.unexpected.error.occurred"),
-                t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
-            )
-            return
-        }
-
-        const response = await POSTS_SERVICE.createTag({ name })
-
-        if (response.status != 201) {
-            showErrorModal(true,
-                t("error.page.unexpected.error.occurred"),
-                t("error.page.unable.to.create.tag") + " " + t("error.page.please.repeat.action.or.reload.the.page")
-            )
-            return
-        }
-        Router.reload()
+    if (!profile) {
+      showErrorModal(true,
+        t("error.page.unexpected.error.occurred"),
+        t("error.page.unable.to.get.profile") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+      )
+      return
     }
 
-    return (
-        <div>
-            <form className="mt-8 space-y-4" onSubmit={handleSubmit(createTag)}>
-                <div>
-                    <label htmlFor="name" className="block text-sm font-medium">
-                        {t("admin.page.tag.name.label")}
-                    </label>
-                    <div className="relative mt-1 rounded-md shadow-sm">
-                        <StyledTextInput id="name" type="text" placeholder={t("admin.page.tag.name.placeholder")} required register={register} />
-                    </div>
-                </div>
-                <div className="flex justify-center">
-                    <StyledButton text={t("btn.submit")} classes="w-52" />
-                </div>
-            </form>
+    const response = await POSTS_SERVICE.createTag({ name })
 
+    if (response.status != 201) {
+      showErrorModal(true,
+        t("error.page.unexpected.error.occurred"),
+        t("error.page.unable.to.create.tag") + " " + t("error.page.please.repeat.action.or.reload.the.page")
+      )
+      return
+    }
+    Router.reload()
+  }
+
+  return (
+    <div>
+      <form className="mt-8 space-y-4" onSubmit={handleSubmit(createTag)}>
+        <div>
+          <label htmlFor="name" className="block text-sm font-medium">
+            {t("admin.page.tag.name.label")}
+          </label>
+          <div className="relative mt-1 rounded-md shadow-sm">
+            <StyledTextInput id="name" type="text" placeholder={t("admin.page.tag.name.placeholder")} required register={register} />
+          </div>
         </div>
-    )
+        <div className="flex justify-center">
+          <StyledButton text={t("btn.submit")} classes="w-52" />
+        </div>
+      </form>
+
+    </div>
+  )
 }
 
 export default TagCreateForm

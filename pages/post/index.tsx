@@ -5,20 +5,20 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const CreatePostPage: NextPage = () => {
 
-    return (
-        <div className="w-full max-w-3xl">
-            <PostCreate />
-        </div>
-    )
+  return (
+    <div className="w-full max-w-3xl">
+      <PostCreate />
+    </div>
+  )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const locale = context?.locale ?? "ru"
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-        },
-    }
+  const locale = context?.locale ?? "ru"
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
 }
 
 export default CreatePostPage

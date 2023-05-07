@@ -6,23 +6,23 @@ import { useTranslation } from "next-i18next"
 import AdminSettingsForm from "../../components/admin/settings.form"
 
 const AdminPage: NextPage = () => {
-    const { t } = useTranslation()
-    const [profile] = useProfile()
+  const { t } = useTranslation()
+  const [profile] = useProfile()
 
-    return (
-        <div className="w-full flex flex-1">
-            {!profile ? t("no.data") : <AdminSettingsForm />}
-        </div>
-    )
+  return (
+    <div className="w-full flex flex-1">
+      {!profile ? t("no.data") : <AdminSettingsForm />}
+    </div>
+  )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const locale = context?.locale ?? "ru"
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-        },
-    }
+  const locale = context?.locale ?? "ru"
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
 }
 
 export default AdminPage

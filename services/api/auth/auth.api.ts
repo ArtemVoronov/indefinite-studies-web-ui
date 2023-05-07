@@ -5,31 +5,31 @@ export type AuthTokens = { accessToken: string, refreshToken: string, accessToke
 export type LoginResult = { kind: "ok"; data: AuthTokens }
 
 export class AuthApi {
-	api: ApiClient
+  api: ApiClient
 
-	constructor(api: ApiClient) {
-		this.api = api
-	}
+  constructor(api: ApiClient) {
+    this.api = api
+  }
 
-	async login(email: string, password: string): Promise<ApiResponse<any>> {
-		return this.api.apisauce.post("/api/v1/auth/login", {
-			email,
-			password
-		})
-	}
+  async login(email: string, password: string): Promise<ApiResponse<any>> {
+    return this.api.apisauce.post("/api/v1/auth/login", {
+      email,
+      password
+    })
+  }
 
-	async refreshToken(refreshToken: string): Promise<ApiResponse<any>> {
-		return this.api.apisauce.post("/api/v1/auth/refresh-token", {
-			refreshToken
-		})
-	}
+  async refreshToken(refreshToken: string): Promise<ApiResponse<any>> {
+    return this.api.apisauce.post("/api/v1/auth/refresh-token", {
+      refreshToken
+    })
+  }
 
-	async ping(): Promise<any> {
-		return this.api.apisauce.get("/api/v1/auth/ping")
-	}
+  async ping(): Promise<any> {
+    return this.api.apisauce.get("/api/v1/auth/ping")
+  }
 
-	async safePing(): Promise<any> {
-		return this.api.apisauce.get("/api/v1/auth/safe-ping")
-	}
+  async safePing(): Promise<any> {
+    return this.api.apisauce.get("/api/v1/auth/safe-ping")
+  }
 
 }

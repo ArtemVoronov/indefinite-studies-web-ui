@@ -8,56 +8,56 @@ import { CommentsApi } from "../api/comments/comments.api"
 import * as uuid from "uuid";
 
 export class ApiClient {
-	apisauce: ApisauceInstance
-	config: ApiConfig
-	auth: AuthApi
-	posts: PostsApi
-	comments: CommentsApi
-	users: UsersApi
-	feed: FeedApi
+  apisauce: ApisauceInstance
+  config: ApiConfig
+  auth: AuthApi
+  posts: PostsApi
+  comments: CommentsApi
+  users: UsersApi
+  feed: FeedApi
 
-	constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
-		this.config = config
+  constructor(config: ApiConfig = DEFAULT_API_CONFIG) {
+    this.config = config
 
-		this.apisauce = create({
-			baseURL: config.url,
-			timeout: config.timeoutInMillis,
-			headers: {
-				Accept: "application/json",
-			},
-		})
+    this.apisauce = create({
+      baseURL: config.url,
+      timeout: config.timeoutInMillis,
+      headers: {
+        Accept: "application/json",
+      },
+    })
 
-		// TODO: make sending monitoring statistics to kafka
-		// const loggingMonitor = (response: ApiResponse<any>) => {
-		// }
-		// this.apisauce.addMonitor(loggingMonitor)
+    // TODO: make sending monitoring statistics to kafka
+    // const loggingMonitor = (response: ApiResponse<any>) => {
+    // }
+    // this.apisauce.addMonitor(loggingMonitor)
 
-		this.apisauce.addRequestTransform(request => {
-			request.headers['Request-Id'] = uuid.v4();
-		})
+    this.apisauce.addRequestTransform(request => {
+      request.headers['Request-Id'] = uuid.v4();
+    })
 
-		this.auth = new AuthApi(this)
-		this.posts = new PostsApi(this)
-		this.users = new UsersApi(this)
-		this.feed = new FeedApi(this)
-		this.comments = new CommentsApi(this)
-	}
+    this.auth = new AuthApi(this)
+    this.posts = new PostsApi(this)
+    this.users = new UsersApi(this)
+    this.feed = new FeedApi(this)
+    this.comments = new CommentsApi(this)
+  }
 
-	setJWTAuthrozationHeader(token: string) {
-		this.apisauce.setHeaders({
-			Authorization: `Bearer ${token}`,
-		})
-	}
+  setJWTAuthrozationHeader(token: string) {
+    this.apisauce.setHeaders({
+      Authorization: `Bearer ${token}`,
+    })
+  }
 
-	setBasicAuthrozationHeader(encodedCredentials: string) {
-		this.apisauce.setHeaders({
-			Authorization: `Basic ${encodedCredentials}`,
-		})
-	}
+  setBasicAuthrozationHeader(encodedCredentials: string) {
+    this.apisauce.setHeaders({
+      Authorization: `Basic ${encodedCredentials}`,
+    })
+  }
 
-	deleteAuthrozationHeader() {
-		this.apisauce.deleteHeader("Authorization")
-	}
+  deleteAuthrozationHeader() {
+    this.apisauce.deleteHeader("Authorization")
+  }
 }
 
 export const API_CLIENT: ApiClient = new ApiClient()

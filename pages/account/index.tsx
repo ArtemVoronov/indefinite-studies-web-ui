@@ -6,23 +6,23 @@ import { useTranslation } from "next-i18next"
 import AccountSettingsForm from "../../components/account/settings.form"
 
 const AccountViewPage: NextPage = () => {
-    const { t } = useTranslation()
-    const [profile] = useProfile()
+  const { t } = useTranslation()
+  const [profile] = useProfile()
 
-    return (
-        <div className="w-full flex flex-1">
-            {!profile ? t("no.data") : <AccountSettingsForm />}
-        </div>
-    )
+  return (
+    <div className="w-full flex flex-1">
+      {!profile ? t("no.data") : <AccountSettingsForm />}
+    </div>
+  )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const locale = context?.locale ?? "ru"
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-        },
-    }
+  const locale = context?.locale ?? "ru"
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
 }
 
 export default AccountViewPage

@@ -5,20 +5,20 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const RestorePasswordPage: NextPage = () => {
 
-    return (
-        <div className="flex-1 flex items-center justify-center">
-            <ResendRestorePasswordForm />
-        </div>
-    )
+  return (
+    <div className="flex-1 flex items-center justify-center">
+      <ResendRestorePasswordForm />
+    </div>
+  )
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const locale = context?.locale ?? "ru"
-    return {
-        props: {
-            ...(await serverSideTranslations(locale, ['common'])),
-        },
-    }
+  const locale = context?.locale ?? "ru"
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  }
 }
 
 export default RestorePasswordPage

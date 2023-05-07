@@ -5,26 +5,26 @@ import { CreateCommentOptions, UpdateCommentOptions } from "../../services/api/c
 
 // TODO: service should some maningful results instead of response
 export class CommentsService {
-    async create(options: CreateCommentOptions): Promise<ApiResponse<any>> {
-        const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.comments.create(options)
-        })
-        return result
-    }
+  async create(options: CreateCommentOptions): Promise<ApiResponse<any>> {
+    const result = await API_ERROR_HANDLER.callWithErrorHandling({
+      action: () => API_CLIENT.comments.create(options)
+    })
+    return result
+  }
 
-    async update(options: UpdateCommentOptions): Promise<ApiResponse<any>> {
-        const result = await API_ERROR_HANDLER.callWithErrorHandling({
-            action: () => API_CLIENT.comments.update(options)
-        })
-        return result
-    }
+  async update(options: UpdateCommentOptions): Promise<ApiResponse<any>> {
+    const result = await API_ERROR_HANDLER.callWithErrorHandling({
+      action: () => API_CLIENT.comments.update(options)
+    })
+    return result
+  }
 }
 
 export const COMMENTS_SERVICE: CommentsService = new CommentsService()
 
 export const COMMENT_STATES = {
-    "NEW": "NEW",
-    "ON_MODERATION": "ON_MODERATION",
-    "PUBLISHED": "PUBLISHED",
-    "BLOCKED": "BLOCKED",
+  "NEW": "NEW",
+  "ON_MODERATION": "ON_MODERATION",
+  "PUBLISHED": "PUBLISHED",
+  "BLOCKED": "BLOCKED",
 }
