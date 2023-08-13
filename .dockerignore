@@ -1,9 +1,9 @@
 .vscode
 .env.*
+.cache
+public
+node_modules
 Dockerfile
 .dockerignore
 docker-compose.yml
-.next
-node_modules
-npm-debug.log
-dist
+HELP.md
