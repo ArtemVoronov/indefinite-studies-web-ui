@@ -34,7 +34,7 @@ const TagCreateForm = () => {
       )
       return
     }
-    // Router.reload() // TODO
+    window.location.reload()
   }
 
   return (

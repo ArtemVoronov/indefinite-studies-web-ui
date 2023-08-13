@@ -38,7 +38,7 @@ const CommentEdit = (props: { id: string, comment: FeedComment, linkedComment?: 
       )
       return
     }
-    // Router.reload() // TODO
+    window.location.reload()
   }
 
   return (

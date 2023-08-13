@@ -27,7 +27,7 @@ const AccountEdit = (props: { user: User, onCancel: () => void }) => {
           return
         }
         setProfile(res)
-        // Router.reload() TODO 
+        window.location.reload()
       })
     } else {
       showErrorModal(true,

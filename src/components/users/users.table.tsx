@@ -48,7 +48,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
     const response = await USERS_SERVICE.update({ Uuid: userUuid, state: USER_STATES.BLOCKED })
 
     if (response.status == 200) {
-      // Router.reload() // TODO
+      window.location.reload()
     } else {
       showErrorModal(true,
         t("error.page.unexpected.error.occurred"),
@@ -61,7 +61,7 @@ const UsersTable = (props: { page: string, pageSize?: number, onNavigate?: (page
     const response = await USERS_SERVICE.update({ Uuid: userUuid, state: USER_STATES.CONFIRMED })
 
     if (response.status == 200) {
-      // Router.reload() // TODO
+      window.location.reload()
     } else {
       showErrorModal(true,
         t("error.page.unexpected.error.occurred"),

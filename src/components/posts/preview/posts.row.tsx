@@ -16,7 +16,7 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
     const response = await POSTS_SERVICE.update({ postUuid: PostUuid, state: state })
 
     if (response.status == 200) {
-      // Router.reload() TODO
+      window.location.reload()
     } else {
       showErrorModal(true,
         t("error.page.unexpected.error.occurred"),

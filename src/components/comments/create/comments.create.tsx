@@ -36,7 +36,7 @@ const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid:
       )
       return
     }
-    // Router.reload() // TODO
+    window.location.reload()
   }
 
   return (

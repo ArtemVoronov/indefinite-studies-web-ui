@@ -17,7 +17,7 @@ const CommentRow = (props: { comment: FeedComment }) => {
     const response = await COMMENTS_SERVICE.update({ authorUuid: AuthorUuid, postUuid: PostUuid, commentId: CommentId, commentUuid: CommentUuid, state })
 
     if (response.status == 200) {
-      // Router.reload() TODO
+      window.location.reload()
     } else {
       showErrorModal(true,
         t("error.page.unexpected.error.occurred"),
