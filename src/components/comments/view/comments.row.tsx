@@ -1,12 +1,11 @@
 import * as React from "react"
 import { FeedComment } from "../../../services/feed/feed.service"
-import { navigate } from 'gatsby'
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { COMMENTS_SERVICE, COMMENT_STATES } from "../../../services/comments/comments.service"
-import StyledLinkButtonWithToolTip from "../../buttons/button.with.tooltip"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon } from "@heroicons/react/20/solid"
 import StyledLink from "../../buttons/styled.link"
 import { useTranslation } from "gatsby-plugin-react-i18next"
+import StyledLinkButton from "../../buttons/styled.link.button"
 
 const CommentRow = (props: { comment: FeedComment }) => {
   const { t } = useTranslation()
@@ -28,10 +27,14 @@ const CommentRow = (props: { comment: FeedComment }) => {
 
   const ModeratorActionsPanel = (
     <>
-      <StyledLinkButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(COMMENT_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
-      <StyledLinkButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(COMMENT_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
-      <StyledLinkButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(COMMENT_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
-      <StyledLinkButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(COMMENT_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(COMMENT_STATES.NEW) }}
+        icon={<ArrowUturnLeftIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.new")} />} />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(COMMENT_STATES.ON_MODERATION) }}
+        icon={<BriefcaseIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.moderate")} />} />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(COMMENT_STATES.PUBLISHED) }}
+        icon={<BookOpenIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.publish")} />} />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(COMMENT_STATES.BLOCKED) }}
+        icon={<NoSymbolIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.edit")} />} />
     </>
   )
 

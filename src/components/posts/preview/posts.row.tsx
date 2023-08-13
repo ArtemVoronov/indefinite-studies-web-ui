@@ -4,9 +4,9 @@ import { POSTS_SERVICE, POST_STATES } from "../../../services/posts/posts.servic
 import { navigate } from 'gatsby'
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon, PencilIcon } from "@heroicons/react/24/solid"
-import StyledLinkButtonWithToolTip from "../../buttons/button.with.tooltip"
 import StyledLink from "../../buttons/styled.link"
 import { useTranslation } from "gatsby-plugin-react-i18next"
+import StyledLinkButton from "../../buttons/styled.link.button"
 
 const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => {
   const { t } = useTranslation()
@@ -31,10 +31,18 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
 
   const ModeratorActionsPanel = (
     <>
-      <StyledLinkButtonWithToolTip text={t("btn.new")} action={() => { handleChangeStateEvent(POST_STATES.NEW) }} icon={<ArrowUturnLeftIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
-      <StyledLinkButtonWithToolTip text={t("btn.moderate")} action={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }} icon={<BriefcaseIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
-      <StyledLinkButtonWithToolTip text={t("btn.publish")} action={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }} icon={<BookOpenIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
-      <StyledLinkButtonWithToolTip text={t("btn.edit")} action={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }} icon={<NoSymbolIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(POST_STATES.NEW) }}
+        icon={<ArrowUturnLeftIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.new")} />}
+      />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(POST_STATES.ON_MODERATION) }}
+        icon={<BriefcaseIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.moderate")} />}
+      />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(POST_STATES.PUBLISHED) }}
+        icon={<BookOpenIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.publish")} />}
+      />
+      <StyledLinkButton onClick={() => { handleChangeStateEvent(POST_STATES.BLOCKED) }}
+        icon={<NoSymbolIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.edit")} />}
+      />
     </>
   )
 
@@ -49,7 +57,9 @@ const PostRow = (props: { post: FeedBlock, withModeratorActions?: boolean }) => 
       <td className="text-center w-64">
         <div className="flex justify-center">
           {!props.withModeratorActions ? "" : ModeratorActionsPanel}
-          <StyledLinkButtonWithToolTip text={t("btn.edit")} action={handleEditEvent} icon={<PencilIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" />} />
+          <StyledLinkButton onClick={handleEditEvent}
+            icon={<PencilIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.edit")} />}
+          />
         </div>
       </td>
     </tr>
