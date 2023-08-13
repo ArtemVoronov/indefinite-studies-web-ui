@@ -19,7 +19,6 @@ const NavigationPanel = () => {
   const { t } = useTranslation()
 
   const initTheme = (value: string) => {
-    console.log("initTheme:", value)// todo clean
     if (value == THEMES.DAY) {
       setTheme(THEMES.DAY)
       window.localStorage[CURRENT_THEME_KEY] = THEMES.DAY
@@ -52,10 +51,13 @@ const NavigationPanel = () => {
   return (
     <div className="flex justify-between items-center max-w-3xl flex-1">
       <div className="flex items-center">
-        <StyledMenuLink href="/posts/0" text=""
+        {/* TODO: clean */}
+        {/* <StyledMenuLink href="/posts/0" text=""
           icon={<StaticImage src="../../images/logo.png" alt="" width={132} height={69} />}
           classes="flex items-center text-base font-medium ml-5"
-        />
+        /> */}
+        <StyledMenuLink href="/posts/0" text="Indefinite Studies" classes="flex items-center text-base font-medium ml-5" />
+        <div className="primary-logo"></div>
         <div className="ml-5 flex items-center">
           <ToggleButton action={() => { initTheme(theme == THEMES.DAY ? THEMES.NIGHT : THEMES.DAY) }}
             icon={theme == THEMES.DAY ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
