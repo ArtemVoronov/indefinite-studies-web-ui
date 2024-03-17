@@ -11,6 +11,11 @@ export class UsersApi {
     return this.api.apisauce.get("/api/v1/users/me")
   }
 
+  async getUserName(options: GetUserNameOptions): Promise<any> {
+    const { Uuid } = options
+    return this.api.apisauce.get(`/api/v1/users/name/${Uuid}`)
+  }
+
   async update(options: UpdateUserOptions): Promise<any> {
     return this.api.apisauce.put("/api/v1/users", options)
   }
@@ -36,6 +41,7 @@ export class UsersApi {
   }
 }
 
+export type GetUserNameOptions = { Uuid: string }
 export type UpdateUserOptions = { Uuid: string, login?: string, password?: string, state?: string }
 export type SignUpOptions = { login: string, email: string, password: string }
 export type SignUpConfirmationOptions = { token: string }

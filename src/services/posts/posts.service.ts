@@ -22,6 +22,13 @@ export class PostsService {
     return result
   }
 
+  async getPreview(options: GetPostOptions): Promise<ApiResponse<any>> {
+    const result = await API_ERROR_HANDLER.callWithErrorHandling({
+      action: () => API_CLIENT.posts.getPreview(options)
+    })
+    return result
+  }
+
   async create(options: CreatePostOptions): Promise<ApiResponse<any>> {
     const result = await API_ERROR_HANDLER.callWithErrorHandling({
       action: () => API_CLIENT.posts.create(options)
@@ -78,6 +85,18 @@ export const POSTS_SERVICE: PostsService = new PostsService()
 export type Tag = {
   Id: number
   Name: string
+}
+
+export type Post = {
+  Uuid: string
+  Text: string
+  PreviewText: string
+  Topic: string
+  State: string
+  AuthorUuid: string
+  AuthorName: string
+  Tags: Array<Tag>
+  CreateDate: number
 }
 
 export const POST_STATES = {

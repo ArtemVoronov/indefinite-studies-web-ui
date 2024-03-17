@@ -1,7 +1,7 @@
 import { API_CLIENT } from "../../services/api/api-client"
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
 import { ApiResponse } from "apisauce"
-import { UpdateUserOptions, SignUpOptions, SignUpConfirmationOptions, SignResendConfirmationOptions, RestorePasswordOptions, RestorePasswordConfirmationOptions } from "../api/users/users.api"
+import { UpdateUserOptions, SignUpOptions, SignUpConfirmationOptions, SignResendConfirmationOptions, RestorePasswordOptions, RestorePasswordConfirmationOptions, GetUserNameOptions } from "../api/users/users.api"
 
 export class UsersService {
   async getMe(): Promise<User | undefined> {
@@ -14,6 +14,13 @@ export class UsersService {
     }
 
     return response.data
+  }
+
+  async getUserName(options: GetUserNameOptions): Promise<ApiResponse<any>> {
+    const result = await API_ERROR_HANDLER.callWithErrorHandling({
+      action: () => API_CLIENT.users.getUserName(options)
+    })
+    return result
   }
 
   async update(options: UpdateUserOptions): Promise<ApiResponse<any>> {

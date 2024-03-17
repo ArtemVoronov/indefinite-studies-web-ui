@@ -38,6 +38,11 @@ export class PostsApi {
     return this.api.apisauce.get(`/api/v1/posts/${postUuid}`)
   }
 
+  async getPreview(options: GetPostOptions): Promise<any> {
+    const { postUuid } = options
+    return this.api.apisauce.get(`/api/v1/posts/preview/${postUuid}`)
+  }
+
   async create(options: CreatePostOptions): Promise<any> {
     const { authorUuid, text, topic, previewText, tagIds } = options
     return this.api.apisauce.post("/api/v1/posts", {
