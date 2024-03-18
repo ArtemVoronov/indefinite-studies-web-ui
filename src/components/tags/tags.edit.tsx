@@ -35,6 +35,9 @@ const TagEditForm = () => {
       if (response.status === 200) {
         const count = response.data.Count
         const portion = response.data.Data
+        if (!portion) {
+          return
+        }
         if (count != 0) {
           setTags(tags.concat(portion))
         }
