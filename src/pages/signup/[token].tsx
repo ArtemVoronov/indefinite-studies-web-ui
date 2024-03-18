@@ -45,8 +45,8 @@ const SignUpConfirmationPage = (props: { token?: string }) => {
   if (isConfirmed) return (
     <div className="w-full max-w-3xl">
       <div className="flex flex-1 justify-center items-center flex-col h-screen">
-        <p>{t("email.was.confirmed")}</p>
-        <StyledLink href="/login" text={t("sign.in")} />
+        <p>{t("sign.up.page.email.was.confirmed")}</p>
+        <StyledLink href="/login" text={t("sign.up.page.sign.in")} />
       </div>
     </div>
   )
@@ -54,8 +54,8 @@ const SignUpConfirmationPage = (props: { token?: string }) => {
   return (
     <div className="w-full max-w-3xl">
       <div className="flex flex-1 justify-center items-center flex-col h-screen">
-        <p>{t("error.occured")}</p>
-        <StyledLink href="/signup/resend" text={t("resend.confirmation")} />
+        <p>{t("sign.up.page.error.occured")}</p>
+        <StyledLink href="/signup/resend" text={t("sign.up.page.resend.confirmation")} />
       </div>
     </div>
   )

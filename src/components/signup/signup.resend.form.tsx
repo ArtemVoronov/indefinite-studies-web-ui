@@ -41,7 +41,7 @@ const ResendSignUpConfirmationForm = () => {
           {/* TODO */}
           {/* <Image src={faviconPic} alt="Indefinite Studies" /> */}
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight">
-            {t("send.cofirmation.header")}
+            {t("sign.up.page.send.cofirmation.header")}
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(resend)}>
@@ -56,7 +56,7 @@ const ResendSignUpConfirmationForm = () => {
           </div>
 
           <div>
-            <StyledButton text={t("send.cofirmation.btn")} classes="w-52" />
+            <StyledButton text={t("sign.up.page.send.cofirmation.btn")} classes="w-52" />
           </div>
         </form>
 
