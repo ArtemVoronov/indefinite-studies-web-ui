@@ -2,6 +2,7 @@
   "navbar": {
     "posts.link": "Новости",
     "new.post.link": "Создать заметку",
+    "contacts.link": "Контакты",
     "menu": {
       "account": "Настройки",
       "admin.settings": "Админка",

@@ -30,9 +30,10 @@ const NotAuthorizedUserButton = () => {
         >
           <div className="py-1">
             <MenuButton href="/login" text={t("navbar.menu.sign.in")} />
-            <MenuButton href="/signup" text={t("navbar.menu.sign.up")} />
-            <MenuButton href="/posts/0" text={t("navbar.menu.to.russian")} locale="ru" />
-            <MenuButton href="/posts/0" text={t("navbar.menu.to.english")} locale="en" />
+            {/* TODO: Turn on the following at late stage */}
+            {/* <MenuButton href="/signup" text={t("navbar.menu.sign.up")} /> */}
+            {/* <MenuButton href="/posts/0" text={t("navbar.menu.to.russian")} locale="ru" /> */}
+            {/* <MenuButton href="/posts/0" text={t("navbar.menu.to.english")} locale="en" /> */}
           </div>
         </Menu.Items>
       </Transition>

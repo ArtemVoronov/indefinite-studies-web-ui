@@ -44,8 +44,8 @@ const AuthorizedUserButton = (props: { user: User }) => {
             <MenuButton href="/account" text={t("navbar.menu.account")} />
             <MenuButton href="/admin" text={t("navbar.menu.admin.settings")} />
             <MenuButton href="/posts/0" text={t("navbar.menu.sign.out")} onClick={logout} />
-            <MenuButton href="/posts/0" text={t("navbar.menu.to.russian")} locale="ru" />
-            <MenuButton href="/posts/0" text={t("navbar.menu.to.english")} locale="en" />
+            {/* <MenuButton href="/posts/0" text={t("navbar.menu.to.russian")} locale="ru" /> */}
+            {/* <MenuButton href="/posts/0" text={t("navbar.menu.to.english")} locale="en" /> */}
           </div>
         </Menu.Items>
       </Transition>

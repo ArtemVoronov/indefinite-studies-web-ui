@@ -2,6 +2,7 @@
   "navbar": {
     "posts.link": "Posts",
     "new.post.link": "New Post",
+    "contacts.link": "Contacts",
     "menu": {
       "account": "Account settings",
       "admin.settings": "Admin settings",

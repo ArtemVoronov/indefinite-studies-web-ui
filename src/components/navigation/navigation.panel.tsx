@@ -56,7 +56,7 @@ const NavigationPanel = () => {
           icon={<StaticImage src="../../images/logo.png" alt="" width={132} height={69} />}
           classes="flex items-center text-base font-medium ml-5"
         /> */}
-        <StyledMenuLink href="/posts/0" text="Indefinite Studies" classes="flex items-center text-base font-medium ml-5" />
+        <StyledMenuLink href="/" text="Indefinite Studies" classes="flex items-center text-base font-medium ml-5" />
         <div className="primary-logo"></div>
         <div className="ml-5 flex items-center">
           <ToggleButton action={() => { initTheme(theme == THEMES.DAY ? THEMES.NIGHT : THEMES.DAY) }}
@@ -67,10 +67,13 @@ const NavigationPanel = () => {
       </div>
       <div className="flex items-center">
         <StyledMenuLink href="/posts/0" text={t("navbar.posts.link")} classes="text-base font-medium ml-5" />
+        <StyledMenuLink href="/contacts" text={t("navbar.contacts.link")} classes="text-base font-medium ml-5" />
         {profile && profile.Role == ROLES.OWNER && (
           <StyledMenuLink href="/post" text={t("navbar.new.post.link")} classes="text-base font-medium ml-5" />
         )}
-        {!profile ? <NotAuthorizedUserButton /> : <AuthorizedUserButton user={profile} />}
+        {!profile ? <div /> : <AuthorizedUserButton user={profile} />}
+        {/* TODO: Add this at stage with comments */}
+        {/* {!profile ? <NotAuthorizedUserButton /> : <AuthorizedUserButton user={profile} />} */}
       </div>
     </div>
   )
