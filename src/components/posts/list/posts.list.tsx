@@ -15,7 +15,6 @@ const PostsList = (props: {
   hideTopNavigation?: boolean, hideBottomNavigation?: boolean, pageSize?: number, onNavigate?: (page: number) => void
 }) => {
   const [isLoading, setIsLoading] = React.useState(false)
-  const [posts, setPosts] = React.useState([])
   const [postUuids, setPostUuids] = React.useState([])
   const [loadedCount, setLoadedCount] = React.useState(0)
   const { t } = useTranslation()
@@ -70,16 +69,16 @@ const PostsList = (props: {
 
   const navigation = (
     <div className="flex justify-center p-3 my-4 border-b-2 primary-content-block"
-      style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
+      style={{ display: (postUuids.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
       <StyledLink href={getNavPathPrev()} text={t("btn.prev")} icon={<ArrowLeftIcon />} style={{ display: props.page == "0" ? "none" : undefined }} />
       <div className="flex-1" />
-      <StyledLink href={getNavPathNext()} text={t("btn.next")} icon={<ArrowRightIcon />} style={{ display: (posts.length + 1) != loadedCount ? "none" : undefined }} />
+      <StyledLink href={getNavPathNext()} text={t("btn.next")} icon={<ArrowRightIcon />} style={{ display: (postUuids.length + 1) != loadedCount ? "none" : undefined }} />
     </div>
   )
 
   const outerNavigation = (
     <div className="flex justify-center p-3 my-4 border-b-2 primary-content-block"
-      style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
+      style={{ display: (postUuids.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
       <StyledLinkButton
         text={t("btn.prev")} icon={<ArrowLeftIcon />}
         onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
@@ -89,7 +88,7 @@ const PostsList = (props: {
       <StyledLinkButton
         text={t("btn.next")} icon={<ArrowRightIcon />}
         onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) + 1) : "" }}
-        style={{ display: (posts.length + 1) != loadedCount ? "none" : undefined }}
+        style={{ display: (postUuids.length + 1) != loadedCount ? "none" : undefined }}
       />
     </div>
   )

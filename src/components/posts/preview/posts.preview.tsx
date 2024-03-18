@@ -15,7 +15,7 @@ const PostPreview = (props: { postUuid: string }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [post, setPost] = React.useState({} as Post)
 
-  // TODO: add comments later
+  {/* TODO: uncomment after comments implementations */ }
   // const getCommentsCountText = (): string => {
   //   let commentsWord = ""
   //   if (CommentsCount == 1) {
@@ -58,7 +58,7 @@ const PostPreview = (props: { postUuid: string }) => {
 
   React.useEffect(() => {
     fetchPostPreview()
-  }, [])
+  }, [props.postUuid])
 
   if (isLoading || !post || Object.keys(post).length === 0) {
     return (
@@ -78,6 +78,7 @@ const PostPreview = (props: { postUuid: string }) => {
           <div className="text-xs"><DateFormatted date={post.CreateDate} /></div>
           <span className="mx-2">|</span>
           <div className="text-xs">{post.AuthorName}</div>
+          {/* TODO: uncomment after comments implementations */}
           {/* <span className="mx-2">|</span> */}
           {/* <div className="text-xs"> */}
           {/* TODO: fix text for 0, 1, 2, multiple comments cases in different locales */}
@@ -86,9 +87,6 @@ const PostPreview = (props: { postUuid: string }) => {
         </div>
         <div className="flex items-center text-xs">
           {post.Tags && post.Tags.map(function (tag: Tag, idx) {
-            if (!tag) {
-              return <div />
-            }
             return (
               <StyledLink href={"/posts/" + tag.Id + "/0"} text={tag.Name} key={idx} classes="ml-2" />
             )

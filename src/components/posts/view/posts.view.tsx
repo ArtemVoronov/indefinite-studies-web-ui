@@ -58,21 +58,17 @@ const PostView = (props: { postUuid: string }) => {
 
   React.useEffect(() => {
     fetchPost()
-  }, [])
+  }, [props.postUuid])
 
-  if (isLoading) return (
-    <div>
-      <Overlay />
-    </div>
-  )
+  if (isLoading || !post || Object.keys(post).length === 0) {
+    return (
+      <div>
+        <Overlay />
+      </div>
+    )
+  }
 
-  if (!post || Object.keys(post).length === 0) return (
-    <div>
-      {t("no.data")}
-    </div>
-  )
-
-  const { Uuid, Topic, Text, CreateDate, AuthorName, Tags } = post
+  const { Topic, Text, CreateDate, AuthorName, Tags } = post
 
   const AddCommentButton = (
     <StyledLink href="#new_comment_form"
@@ -91,18 +87,18 @@ const PostView = (props: { postUuid: string }) => {
             <span className="mx-2">|</span>
             <div className="text-xs">{AuthorName}</div>
           </div>
-          {/* <div className="flex items-center text-xs">
-            {Tags.map(function (tag: Tag, idx) {
+          <div className="flex items-center text-xs">
+            {post && Tags && post.Tags.map(function (tag: Tag, idx) {
               return (
                 <StyledLink href={"/posts/" + tag.Id + "/0"} text={tag.Name} key={idx} classes="ml-2" />
               )
             })}
-          </div> */}
+          </div>
         </div>
-        <h1 className="font-extrabold leading-tight text-6xl mt-0 mb-2 text-center">{post.Topic}</h1>
-        <MarkDown text={post.Text} />
+        <h1 className="font-extrabold leading-tight text-6xl mt-0 mb-2 text-center">{Topic}</h1>
+        <MarkDown text={Text} />
       </div>
-      {/* No comment at current verision */}
+      {/* TODO: no comments at current verision */}
       {/* <div className="mt-5">
         <div className="flex justify-between items-center">
           <h2 className="font-bold leading-tight text-3xl mt-0 text-center">{t("post.page.comment.header")}</h2>
