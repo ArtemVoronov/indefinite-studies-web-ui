@@ -1,7 +1,7 @@
 import { ApiResponse } from "apisauce"
 import { API_CLIENT } from "../../services/api/api-client"
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
-import { GetPostOptions, CreatePostOptions, UpdatePostOptions, CreateTagOptions, UpdateTagOptions, AssignTagOptions, RemoveTagOptions } from "../../services/api/posts/posts.api"
+import { GetPostOptions, CreatePostOptions, UpdatePostOptions, CreateTagOptions, UpdateTagOptions } from "../../services/api/posts/posts.api"
 import { GetAllOptions } from "../../utils/utils"
 
 // TODO: service should some maningful results instead of response

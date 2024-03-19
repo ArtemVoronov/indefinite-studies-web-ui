@@ -1,5 +1,4 @@
 import * as React from "react"
-import { FeedBlock } from "../../../services/feed/feed.service"
 import { POSTS_SERVICE, POST_STATES, Post } from "../../../services/posts/posts.service"
 import { navigate } from 'gatsby'
 import { useErrorModal } from "../../hooks/use.error.modal.hook"

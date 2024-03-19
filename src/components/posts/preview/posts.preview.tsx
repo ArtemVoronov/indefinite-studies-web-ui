@@ -55,7 +55,6 @@ const PostPreview = (props: { postUuid: string }) => {
     }
   }
 
-
   React.useEffect(() => {
     fetchPostPreview()
   }, [props.postUuid])

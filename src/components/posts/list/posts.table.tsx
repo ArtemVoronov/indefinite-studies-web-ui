@@ -47,7 +47,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
 
   const navigation = (
     <div className="flex justify-center p-0 my-0 border-b-2 primary-content-block"
-      style={{ display: (posts.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
+      style={{ display: (postUuids.length + 1) != loadedCount && props.page == "0" ? "none" : undefined }}>
       <StyledLinkButton
         text={t("btn.prev")} icon={<ArrowLeftIcon />}
         onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) - 1) : "" }}
@@ -57,7 +57,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
       <StyledLinkButton
         text={t("btn.next")} icon={<ArrowRightIcon />}
         onClick={() => { props.onNavigate ? props.onNavigate(parseInt(props.page) + 1) : "" }}
-        style={{ display: (posts.length + 1) != loadedCount ? "none" : undefined }}
+        style={{ display: (postUuids.length + 1) != loadedCount ? "none" : undefined }}
       />
     </div>
   )
@@ -69,7 +69,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
     </div>
   )
 
-  if (posts.length == 0) return (
+  if (postUuids.length == 0) return (
     <div>
       {t("no.data")}
     </div>
@@ -87,9 +87,9 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
           </tr>
         </thead>
         <tbody>
-          {posts.map(function (p: FeedBlock, idx) {
+          {postUuids.map(function (p: string, idx) {
             return (
-              <PostRow key={idx} post={p} withModeratorActions={props.withModeratorActions} />
+              <PostRow key={idx} postUuid={p} withModeratorActions={props.withModeratorActions} />
             )
           })}
         </tbody>
