@@ -29,7 +29,7 @@ const PostRow = (props: { postUuid: string, withModeratorActions?: boolean }) =>
   }
 
   const handleEditEvent = () => {
-    navigate(`post/edit/${props.postUuid}`)
+    navigate(`/post/edit/${props.postUuid}`)
   }
 
   const ModeratorActionsPanel = (
