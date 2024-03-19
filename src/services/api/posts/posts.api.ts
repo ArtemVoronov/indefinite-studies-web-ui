@@ -88,14 +88,6 @@ export class PostsApi {
     const builder = new UrlBuilder(url, params)
     return this.api.apisauce.get(builder.build())
   }
-
-  async assignTag(options: AssignTagOptions): Promise<any> {
-    return this.api.apisauce.put("/api/v1/posts/tags/assign", options)
-  }
-
-  async removeTag(options: RemoveTagOptions): Promise<any> {
-    return this.api.apisauce.put("/api/v1/posts/tags/remove", options)
-  }
 }
 
 export type GetPostOptions = { postUuid: string }
@@ -103,5 +95,3 @@ export type CreatePostOptions = { authorUuid: string, text: string, topic: strin
 export type UpdatePostOptions = { postUuid: string, authorUuid?: string, text?: string, topic?: string, previewText?: string, state?: string, tagIds?: Array<number> }
 export type CreateTagOptions = { name: string }
 export type UpdateTagOptions = { id: number, name: string }
-export type AssignTagOptions = { postUuid: string, tagId: number }
-export type RemoveTagOptions = { postUuid: string, tagId: number }

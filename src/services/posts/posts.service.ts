@@ -64,20 +64,6 @@ export class PostsService {
     })
     return result
   }
-
-  async assignTag(options: AssignTagOptions): Promise<ApiResponse<any>> {
-    const result = await API_ERROR_HANDLER.callWithErrorHandling({
-      action: () => API_CLIENT.posts.assignTag(options),
-    })
-    return result
-  }
-
-  async removeTag(options: RemoveTagOptions): Promise<ApiResponse<any>> {
-    const result = await API_ERROR_HANDLER.callWithErrorHandling({
-      action: () => API_CLIENT.posts.removeTag(options),
-    })
-    return result
-  }
 }
 
 export const POSTS_SERVICE: PostsService = new PostsService()

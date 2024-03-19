@@ -11,13 +11,13 @@ const DEFAULT_MAX_POSTS_PER_PAGE = 5
 
 const PostsTable = (props: { tagId: string, page: string, postState: string, userUuid: string, withModeratorActions?: boolean, pageSize?: number, onNavigate?: (page: number) => void }) => {
   const [isLoading, setIsLoading] = React.useState(false)
-  const [posts, setPosts] = React.useState([])
+  const [postUuids, setPostUuids] = React.useState([])
   const [loadedCount, setLoadedCount] = React.useState(0)
   const { t } = useTranslation()
   const MAX_POSTS_PER_PAGE = props.pageSize ? props.pageSize : DEFAULT_MAX_POSTS_PER_PAGE
   const LIMIT = MAX_POSTS_PER_PAGE + 1
 
-  const fetchPosts = async () => {
+  const fetchPostsUuids = async () => {
     const timer = setTimeout(() => {
       setIsLoading(true)
     }, SPIN_ICON_SHOWING_TIMEOUT)
@@ -30,9 +30,9 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
         const count = response.data.Count
         setLoadedCount(count)
         if (count > MAX_POSTS_PER_PAGE) {
-          setPosts(portion.slice(0, MAX_POSTS_PER_PAGE))
+          setPostUuids(portion.slice(0, MAX_POSTS_PER_PAGE))
         } else {
-          setPosts(portion)
+          setPostUuids(portion)
         }
       }
     } finally {
@@ -42,7 +42,7 @@ const PostsTable = (props: { tagId: string, page: string, postState: string, use
   }
 
   React.useEffect(() => {
-    fetchPosts()
+    fetchPostsUuids()
   }, [props.page, props.tagId, props.postState, props.pageSize])
 
   const navigation = (
