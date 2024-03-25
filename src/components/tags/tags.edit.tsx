@@ -72,7 +72,6 @@ const TagEditForm = () => {
   )
 
   const updateTag = async (data: any) => {
-    console.log("update tag: ", data)
     const { id, name } = data
 
     if (!profile) {

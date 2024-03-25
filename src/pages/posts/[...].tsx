@@ -4,9 +4,6 @@ import { POST_STATES } from "../../services/posts/posts.service"
 import { graphql } from "gatsby"
 
 const PostsPage = (req: { params: any }) => {
-  console.log("req:", req)
-
-
   const renderPosts = () => {
     const params = req.params[`*`].split(`/`)
     let page = "0"
