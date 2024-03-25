@@ -9,8 +9,9 @@ import StyledLinkButton from "../../buttons/styled.link.button"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import { USERS_SERVICE } from "../../../services/users/users.service"
 import Overlay from "../../overlay/overlay"
+import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/20/solid"
 
-const PostRow = (props: { postUuid: string, withModeratorActions?: boolean }) => {
+const PostRow = (props: { postUuid: string, withModeratorActions?: boolean, onShowComments: () => void }) => {
   const { t } = useTranslation()
   const [showErrorModal] = useErrorModal()
   const [isLoading, setIsLoading] = React.useState(false)
@@ -77,7 +78,6 @@ const PostRow = (props: { postUuid: string, withModeratorActions?: boolean }) =>
     }
   }
 
-
   React.useEffect(() => {
     fetchPostPreview()
   }, [props.postUuid])
@@ -103,6 +103,9 @@ const PostRow = (props: { postUuid: string, withModeratorActions?: boolean }) =>
           {!props.withModeratorActions ? "" : ModeratorActionsPanel}
           <StyledLinkButton onClick={handleEditEvent}
             icon={<PencilIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.edit")} />}
+          />
+          <StyledLinkButton onClick={props.onShowComments}
+            icon={<ChatBubbleLeftEllipsisIcon className="h-8 w-8 primary-link-icon" aria-hidden="true" title={t("btn.open.comments")} />}
           />
         </div>
       </td>

@@ -3,7 +3,6 @@ import MarkDown from "../../markdown/markdown"
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentsList from "../../comments/list/comments.list"
 import CommentCreate from "../../comments/create/comments.create"
-import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import Overlay from "../../overlay/overlay"
 import { useTranslation } from "gatsby-plugin-react-i18next"
@@ -68,7 +67,7 @@ const PostView = (props: { postUuid: string }) => {
     )
   }
 
-  const { Topic, Text, CreateDate, AuthorName, Tags } = post
+  const { Topic, Text, CreateDate, AuthorName, Tags, State } = post
 
   const AddCommentButton = (
     <StyledLink href="#new_comment_form"
@@ -98,35 +97,36 @@ const PostView = (props: { postUuid: string }) => {
         <h1 className="font-extrabold leading-tight text-6xl mt-0 mb-2 text-center">{Topic}</h1>
         <MarkDown text={Text} />
       </div>
-      {/* TODO: no comments at current verision */}
-      {/* <div className="mt-5">
-        <div className="flex justify-between items-center">
-          <h2 className="font-bold leading-tight text-3xl mt-0 text-center">{t("post.page.comment.header")}</h2>
-          {!profile ? "" : AddCommentButton}
-        </div>
-        {showCreateCommentForm && (
-          <CommentCreate id="new_comment_form" postUuid={PostUuid} linkedCommentUuid=""
-            onCancel={() => {
-              setShowCreateCommentForm(false)
-            }} />
-        )}
+      <div className="mt-5">
+        {post && State && State === POST_STATES.PUBLISHED && <>
+          <div className="flex justify-between items-center">
+            <h2 className="font-bold leading-tight text-3xl mt-0 text-center">{t("post.page.comment.header")}</h2>
+            {!profile ? "" : AddCommentButton}
+          </div>
+          {showCreateCommentForm && (
+            <CommentCreate id="new_comment_form" postUuid={postUuid}
+              onCancel={() => {
+                setShowCreateCommentForm(false)
+              }} />
+          )}
+          <div className="primary-content-block2">
+            <CommentsList postUuid={postUuid}
+              onReplyCommentBtnClick={() => {
+                setShowCreateCommentForm(false)
+              }}
+              onEditCommentBtnClick={() => {
+                setShowCreateCommentForm(false)
+              }}
+              renderedCreateCommentFormIndex={renderedCreateCommentFormIndex}
+              setRenderedCreateCommentFormIndex={(v: number) => setRenderedCreateCommentFormIndex(v)}
+              renderedEditCommentFormIndex={renderedEditCommentFormIndex}
+              setRenderedEditCommentFormIndex={(v: number) => setRenderedEditCommentFormIndex(v)}
+            />
+          </div>
+        </>}
 
-        <div className="primary-content-block2">
-          <CommentsList comments={post.Comments} commentsMap={post.CommentsMap}
-            onReplyCommentBtnClick={() => {
-              setShowCreateCommentForm(false)
-            }}
-            onEditCommentBtnClick={() => {
-              setShowCreateCommentForm(false)
-            }}
-            renderedCreateCommentFormIndex={renderedCreateCommentFormIndex}
-            setRenderedCreateCommentFormIndex={(v: number) => setRenderedCreateCommentFormIndex(v)}
-            renderedEditCommentFormIndex={renderedEditCommentFormIndex}
-            setRenderedEditCommentFormIndex={(v: number) => setRenderedEditCommentFormIndex(v)}
-          />
 
-        </div>
-      </div> */}
+      </div>
     </div>
   )
 }

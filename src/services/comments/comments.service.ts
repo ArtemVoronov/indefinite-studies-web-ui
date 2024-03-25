@@ -1,10 +1,16 @@
 import { ApiResponse } from "apisauce"
 import { API_CLIENT } from "../../services/api/api-client"
 import { API_ERROR_HANDLER } from '../../services/api/api-error-handler'
-import { CreateCommentOptions, UpdateCommentOptions } from "../../services/api/comments/comments.api"
+import { CreateCommentOptions, GetCommentOptions, UpdateCommentOptions } from "../../services/api/comments/comments.api"
 
 // TODO: service should some maningful results instead of response
 export class CommentsService {
+  async get(options: GetCommentOptions): Promise<ApiResponse<any>> {
+    const result = await API_ERROR_HANDLER.callWithErrorHandling({
+      action: () => API_CLIENT.comments.get(options)
+    })
+    return result
+  }
   async create(options: CreateCommentOptions): Promise<ApiResponse<any>> {
     const result = await API_ERROR_HANDLER.callWithErrorHandling({
       action: () => API_CLIENT.comments.create(options)
@@ -21,6 +27,18 @@ export class CommentsService {
 }
 
 export const COMMENTS_SERVICE: CommentsService = new CommentsService()
+
+export type Comment = {
+  Id: number
+  AuthorUuid: string
+  AuthorName: string
+  PostUuid: string
+  LinkedCommentId?: number
+  Text: string
+  State: string
+  CreateDate: number
+  LastUpdateDate: number
+}
 
 export const COMMENT_STATES = {
   "NEW": "NEW",

@@ -2,7 +2,6 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 import { POSTS_SERVICE, Post, Tag } from "../../../services/posts/posts.service"
 import { navigate } from 'gatsby'
-import { FEED_SERVICE, FullPostInfo } from "../../../services/feed/feed.service"
 import AssignTagsForm from "../tags/assign.tags.form"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import Overlay from "../../overlay/overlay"
@@ -37,25 +36,6 @@ const PostEdit = (props: { postUuid: string }) => {
     }
   }
 
-  // const fetchPost = async () => {
-  //   const timer = setTimeout(() => {
-  //     setIsLoading(true)
-  //   }, SPIN_ICON_SHOWING_TIMEOUT)
-
-  //   try {
-  //     const response = await POSTS_SERVICE.get({ postUuid: props.postUuid })
-  //     clearTimeout(timer)
-  //     if (response.status === 200) {
-  //       const feedPost = response.data as Post
-  //       setPost(feedPost)
-  //       setTags(feedPost.Post.Tags)
-  //     }
-  //   } finally {
-  //     clearTimeout(timer)
-  //     setIsLoading(false)
-  //   }
-  // }
-
   const fetchPost = async () => {
     const timer = setTimeout(() => {
       setIsLoading(true)
@@ -87,17 +67,21 @@ const PostEdit = (props: { postUuid: string }) => {
     fetchPost()
   }, [])
 
-  if (isLoading) return (
-    <div>
-      <Overlay />
-    </div>
-  )
+  if (isLoading) {
+    return (
+      <div>
+        <Overlay />
+      </div>
+    )
+  }
 
-  if (!post || Object.keys(post).length === 0) return (
-    <div>
-      {t("no.data")}
-    </div>
-  )
+  if (!post || Object.keys(post).length === 0) {
+    return (
+      <div>
+        {t("no.data")}
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -127,11 +111,9 @@ const PostEdit = (props: { postUuid: string }) => {
           </div>
         </div>
 
-
         <div>
           <AssignTagsForm initialValue={post.Tags} onChange={(tags: Tag[]) => { setTags(tags) }} />
         </div>
-
 
         <div className="flex justify-center">
           <StyledButton text={t("btn.submit")} />

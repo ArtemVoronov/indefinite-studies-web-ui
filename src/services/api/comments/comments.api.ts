@@ -7,6 +7,11 @@ export class CommentsApi {
     this.api = api
   }
 
+  async get(options: GetCommentOptions): Promise<any> {
+    const { postUuid, commentId } = options
+    return this.api.apisauce.get(`/api/v1/posts/${postUuid}/comments/${commentId}`)
+  }
+
   async create(options: CreateCommentOptions): Promise<any> {
     return this.api.apisauce.post("/api/v1/posts/comments", options)
   }
@@ -16,5 +21,6 @@ export class CommentsApi {
   }
 }
 
-export type CreateCommentOptions = { authorUuid: string, postUuid: string, text: string, linkedCommentUuid: string }
-export type UpdateCommentOptions = { authorUuid: string, postUuid: string, commentId: number, commentUuid: string, text?: string, state?: string }
+export type GetCommentOptions = { postUuid: string, commentId: number }
+export type CreateCommentOptions = { authorUuid: string, postUuid: string, text: string, linkedCommentId?: number }
+export type UpdateCommentOptions = { authorUuid: string, postUuid: string, commentId: number, text?: string, state?: string }

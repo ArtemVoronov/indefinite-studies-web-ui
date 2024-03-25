@@ -1,19 +1,54 @@
 import * as React from "react"
 import { FeedComment } from "../../../services/feed/feed.service"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
-import { COMMENTS_SERVICE, COMMENT_STATES } from "../../../services/comments/comments.service"
+import { COMMENTS_SERVICE, COMMENT_STATES, Comment } from "../../../services/comments/comments.service"
 import { ArrowUturnLeftIcon, BookOpenIcon, BriefcaseIcon, NoSymbolIcon } from "@heroicons/react/20/solid"
-import StyledLink from "../../buttons/styled.link"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import StyledLinkButton from "../../buttons/styled.link.button"
+import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
+import { USERS_SERVICE } from "../../../services/users/users.service"
+import Overlay from "../../overlay/overlay"
 
-const CommentRow = (props: { comment: FeedComment }) => {
+const CommentRow = (props: { postUuid: string, comment: FeedComment }) => {
   const { t } = useTranslation()
   const [showErrorModal] = useErrorModal()
-  const { PostUuid, AuthorUuid, CommentId, CommentUuid, AuthorName, CommentText } = props.comment
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [comment, setComment] = React.useState({} as Comment)
+
+  const fetchComment = async () => {
+    const timer = setTimeout(() => {
+      setIsLoading(true)
+    }, SPIN_ICON_SHOWING_TIMEOUT)
+
+    try {
+      let response = await COMMENTS_SERVICE.get({ postUuid: props.postUuid, commentId: props.comment.Id })
+      clearTimeout(timer)
+
+      if (response.status !== 200) {
+        return
+      }
+      let loadedComment = response.data as Comment
+
+      response = await USERS_SERVICE.getUserName({ Uuid: loadedComment.AuthorUuid })
+      if (response.status !== 200) {
+        return
+      }
+
+      loadedComment.AuthorName = response.data
+
+      setComment(loadedComment)
+    } finally {
+      clearTimeout(timer)
+      setIsLoading(false)
+    }
+  }
+
+  React.useEffect(() => {
+    fetchComment()
+  }, [props.postUuid])
 
   const handleChangeStateEvent = async (state: string) => {
-    const response = await COMMENTS_SERVICE.update({ authorUuid: AuthorUuid, postUuid: PostUuid, commentId: CommentId, commentUuid: CommentUuid, state })
+    const response = await COMMENTS_SERVICE.update({ authorUuid: comment.AuthorUuid, postUuid: comment.PostUuid, commentId: comment.Id, state })
 
     if (response.status == 200) {
       window.location.reload()
@@ -38,18 +73,29 @@ const CommentRow = (props: { comment: FeedComment }) => {
     </>
   )
 
+  React.useEffect(() => {
+    fetchComment()
+  }, [props.postUuid])
+
+  if (isLoading || !comment || Object.keys(comment).length === 0) {
+    return (
+      <div>
+        <Overlay />
+      </div>
+    )
+  }
+
   return (
     <tr className="primary-content-block">
       <td className="text-center w-64">
-        {AuthorName}
+        {comment.AuthorName}
       </td>
       <td className="text-center">
-        {CommentText}
+        {comment.Text}
       </td>
       <td className="text-center w-64">
         <div className="flex">
           {ModeratorActionsPanel}
-          <StyledLink href={"/post/" + PostUuid} text={t("btn.open")} />
         </div>
       </td>
     </tr>

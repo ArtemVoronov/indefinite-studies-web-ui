@@ -126,11 +126,11 @@
     "post.preview.text.placeholder": "Введите текст ...",
     "post.tag.id.label": "Тэг",
     "comment.header": "Комментарии",
-    "btn.new.comment": "Комментировать",
+    "btn.new.comment": "Добавить комментарий",
     "tags.label": "Тэги",
     "comment.header.new": "Новый комментарий",
     "comment.header.edit": "Изменение комментария",
-    "comment.on.moderation": "Комментарий на модерации",
+    "comment.on.moderation": "Комментарий будет опубликован после проверки модератором",
     "comment.blocked": "Комментарий заблокирован модератором"
   },
   "posts.page": {

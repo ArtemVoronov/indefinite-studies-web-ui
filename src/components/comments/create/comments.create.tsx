@@ -1,7 +1,6 @@
 import * as React from "react"
 import { useForm } from "react-hook-form"
 import { COMMENTS_SERVICE } from "../../../services/comments/comments.service"
-import { navigate } from 'gatsby'
 import { useProfile } from '../../hooks/use.profile.hook'
 import CommentLink from "../link/comments.link"
 import { useErrorModal } from "../../hooks/use.error.modal.hook"
@@ -9,12 +8,12 @@ import StyledButton from "../../buttons/styled.button"
 import StyledTextArea from "../../form/styled.textarea"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 
-const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid: string, linkedCommentIndex?: number, onCancel: () => void }) => {
+const CommentCreate = (props: { id: string, postUuid: string, linkedCommentId?: number, linkedCommentIndex?: number, onCancel: () => void }) => {
   const [profile] = useProfile()
   const { t } = useTranslation()
   const [showErrorModal] = useErrorModal()
   const { register, handleSubmit } = useForm()
-  const { postUuid, linkedCommentUuid, linkedCommentIndex } = props
+  const { postUuid, linkedCommentId, linkedCommentIndex } = props
 
   const createComment = async (data: any) => {
     const { text } = data
@@ -27,7 +26,7 @@ const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid:
       return
     }
 
-    const response = await COMMENTS_SERVICE.create({ authorUuid: profile.Uuid, text, postUuid, linkedCommentUuid })
+    const response = await COMMENTS_SERVICE.create({ authorUuid: profile.Uuid, text, postUuid, linkedCommentId })
 
     if (response.status != 201) {
       showErrorModal(true,
@@ -65,7 +64,6 @@ const CommentCreate = (props: { id: string, postUuid: string, linkedCommentUuid:
       <div className="flex justify-center">
         <StyledButton text={t("btn.cancel")} onClick={props.onCancel} />
       </div>
-
     </div>
   )
 }

@@ -83,6 +83,7 @@ export type Post = {
   AuthorName: string
   Tags: Array<Tag>
   CreateDate: number
+  CommentsCount: number
 }
 
 export const POST_STATES = {

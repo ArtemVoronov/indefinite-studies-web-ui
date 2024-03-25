@@ -1,5 +1,4 @@
 import * as React from "react"
-import { FeedBlock } from "../../../services/feed/feed.service"
 import MarkDown from "../../markdown/markdown"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import { POSTS_SERVICE, Post, Tag } from "../../../services/posts/posts.service"
@@ -8,6 +7,8 @@ import StyledLink from "../../buttons/styled.link"
 import Overlay from "../../overlay/overlay"
 import { SPIN_ICON_SHOWING_TIMEOUT } from "../../../utils/utils"
 import { USERS_SERVICE } from "../../../services/users/users.service"
+import { FEED_SERVICE, FeedComment } from "../../../services/feed/feed.service"
+import { COMMENT_STATES } from "../../../services/comments/comments.service"
 
 // TODO: add tag i18n
 const PostPreview = (props: { postUuid: string }) => {
@@ -15,18 +16,17 @@ const PostPreview = (props: { postUuid: string }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [post, setPost] = React.useState({} as Post)
 
-  {/* TODO: uncomment after comments implementations */ }
-  // const getCommentsCountText = (): string => {
-  //   let commentsWord = ""
-  //   if (CommentsCount == 1) {
-  //     commentsWord = t("posts.page.comment.count.1")
-  //   } else if (CommentsCount == 2 || CommentsCount == 3 || CommentsCount == 4) {
-  //     commentsWord = t("posts.page.comment.count.2.3.4")
-  //   } else {
-  //     commentsWord = t("posts.page.comment.count")
-  //   }
-  //   return CommentsCount + " " + commentsWord
-  // }
+  const getCommentsCountText = (commentsCount: number): string => {
+    let commentsWord = ""
+    if (commentsCount == 1) {
+      commentsWord = t("posts.page.comment.count.1")
+    } else if (commentsCount == 2 || commentsCount == 3 || commentsCount == 4) {
+      commentsWord = t("posts.page.comment.count.2.3.4")
+    } else {
+      commentsWord = t("posts.page.comment.count")
+    }
+    return commentsCount + " " + commentsWord
+  }
 
   const fetchPostPreview = async () => {
     const timer = setTimeout(() => {
@@ -47,6 +47,18 @@ const PostPreview = (props: { postUuid: string }) => {
       }
 
       loadedPost.AuthorName = response.data
+
+      // TODO: fetch all with pagination, for now it's used temporary solution:
+      // TODO: use some cache counter
+      const OFFSET = 0
+      const LIMIT = 10000
+      response = await FEED_SERVICE.getComments({ offset: OFFSET, limit: LIMIT, postUuid: props.postUuid })
+      if (response.status !== 200) {
+        return
+      }
+
+      const loadedCommentsFeed = response.data.Data as FeedComment[]
+      loadedPost.CommentsCount = loadedCommentsFeed.filter((c) => c.State == COMMENT_STATES.PUBLISHED).length
 
       setPost(loadedPost)
     } finally {
@@ -77,12 +89,11 @@ const PostPreview = (props: { postUuid: string }) => {
           <div className="text-xs"><DateFormatted date={post.CreateDate} /></div>
           <span className="mx-2">|</span>
           <div className="text-xs">{post.AuthorName}</div>
-          {/* TODO: uncomment after comments implementations */}
-          {/* <span className="mx-2">|</span> */}
-          {/* <div className="text-xs"> */}
-          {/* TODO: fix text for 0, 1, 2, multiple comments cases in different locales */}
-          {/* <StyledLink href={"/post/" + Uuid} text={getCommentsCountText()} /> */}
-          {/* </div> */}
+          <span className="mx-2">|</span>
+          <div className="text-xs">
+            {/* TODO: fix text for 0, 1, 2, multiple comments cases in different locales */}
+            <StyledLink href={"/post/" + post.Uuid} text={getCommentsCountText(post.CommentsCount)} />
+          </div>
         </div>
         <div className="flex items-center text-xs">
           {post.Tags && post.Tags.map(function (tag: Tag, idx) {
@@ -91,7 +102,6 @@ const PostPreview = (props: { postUuid: string }) => {
             )
           })}
         </div>
-
       </div>
       <div>
         <MarkDown text={post.PreviewText} />

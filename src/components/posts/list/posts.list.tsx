@@ -1,5 +1,5 @@
 import * as React from "react"
-import { FEED_SERVICE, FeedBlock } from "../../../services/feed/feed.service"
+import { FEED_SERVICE } from "../../../services/feed/feed.service"
 import PostPreview from "../preview/posts.preview"
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import Overlay from "../../overlay/overlay"
@@ -27,7 +27,7 @@ const PostsList = (props: {
     }, SPIN_ICON_SHOWING_TIMEOUT)
 
     try {
-      const response = await FEED_SERVICE.getAll({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: LIMIT, tagId: props.tagId, state: props.postState, userUuid: props.userUuid })
+      const response = await FEED_SERVICE.getPosts({ offset: parseInt(props.page) * MAX_POSTS_PER_PAGE, limit: LIMIT, tagId: props.tagId, state: props.postState, userUuid: props.userUuid })
       clearTimeout(timer)
       if (response.status === 200) {
         const portion = response.data.Data
@@ -54,7 +54,6 @@ const PostsList = (props: {
       return "/posts/" + props.tagId + "/" + (parseInt(props.page) - 1)
     } else {
       return "/posts/" + (parseInt(props.page) - 1)
-
     }
   }
 
@@ -63,7 +62,6 @@ const PostsList = (props: {
       return "/posts/" + props.tagId + "/" + (parseInt(props.page) + 1)
     } else {
       return "/posts/" + (parseInt(props.page) + 1)
-
     }
   }
 

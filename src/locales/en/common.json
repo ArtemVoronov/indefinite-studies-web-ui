@@ -130,7 +130,7 @@
     "tags.label": "Tags",
     "comment.header.new": "New comment",
     "comment.header.edit": "Edit comment",
-    "comment.on.moderation": "Comment on moderation",
+    "comment.on.moderation": "Comment will be published after checking by a moderator",
     "comment.blocked": "Comment is blocked by moderator"
   },
   "posts.page": {
