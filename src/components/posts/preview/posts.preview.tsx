@@ -58,8 +58,11 @@ const PostPreview = (props: { postUuid: string }) => {
       }
 
       const loadedCommentsFeed = response.data.Data as FeedComment[]
-      loadedPost.CommentsCount = loadedCommentsFeed.filter((c) => c.State == COMMENT_STATES.PUBLISHED).length
-
+      if (loadedCommentsFeed) {
+        loadedPost.CommentsCount = loadedCommentsFeed.filter((c) => c.State == COMMENT_STATES.PUBLISHED).length
+      } else {
+        loadedPost.CommentsCount = 0
+      }
       setPost(loadedPost)
     } finally {
       clearTimeout(timer)
